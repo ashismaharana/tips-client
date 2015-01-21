@@ -1,0 +1,254 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+@import "setcolour";
+
+.background-color-redD{
+  background-color:$bg-r-d;
+}
+
+.background-color-redL{
+  background-color:$bg-r-l;
+}
+
+.background-color-blueD{
+  background-color: $bg-title;
+}
+
+.background-color-blueL{
+  background-color: $bg-title-l;
+}
+
+.background-color-skyD{
+  background-color: $bg-sky-d;
+}
+
+.background-color-skyL{
+  background-color: $bg-sky-l;
+}
+
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-bottom: 20px;
+  overflow-x: hidden;
+  // background-color:black;
+  font-family: $icon-font-path;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+// @media screen and (min-width: 768px) {
+//   .container {
+//     max-width: 992px;
+//   }
+
+//   /* Remove the padding we set earlier */
+//   .header,
+//   .marketing,
+//   .footer {
+//     padding-left: 0;
+//     padding-right: 0;
+//   }
+//   /* Space out the masthead */
+//   .header {
+//     margin-bottom: 30px;
+//   }
+//   /* Remove the bottom border on the jumbotron for visual effect */
+//   .jumbotron {
+//     border-bottom: 0;
+//   }
+// }
+
+.headerContainer{
+  font-family:$icon-font-path;
+}
+
+.signbutton{
+  background-color: #ECEAEA;
+  border-right: 2px;
+  margin: 1px solid; 
+  padding: 5px;
+  text-decoration :none;
+}
+.floatl{
+  float: left;
+}
+.floatr{
+  float: right;
+}
+.logo{
+  font-size: 25px;
+  @extend .floatl;
+}
+.paddingTip{
+  padding: 10px 30px;
+}
+.navDiv{
+  background-color: rgb(116, 232, 247);
+}
+.wrapper{
+  width: 1170px;
+  margin: 0 auto;
+}
+.nav{
+  padding: 10px 0px;
+  text-align: center;
+}
+.searchBox{
+  width: 750px;
+  font-size: 20px; 
+  padding: 10px 10px 10px 30px;
+  border: 1px solid $br-g;
+}
+ 
+.tipsCategory{
+  @extend .floatl;
+  text-align: center;
+  @extend .logo;
+  width: 200px;
+  font-size: 16px;
+  @extend .paddingTip;
+  margin-right: 10px;
+  background:  $bg-y;
+}  
+.categoryList{
+  text-align: center;
+  padding: 0px 10px;  
+}
+.categoryUl{
+  list-style-type: none;
+  text-align: left;
+}
+.tipsContainer{
+  // width: 748px;
+  @extend .floatl;
+
+}
+.tip{
+  padding: 0px 10px;
+  width: 250px;
+}
+.tips{
+  width: 240px;
+  margin: 0px 4px 4px;
+  float: left;
+}
+.tipsTitle{
+  text-align: center;
+  // background-color: $bg-title;
+  margin: 0px;
+  padding: 10px;
+}
+
+.tipsDescription{
+  @extend .paddingTip;
+  word-wrap: left;  
+  text-align: center;
+}
+.listOfCategoryDiv{
+  background-color: gray;
+  color: white;
+  height: 60px;
+  margin: 10px;
+}
+.listOfCategory{
+  padding: 20px;
+  width: 150px;
+  @extend .floatl;  
+}
+
+.btnSign{
+  margin: 0px;
+  background-color: $bg-r-d;
+  border: 0px;
+  padding: 8px;
+}
+.btnDiv{
+  padding-top: 10px;
+}
+
+.tipDetails{
+  @extend .background-color-redL;
+  height: 50px;
+}
+
+.thumbs_up{
+  width: 80px;
+  padding: 0px 10px;
+}
+
+.thumbs_down{
+  @extend .thumbs_up;
+}
+.thumbsUpImg{
+  width: 28px;
+  padding: 5px 0px;
+  @extend .floatl;
+}
+.thumbsDownImg{
+  @extend .thumbsUpImg;
+}
+
+.hr{
+  margin: 0px;
+}

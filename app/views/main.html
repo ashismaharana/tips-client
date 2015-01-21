@@ -1,0 +1,26 @@
+<div class="navDiv">
+<div class="wrapper">
+  <div class="nav">
+    <div class="logo">tipsly</div>    
+    <input type="search" class="searchBox " placeholder="search eg: unix" ></input>
+    <div class="btnDiv floatr"><button class="btnSign">Sign in /  Sign up</button></div>
+  </div>
+</div>
+</div>
+  <div class="listOfCategoryDiv">
+    <categories></categories>
+
+  </div>
+<div class="tipsContainer  floatl">
+  <div ng-repeat="tip in tips" class="tip floatl">
+    <h4 class="tipsTitle background-color-redD">{{tip.title }}</h4>
+    <div class="desc tipsDescription background-color-redL">{{tip.description }}</div>
+    <hr class="hr">
+    <div class="tipDetails">
+      <a href="" class=""> <div class="thumbs_up floatl"><img src="../images/tup.png" class="thumbsUpImg" alt=""> {{tip.thumbs_up}}</div></a> 
+      <a href="" class=""> <div class="thumbs_down floatl"><img src="../images/tdown.png" class="thumbsDownImg"  alt=""> {{tip.thumbs_down}}</div> </a>
+      <div class="viewer"></div>
+    </div>
+  </div>
+</div>
+
