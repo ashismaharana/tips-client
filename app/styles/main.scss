@@ -4,6 +4,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 @import "setcolour";
 
+@import "mixin";
+
 .background-color-redD{
   background-color:$bg-r-d;
 }
@@ -27,7 +29,17 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .background-color-skyL{
   background-color: $bg-sky-l;
 }
+.background-color-y{
+  background-color: $bg-y-d;
+}
 
+.background-color-yL{
+  background-color: $bg-y-l;
+}
+
+.background-color-w{
+  background-color: $bg-white;
+}
 
 .browsehappy {
   margin: 0.2em 0;
@@ -144,7 +156,7 @@ body {
   padding: 10px 30px;
 }
 .navDiv{
-  background-color: rgb(116, 232, 247);
+  @extend .background-color-blueD;
 }
 .wrapper{
   width: 1170px;
@@ -185,7 +197,7 @@ body {
 
 }
 .tip{
-  padding: 0px 10px;
+  padding: 5px 10px;
   width: 250px;
 }
 .tips{
@@ -194,41 +206,45 @@ body {
   float: left;
 }
 .tipsTitle{
-  text-align: center;
-  // background-color: $bg-title;
   margin: 0px;
   padding: 10px;
+  text-align: center;
+  @extend .background-color-yL
 }
 
 .tipsDescription{
   @extend .paddingTip;
-  word-wrap: left;  
-  text-align: center;
+  @extend .background-color-y;
+  text-align: justify;
 }
 .listOfCategoryDiv{
   background-color: gray;
   color: white;
-  height: 60px;
+  height: 45px;
   margin: 10px;
 }
 .listOfCategory{
-  padding: 20px;
-  width: 150px;
+  padding: 6px 16px;
+  width-max: 150px;
   @extend .floatl;  
+  font-size: 22px;
+  font-weight: lighter;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .btnSign{
   margin: 0px;
-  background-color: $bg-r-d;
-  border: 0px;
-  padding: 8px;
+  border: 1px solid white;
+  padding: 9px 40px;;
+  background-color: rgba(255, 255, 255, 0);
+  vertical-align: middle;
 }
 .btnDiv{
   padding-top: 10px;
 }
 
 .tipDetails{
-  @extend .background-color-redL;
+  @extend .background-color-y;
   height: 50px;
 }
 
@@ -241,7 +257,7 @@ body {
   @extend .thumbs_up;
 }
 .thumbsUpImg{
-  width: 28px;
+  width: 18px;
   padding: 5px 0px;
   @extend .floatl;
 }

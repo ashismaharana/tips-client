@@ -35,6 +35,6 @@ angular
         controller: 'TestCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/'  
       });
   });

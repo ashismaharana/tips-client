@@ -9,18 +9,16 @@
 </div>
   <div class="listOfCategoryDiv">
     <categories></categories>
-
   </div>
 <div class="tipsContainer  floatl">
   <div ng-repeat="tip in tips" class="tip floatl">
-    <h4 class="tipsTitle background-color-redD">{{tip.title }}</h4>
-    <div class="desc tipsDescription background-color-redL">{{tip.description }}</div>
+    <h4 ng-repeat="category in categories"  class="tipsTitle " ng-show="category.id == tip.category_id">{{category.title}}</h4>
+    <div class="desc tipsDescription">{{tip.title}}</div>
     <hr class="hr">
     <div class="tipDetails">
-      <a href="" class=""> <div class="thumbs_up floatl"><img src="../images/tup.png" class="thumbsUpImg" alt=""> {{tip.thumbs_up}}</div></a> 
-      <a href="" class=""> <div class="thumbs_down floatl"><img src="../images/tdown.png" class="thumbsDownImg"  alt=""> {{tip.thumbs_down}}</div> </a>
-      <div class="viewer"></div>
+      <div class="thumbs_up floatl"><img src="../images/thumbs_up.png" class="thumbsUpImg" alt=""><span class=""> {{tip.thumbs_up}} </span> </div>
+      <div class="thumbs_down floatl"><img src="../images/thumbs_down.png" class="thumbsDownImg"  alt=""> {{tip.thumbs_down}}</div>
+      <div class="viewer"><img src="../images/viewed.png" alt="" class=""></div>
     </div>
   </div>
 </div>
-

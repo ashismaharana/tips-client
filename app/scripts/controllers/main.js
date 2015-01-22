@@ -8,15 +8,15 @@
  * Controller of the tipsApp
  */
 
- // var baseUrl = 'http://localhost:1337/';
 
 angular.module('tipsApp')
 
 .controller('MainCtrl', function ($scope, Tip, Category) {
-    $scope.tips = Tip.query();
+    $scope.tips = Tip.getTips();
+   // console.log($scope.tips);
    	$scope.categories = Category.query();
+   //console.log($scope.categories);
 })
-
 .directive('categories', function() {
   return {
     templateUrl: 'views/categories.html'
