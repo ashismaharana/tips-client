@@ -1,0 +1,17 @@
+<!-- nav -->
+<div class="nav-div">
+    <div class="wrapper">
+        <div class="nav">
+            <a href="#/"><span class="logo">tipsly</span></a>    
+            <input type="search" class="searchBox" placeholder="search eg: unix" ng-model="search"> 
+                <div class="search-results" ng-repeat="category in categories | filter:search" ng-show="search"> {{category.title}}
+                </div>
+                <div class="search-close"><img src=""></div>
+            </input>
+            <div class="btn-div floatr">
+                <button  class="btn-sign" ng-click="signIn()"  ng-hide="isLoggedIn">Sign in /  Sign up </button>
+                <button class="btn-sign" ng-click="signOut()" ng-show="isLoggedIn">Sign Out</button>
+            </div>
+        </div>
+    </div>
+</div>

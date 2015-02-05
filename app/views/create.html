@@ -1,0 +1,33 @@
+<div ng-include="'../views/nav.html'"></div> 
+<!-- ../ and give the path of the file -->
+<div ng-include="'../views/user-nav.html'"></div> 
+
+<form class="create-tip create-tip-div">
+	<div class="create-tip-categories">
+		<div class="create-tip-categories-txt">Category:</div>
+		<select class="dropdown dropdown-category-list" ng-model="tip.category_id"> 
+			<option value="">ok select from the list</option>
+			<option ng-repeat="category in categories"  value="{{category.id}}"> {{category.title}} </option>
+		</select>
+	</div>
+
+	<div class="create-tip-title-div">
+		<div class="create-tip-title-txt">Title:</div>
+		<textarea type="textarea" class="create-tip-title" ng-model="tip.title"></textarea>
+	</div>
+
+	<div class="create-tip-description-div">
+		<div class="create-tip-description-txt">Description:</div>
+		<textarea type="textarea" class="create-tip-description" ng-model="tip.description">
+		</textarea>
+	</div>
+
+	<div class="create-tip-file-upload-div">
+		<div class="create-tip-file-upload-txt">Source File:</div>
+		<div class="create-tip-upload-file-div">Upload file
+			<input type="file" name="upload" class="create-tip-upload-file" ng-model="tip.file"></input>
+		</div>
+		<!-- Upload file -->
+	</div>
+	<button class="btn-create-tip-submit" ng-click="create(tip)">Submit</button>
+</form>

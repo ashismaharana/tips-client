@@ -1,0 +1,24 @@
+<div class="signInText">Sign In</div>
+<form class="sign-in-div-form"  ng-controller="SessionCtrl" name="signinForm" >
+    <div class="email-id-div">
+      <div class="emailId">Email id:</div>  
+      <input type= "text" class="emailIdForm" id="email"  ng-model="user.email">  
+      <div class="signup-error-field" ng-show="signup_form.signup_email.$dirty && signup_form.signup_email.$invalid"> 
+        <span ng-show="signup_form.signup_email.$error.required">Tell us your email.</span>
+        <span ng-show="signup_form.signup_email.$error.email">This is not a valid email.</span>
+      </div>
+
+    </div>
+
+    <div class="email-id-div passwordIdDiv">
+      <div class="emailId">Password:</div>
+      <input type="password" class="emailIdForm " id="password" ng-model="user.password">
+    </div>
+
+    <div class="forgotPassword"><a href="">forgot password?</a></div>
+    <button class="btn-sign-in" ng-click="login(user)" >Sign in</button>
+    <!-- {{user.firstName}} -->
+    <hr class="hrGray">
+    <div class="sign-in-div-text">Don’t Have Account? <a href="" class="signupText" ng-click="signUpClick()"> Sign up </a> now
+    </div>
+</form>

@@ -1,10 +1,19 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular.ttf";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "setcolour";
 
 @import "mixin";
+
+@import "fonts";
+
+@import "create-tip";
+
+@import "profile";
+
+// $icon-font-path: "../styles/fonts/handlee.woff2";
 
 .background-color-redD{
   background-color:$bg-r-d;
@@ -41,6 +50,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   background-color: $bg-white;
 }
 
+.background-color-black{
+  background-color: $color-l-black;
+}
+
+.bg-color-d-black{
+  background-color: $bg-d-black;
+}
+.bg-color-yellow-l{
+  background-color: $bg-y-sign;
+}
+        
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -52,8 +74,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body {
   padding-bottom: 20px;
   overflow-x: hidden;
-  // background-color:black;
-  font-family: $icon-font-path;
+  @extend .background-color-w;
+  // font-family: $icon-font-path;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -109,39 +132,29 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-// @media screen and (min-width: 768px) {
-//   .container {
-//     max-width: 992px;
-//   }
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 992px;
+  }
 
-//   /* Remove the padding we set earlier */
-//   .header,
-//   .marketing,
-//   .footer {
-//     padding-left: 0;
-//     padding-right: 0;
-//   }
-//   /* Space out the masthead */
-//   .header {
-//     margin-bottom: 30px;
-//   }
-//   /* Remove the bottom border on the jumbotron for visual effect */
-//   .jumbotron {
-//     border-bottom: 0;
-//   }
-// }
-
-.headerContainer{
-  font-family:$icon-font-path;
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
 }
 
-.signbutton{
-  background-color: #ECEAEA;
-  border-right: 2px;
-  margin: 1px solid; 
-  padding: 5px;
-  text-decoration :none;
-}
+
 .floatl{
   float: left;
 }
@@ -151,12 +164,13 @@ body {
 .logo{
   font-size: 25px;
   @extend .floatl;
+  color: $bg-white;
 }
-.paddingTip{
+.padding-tip{
   padding: 10px 30px;
 }
-.navDiv{
-  @extend .background-color-blueD;
+.nav-div{
+  @extend .bg-color-d-black;
 }
 .wrapper{
   width: 1170px;
@@ -166,20 +180,143 @@ body {
   padding: 10px 0px;
   text-align: center;
 }
+.nav-user{
+  padding: 0px;
+  text-align: center;
+}
+
 .searchBox{
-  width: 750px;
+  width: 700px;
   font-size: 20px; 
-  padding: 10px 10px 10px 30px;
+  padding: 7px 10px 7px 30px;
   border: 1px solid $br-g;
+  @extend .floatl;
+  margin: 0px 100px;
 }
  
-.tipsCategory{
+.search-results{
+  width: 100px;
+  margin: 0 auto;
+  background-color: gray;
+  border: 1px solid black;
+}
+.search-close{
+  padding: 10px;
+  float: left;
+}
+
+.btn-sign{
+  margin: 0px;
+  border: 1px solid white;
+  padding: 9px 40px;;
+  background-color: rgba(255, 255, 255, 0);
+  vertical-align: middle;
+  color: white;
+}
+.btn-div{
+  padding-top: 2px;
+}
+
+//sign in
+
+.sign-in-div{
+  background-color: $bg-y-d;
+  width: 580px;
+  height: 350px;
+  margin: 0 auto;
+  text-align: center;
+  color: $color-l-black;
+  font-weight: lighter;
+  font-family: $primary-font;
+  @extend .fontSize;
+  position: absolute;
+  z-index:1002;
+  overflow: auto;
+  top: 25%;
+  left: 25%;
+    .signInText{
+      font-size: 22px;
+      padding: 9px 0px;
+      background-color:$bg-y-l;
+    }
+    .sin-in-div-form{
+        top: 50px;
+        left: 0px;
+        height: 290px;
+    }
+
+    .email-id-div{
+        clear: both;
+        margin: 0 auto;
+        width: 510px;
+        font-family: Handlee;
+        padding: 45px 0px 0px 0px;
+      .emailId{
+        padding: 7px 0px;
+        @extend .floatl;
+      
+      }
+      .emailIdForm{
+        width: 400px;
+        height: 40px;
+        @extend .bg-color-yellow-l;
+        border: 0px;
+        border-radius: 5px;
+        @extend .floatr;
+        padding: 0px 15px;
+      }
+
+    }
+    .passwordIdDiv{
+        padding-top: 10px; 
+    }
+      
+    .forgotPassword{
+      clear: both;
+      text-decoration: underline;
+      padding: 5px 37px;
+      text-align: right;
+      font-size: 11px;
+      font-family: $primary-font;
+      color: black;
+    }
+    .btn-sign-in{
+        border-radius: 5px;
+        border: 0px;
+        padding: 7px 23px;
+        @extend .bg-color-yellow-l;
+        font-family: Handlee;
+        @extend .floatr;
+        margin: 18px 34px;
+
+    }
+    .hrGray{
+      border-top: 2px solid rgba(90, 87, 87, 0.22);
+      clear: both;
+    }
+    .sign-in-div-text{
+        .signupText{
+          text-decoration: underline;
+          color: black;
+
+        }
+    }
+}
+
+
+// sign up
+.sign-up{
+  height: 370px; 
+}
+
+
+.tips-category{
   @extend .floatl;
   text-align: center;
   @extend .logo;
   width: 200px;
   font-size: 16px;
-  @extend .paddingTip;
+  @extend .padding-tip;
   margin-right: 10px;
   background:  $bg-y;
 }  
@@ -191,57 +328,70 @@ body {
   list-style-type: none;
   text-align: left;
 }
-.tipsContainer{
-  // width: 748px;
+.tips-container{
   @extend .floatl;
-
+  margin: 14px;
+  margin: 0 auto;
+  width: 100%;
 }
 .tip{
-  padding: 5px 10px;
-  width: 250px;
+  width: 220px;
+  @extend .font-helvetica;
+  margin: 0px 13px;
+  overflow: hidden;
+  padding: 0px 0px 10px;
 }
+
 .tips{
   width: 240px;
   margin: 0px 4px 4px;
-  float: left;
+  @extend .floatl;
+  font-size: 18px;  
 }
-.tipsTitle{
+.categoryTitleDiv{
+  @extend .background-color-yL;
+  width: 220px;
+}
+.tipsImg{
+  @extend .floatl;
+  padding: 10px 0px 0px 9px;
+  position: relative;
+  top: -3px;
+}
+.categoryTitle{
+  font-size: 18px;
   margin: 0px;
   padding: 10px;
   text-align: center;
-  @extend .background-color-yL
+  @extend .background-color-yL;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  // @import url(http://fonts.googleapis.com/css?family=Handlee);
 }
 
-.tipsDescription{
-  @extend .paddingTip;
+.tips-titel{
+  @extend .padding-tip;
   @extend .background-color-y;
   text-align: justify;
+  font-family: Handlee;
+  font-size: 18px;
+  padding: 11px 16px;
 }
 .listOfCategoryDiv{
   background-color: gray;
-  color: white;
+  color: $bg-white;
   height: 45px;
-  margin: 10px;
+  margin: 0px 10px 10px;
 }
-.listOfCategory{
+.list-of-category{
   padding: 6px 16px;
-  width-max: 150px;
   @extend .floatl;  
-  font-size: 22px;
+  font-size: 18px;
   font-weight: lighter;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.btnSign{
-  margin: 0px;
-  border: 1px solid white;
-  padding: 9px 40px;;
-  background-color: rgba(255, 255, 255, 0);
-  vertical-align: middle;
-}
-.btnDiv{
-  padding-top: 10px;
-}
+
 
 .tipDetails{
   @extend .background-color-y;
@@ -249,7 +399,7 @@ body {
 }
 
 .thumbs_up{
-  width: 80px;
+  width: 70px;
   padding: 0px 10px;
 }
 
@@ -257,14 +407,64 @@ body {
   @extend .thumbs_up;
 }
 .thumbsUpImg{
-  width: 18px;
-  padding: 5px 0px;
+  width: 17px;
+  padding: 7px 0px;
   @extend .floatl;
 }
 .thumbsDownImg{
   @extend .thumbsUpImg;
+  padding: 17px 0px 0px;;
+
 }
 
 .hr{
+  border-top: 1px solid rgba(124, 124, 124, 0.81);
   margin: 0px;
 }
+
+.numThumbsUp{
+  font-size: 18px;
+  padding: 14px 0px 0px 37px;
+}
+.numThumbsDown{
+  @extend .numThumbsUp;
+
+}
+.viewerDiv{
+  @extend .floatl;
+  .viewerImg{
+    padding: 17px 8px ;
+    width: 38px;
+  }
+}
+
+.signup-error-field{
+  width: 200px;
+  @extend .background-color-y;
+  position: relative;
+  left: 518px;
+  top: -32px;
+  overflow: hidden;
+  border: 1px solid gray;
+}
+
+.manu-tag{
+  list-style-type: none;
+  color: $bg-white;
+  @extend .font-size-nav;
+  font-weight: lighter;
+  @extend .floatr;
+  height: 50px;
+}
+
+.manu-li-tag{
+  @extend .floatl;
+  padding: 22px 0px 4px;
+  margin: 0px 15px;
+  color: $bg-white;
+    &:hover {
+      border-bottom: 2px solid $bg-sky-d;
+    }
+}
+
+

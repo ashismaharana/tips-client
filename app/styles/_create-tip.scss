@@ -1,0 +1,95 @@
+.create-tip-div{
+	width:940px;
+	margin: 0 auto;
+	color:  $text-black;
+	padding: 30px;
+	font-family: Handlee;
+	font-size: 14px;
+}
+
+.create-tip{
+
+}
+
+.create-tip-categories{
+	padding: 10px;
+	.create-tip-categories-txt{
+        @extend .floatl;
+        padding: 10px 20px;
+	}
+	.dropdown-category-list{
+		width:240px;
+		height: 40px;
+        @extend .radius;
+        @extend .bg-color-yellow-l;
+        border: 0px;	
+	}
+}
+
+
+.create-tip-title-div{
+	padding: 10px;
+	.create-tip-title-txt{
+        @extend .floatl;
+		padding: 10px 20px 0px 47px;
+	}
+	.create-tip-title{
+		width: 525px;
+		height: 80px;
+        @extend .bg-color-yellow-l;
+        @extend .radius;
+        border: 0px;	
+	}
+}
+
+.create-tip-description-div{
+	padding: 10px;
+
+	.create-tip-description-txt{
+        @extend .floatl;
+        // padding: 10px 25px 0px 44px;
+	}
+	.create-tip-description{
+		width: 740px;
+		height: 290px;
+        @extend .bg-color-yellow-l;
+        @extend .radius;
+        border: 0px;	
+        margin: 0px 0px 0px 28px;
+
+	}
+}
+
+.create-tip-file-upload-div{
+	padding: 20px 10px 0px 15px	;
+	.create-tip-file-upload-txt{
+        @extend .floatl;
+        padding: 0px 23px 0px 0px;
+	}
+	.create-tip-upload-file-div{
+			padding: 0px 0px 0px 10px;
+	        @extend .bg-color-yellow-l;
+	        @extend .radius;
+	        position: relative; 
+		    width: 90px; 
+		    overflow: hidden;
+		    height: 40px;
+			line-height: 40px;
+	        @extend .bg-color-yellow-l;
+		.create-tip-upload-file{
+			opacity: 0;
+		}	
+	}
+	
+}
+
+.btn-create-tip-submit{
+	@extend .floatr;
+	color: $bg-white;
+	background-color: $bg-btn-green;
+	width: 83px;
+	height:43px;
+	border: 0px;
+	margin: 0px 30px;
+	text-align: center;
+}
