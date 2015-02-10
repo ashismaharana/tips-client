@@ -11,40 +11,24 @@
 
 angular.module('tipsApp')
 
-	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location, Tip, Category, IsLoggedIn, Signout) {
+	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location,  Tip, Category, IsLoggedIn, Signout) {
+		// get tips from server
 		$scope.tips = Tip.getTips();	
-		console.log("MainCtrl");
-		console.log($scope.user);
+		// console.log('MainCtrl');
+		// console.log($scope.user);
 		   	
 	   	$scope.categories = Category.query();
 	   	// console.log($scope.categories)
-	   	if($cookieStore.get("current_user")){
+	   	if($cookieStore.get('current_user')){
 	      $rootScope.isLoggedIn = true;
 	   	} else {
 	      $rootScope.isLoggedIn = false;
 	   	}
-    	//loggedIn = IsLoggedIn.LoggedIn();
-    	// console.log($scope.loggedIn)   //loggedIn 
-		// console.log($scope.loggedIn);//sign out //loggedIn 
-
-	   //  if(typeof($scope.loggedIn) == 'object'){
-	   //     	$scope.signInBtn = true;
-	   //      $scope.signin = false;
-	   //  } else {
-	   //     	$scope.signInBtn = false;
-	   //      //$scope.signin = false;
-	   //  };
-
-	   // console.log("Is Signedin?", $scope.loggedIn);
-	   // 		// $scope.signInBtn = true;
-	   // 		// if( !$scope.signInBtn){
-	   // 		// 	 $scope.signInBtn = true;
-	   // 		// }
 
 		$scope.signIn = function(){
 	        console.log($scope.signin); 
     			if(!IsLoggedIn.LoggedIn()){
-    				console.log("user")
+    				console.log('user');
     				// $scope.signInBtn = true;
     			}else{
     				// user 
@@ -59,26 +43,24 @@ angular.module('tipsApp')
 	    };
 	    $scope.signOut = function(){
 	    	// check if the current user is existing 
-	    	if($cookieStore.get("current_user")){
-	    			console.log("is signOut? :");
+	    	if($cookieStore.get('current_user')){
+	    			console.log('is signOut? :');
 
 	    	// if exists, send a request to server and destroy the current session
 	    		var isSignedOut = Signout.destroySession(function(err, data){
-	    			console.log("is session destroyed? :", data);
+	    			console.log('is session destroyed? :', data);
 	    			// on successful removal of session, delete the cookie ( make current user null )
-	    			$cookieStore.remove("current_user");
+	    			$cookieStore.remove('current_user');
                     $rootScope.isLoggedIn = false;
 	    			$location.path('/');
 	    		});
 	    	}
-	    }
+	    };
 
 	    $scope.signUpClick = function(){
 	      $scope.signupView = !$scope.signupView ;
 	      $scope.signin = !$scope.signin;
 	      console.log($scope.signupView);
-	    };
-	    $scope.createTip = function(){
 	    };
 	})
 

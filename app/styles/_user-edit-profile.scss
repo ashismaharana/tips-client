@@ -1,0 +1,144 @@
+.user-profile-div{
+	padding: 20px 0px;
+	margin: 0 auto;
+	width: 945px;
+	.profile-form{
+		margin: 0 auto;
+		width: 750px;
+		.profile-img-div{
+			.profile-img{
+  				@extend .floatl;
+				width: 150px;
+			}
+		}	
+		.user-profile-data-div{
+  				@extend .floatl;
+  				padding: 0px 30px;
+  				width: 600px;
+			.user-profile-fullname-div{
+				
+				.user-profile-fullname{
+  				@extend .floatl;
+
+					.user-profile-text{
+  						@extend .floatl;
+						border-radius: 5px; 
+
+					}
+					.user-firstname{
+  						@extend .floatl;
+						@extend .radius-one;
+						margin-right: 25px;
+					}
+					.user-lastname{
+						@extend .radius-one;
+					}
+				}
+			}
+			.user-profile-location{
+				@extend .padding-top;
+				.user-location{
+						@extend .radius-one;
+
+				}
+			}
+			.user-profile-web{
+				@extend .padding-top;
+				.user-website{
+						@extend .radius-one;
+
+				}
+			}
+			.user-profile-email{
+				@extend .padding-top;
+				.user-email{
+						@extend .radius-one;
+
+				}
+			}
+			.user-profile-submit{
+  				@extend .floatr;
+				@extend .padding-top;
+				clear: both;
+				margin: 14px 0px;
+				.btn-submit-user-profile{
+					@extend .bg-color-yellow-l;
+					padding: 7px 30px ;
+					border: 0px;
+					border-radius: 5px;	
+				
+				}
+			}
+
+		}
+	}
+
+	.search-div{
+		clear: both;
+		.search-save-tip{
+  			@extend .floatr;
+			width: 350px;	
+			@extend .radius-one;
+			margin: 10px 0px;
+			padding: 5px 35px 5px 10px;
+		}
+		.search-img{
+			float: right;
+			position: relative;
+			top: 18px;
+			left: 343px;
+		}
+	}
+	.no-save-tip-div{
+			text-align: center;
+			clear: both;
+		.sorry-message-img{
+			
+		}
+		.search-img{
+
+		}
+	}
+}
+
+
+.text-label{
+	width: 100px;
+	text-align: right;
+	padding-right: 20px;
+	font-weight: 300;
+}
+
+.user-profile{
+	text-align: left;
+	width: 500px;
+	margin: 0 auto;
+}	
+.user-img{
+	@extend .floatl;
+	.user-profile-img{
+		width: 150px;
+	}
+}
+.user-info{
+		@extend .floatl;
+		margin: 0px 30px;
+		height: 160px;
+	.user-username{
+			@extend .floatl;
+			font-size: 20px;
+	}
+}
+.user-profile-edit{
+	color: $bg-sky-d;
+}
+
+.user-data{
+	margin: 15px 0px 0px 0px;
+}
+.user-data-info{
+	margin: 10px 0px 0px 0px;
+}
+.tip-profile{
+	width: 210px !important;
+}

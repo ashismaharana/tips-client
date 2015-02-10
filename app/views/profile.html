@@ -1,17 +1,78 @@
-<!-- <div class="profile">
-	<div class="">
-		<img src="">
+<div ng-include="'../views/nav.html'"></div> 
+<!-- ../ and give the path of the file -->
+<div ng-include="'../views/user-nav.html'" ></div> 
+
+
+
+<div class="user-profile-div" ng-hide="editProfile">
+	<form class="user-profile">
+		<div class="user-img">
+			<img class="user-profile-img" src="../images/Generic_Male_Profile.jpg">
+		</div>
+		<div class="user-info">
+			<div class="user-username user-data">{{user.firstName}} {{user.lastName}} {{user.fullName}}</div>
+			<div class="user-location user-data">{{user.location}}</div>
+			<div class="user-web user-data">{{user.web}}</div>
+			<div class="user-emailid user-data-info">{{user.email}}</div>
+			<!-- <div class="user-emailid user-data-info">{{user.ok}}</div> -->
+		</div>
+		<div class="user-profile-edit" ng-click="editProfile = !editProfile">Edit</div>
+
+	</form>
+
+	<hr class="hr">
+
+	<div class="search-div">
+		<input type="text" class="search-save-tip" >
+		<img class="search-img" src="../images/search.png">
+		</input>
 	</div>
-	<div class=""></div>
-	<div class=""><a href="">Edit</a></div>
+	<!-- tips div -->	
 
-</div> -->
-<!-- 
-<div>
-	<div class=""></div>
-	<div class=""></div>
-	<hr>
-	<div class=""></div>
-	<div class=""></div>
+	<!-- show all tips ( div ) -->
+		<div ng-include="'../views/user-tip.html'"></div>
+	</div>
+<!--  -->
 
-</div> -->
+<div class="user-profile-div" ng-show="editProfile">
+	<form class="profile-form" name="user_profile_form">
+		<!-- user img -->
+		<div class="profile-img-div">
+			<img class="profile-img" src="../images/Generic_Male_Profile.jpg">
+		</div>
+		<!-- user details -->
+		<div class="user-profile-data-div">
+			<div class="user-profile-fullname-div">
+				<div class="user-profile-fullname">
+					<label class="text-label user-profile-text">Name:</label>
+					<input class="user-firstname"  ng-model="user.firstName" placeholder="{{user.firstName}}"></input>
+					<input class="user-lastname"  ng-model="user.lastName" placeholder="{{user.lastName}}" ></input>
+				</div>
+			</div>
+			<div class="user-profile-location">
+				<label class="text-label">Location:</label>
+				<input type="text" class="user-location" ng-model="user.location" placeholder="{{user.location}}">
+			</div>
+			<div class="user-profile-web">
+				<label class="text-label">Website:</label>
+				<input type="text" class="user-website" ng-model="user.web" placeholder="{{user.web}}">
+			</div>
+			<div class="user-profile-email">
+				<label class="text-label">Email ID:</label>
+				<input type="text" class="user-email" ng-model="user.email" placeholder="{{user.email}}">
+			</div>
+			<div class="user-profile-submit"><!-- submit div-->
+				<button class="btn-submit-user-profile"  ng-disabled="!user_profile_form.$valid" ng-click="update(user)" >Submit</button>
+			</div>
+		</div>
+			<!-- user details end-->
+	</form>
+	<hr class="hr">
+	<!-- tips -->
+	<div class="search-div">
+		<input type="text" class="search-save-tip">
+		<img class="search-img" src="../images/search.png">
+		</input>
+	</div>	
+	<div ng-include="'../views/user-tip.html'"></div>
+</div>

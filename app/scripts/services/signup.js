@@ -13,16 +13,16 @@
   	 this.url = 'http://localhost:1337',
 
   	this.postSignup = function(user, cb){
-  		console.log("USER INPUT:", user);
+  		console.log('USER INPUT:', user);
   	 	// console.log('user in login service', user);
-  	 	$http.post(this.url +"/signup", user)
+  	 	$http.post(this.url +'/signup', user)
 		.success(function(data) {
-		    console.log("INFO: After Signup the response is - ", data);
+		    console.log('INFO: After Signup the response is - ', data);
 		    cb(null, data);
+        console.log("INFO : Signup success", data);
 		})
 		.error(function(data) {
 		    cb(data, null);
-
 		});
   	};
   });

@@ -13,6 +13,8 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+    <link src: url('scripts/costumes-scripts/MyriadProRegular.ttf');>
+
     <!-- endbuild -->
   </head>
   <body ng-app="tipsApp">
@@ -21,7 +23,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-  <div>
+  <div class="container-fluid">
     <div ng-view=""></div>     
   </div>
 
@@ -89,6 +91,9 @@
         <script type="text/javascript" src="scripts/costumes-scripts/ckeditor.js"></script>
         <script src="scripts/services/isloggedin.js"></script>
         <script src="scripts/services/signout.js"></script>
+        <script src="scripts/services/update.js"></script>
+        <script src="scripts/services/tipcategory.js"></script>
+        <script src="scripts/services/tipsuser.js"></script>
         <!-- endbuild -->
 </body>
 </html>

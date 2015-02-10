@@ -11,7 +11,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import "create-tip";
 
-@import "profile";
+@import "user-edit-profile";
 
 // $icon-font-path: "../styles/fonts/handlee.woff2";
 
@@ -186,12 +186,19 @@ body {
 }
 
 .searchBox{
-  width: 700px;
+  width: 680px;
+  min-width: 300px;
   font-size: 20px; 
-  padding: 7px 10px 7px 30px;
+  padding: 7px 45px 7px 30px;
   border: 1px solid $br-g;
   @extend .floatl;
   margin: 0px 100px;
+}
+
+.search-img2{
+  position: relative;
+  right: 169px;
+  top: 12px;
 }
  
 .search-results{
@@ -335,7 +342,7 @@ body {
   width: 100%;
 }
 .tip{
-  width: 220px;
+  width: 217px;
   @extend .font-helvetica;
   margin: 0px 13px;
   overflow: hidden;
@@ -420,6 +427,7 @@ body {
 .hr{
   border-top: 1px solid rgba(124, 124, 124, 0.81);
   margin: 0px;
+  clear: both;
 }
 
 .numThumbsUp{

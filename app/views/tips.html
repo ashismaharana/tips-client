@@ -1,0 +1,20 @@
+<!-- show all tips ( div ) -->
+<div class=" tips-container col-md-2">
+  <div ng-repeat="tip in tips" class="tip floatl">
+    <div class="categoryTitleDiv ">
+      <img src="../images/tipsMark.png" alt="" class="tipsImg">
+      <div ng-repeat="category in categories"  class="categoryTitle" ng-show="category.id == tip.category_id">{{category.title}}
+      </div>
+    </div>
+    <div class="desc tips-titel">{{tip.title}}</div>
+    <hr class="hr">
+    <div class="tipDetails">
+      <div class="thumbs_up floatl">
+        <img src="../images/thumbs_up.png" class="thumbsUpImg" alt="">
+        <div class="numThumbsUp"> {{tip.thumbs_up}} </div> 
+      </div>
+      <div class="thumbs_down floatl"><img src="../images/thumbs_down.png" class="thumbsDownImg"  alt=""> <div class="numThumbsDown"> {{tip.thumbs_down}} </div></div>
+      <div class="viewerDiv"><img src="../images/viewed.png" alt="" class="viewerImg">{{tip.thumbs_up + tip.thumbs_down}}</div>
+    </div>
+  </div>
+</div>

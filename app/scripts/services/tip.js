@@ -14,10 +14,10 @@ angular.module('TipsServices', ['ngResource'])
 		// console.log('create it',postCreate);
 
 		this.postCreate = function(tip, cb){
-			console.log("INFO: Before saving", tip);
+			console.log('INFO: Before saving', tip);
 			$http.post(this.url, tip)
 			.success(function(data) {
-				console.log("INFO: After saving", data);
+				console.log('INFO: After saving', data);
 				cb(null, data);
 			})
 			.error(function(data){

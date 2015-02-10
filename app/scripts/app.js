@@ -8,6 +8,26 @@
  *
  * Main module of the application.
  */
+
+
+ var resolve = {
+    data:function($rootScope, $q, $http, $location,  $cookieStore, IsLoggedIn, Login){
+        var deferred = $q.defer();
+        var currentUser = $cookieStore.get('current_user');
+        if(currentUser){
+          console.log('Hi user',currentUser);
+          $rootScope.isLoggedIn = true;
+          deferred.resolve(currentUser);
+        } else{
+          $rootScope.isLoggedIn = false;
+          deferred.reject();
+          $location.path('/');
+        }
+    }
+  };
+
+
+
 angular
   .module('tipsApp', [
     'ngAnimate',
@@ -21,9 +41,11 @@ angular
     'LoginServices',
     'SignupServices',
     'ui.bootstrap',
-    'TipsServices',
     'IsLoggedInServices',
-    'signoutServices'
+    'signoutServices',
+    'updateServices',
+    'TipsUserServices'
+    // 'tipCategoryServices'
   ])
 
   .config(function ($routeProvider) {
@@ -32,19 +54,9 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/nav', {
-        templateUrl: 'views/nav.html',
-        controller: 'MainCtrl',
-        resolve: resolve
-      })
       .when('/user', {
         templateUrl: 'views/user.html',
         controller: 'MainCtrl',
-        resolve: resolve
-      })
-      .when('/profile', {
-        templateUrl: 'views/profile.html',
-        controller: 'UserCtrl',
         resolve: resolve
       })
       .when('/create', {
@@ -52,6 +64,21 @@ angular
         controller: 'TipsCtrl',
         resolve: resolve
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'SessionCtrl',
+        resolve: resolve
+      })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'SessionCtrl',
+        resolve: resolve
+      })
+      .when('/notebook', {
+        templateUrl: 'views/notebook.html',
+        controller: 'SessionCtrl',
+        resolve: resolve
+      })      
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -67,47 +94,3 @@ angular
       });
   });
 
-
- var resolve = {
-    data:function($rootScope, $q, $http, $location,  $cookieStore, IsLoggedIn, Login){
-        var deferred = $q.defer();
-        var current_user = $cookieStore.get("current_user");
-        if(current_user){
-          console.log("eceeceecece",current_user)
-          $rootScope.isLoggedIn = true;
-          deferred.resolve(current_user);
-        } else{
-          $rootScope.isLoggedIn = false;
-          deferred.reject();
-          $location.path('/');
-        };
-        //this.url = 'http://localhost:1337',
-
-        // Check cookie if there is already current user is there or not
-
-        // if currentUser is NOT present
-        // Block / Redirect to Signin Page
-        // else just do nothing
-
-        // $http({method: 'GET', url: 'http://localhost:1337/user/islogedin'})
-        //     .success(function(user) {
-        //         if(!user){
-        //             //$location.path('/sign');
-        //             console.log("Not Logged in.");
-        //             $location.path('/');
-        //          // console.log($scope.lastName);
-        //         } else {
-        //             console.log("Logged In!!");
-        //         }
-        //         $rootScope.user = user.User;
-        //         deferred.resolve(user);
-        //         console.log(user);
-                    
-        //     })
-        //     .error(function(data){
-        //         deferred.reject();
-        //         $location.path('/login');
-        //     });
-        //  return deferred.promise;
-    }
-  };

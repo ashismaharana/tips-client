@@ -4,6 +4,7 @@
         <div class="nav">
             <a href="#/"><span class="logo">tipsly</span></a>    
             <input type="search" class="searchBox" placeholder="search eg: unix" ng-model="search"> 
+              <img class="search-img search-img2" src="../images/search.png">
                 <div class="search-results" ng-repeat="category in categories | filter:search" ng-show="search"> {{category.title}}
                 </div>
                 <div class="search-close"><img src=""></div>

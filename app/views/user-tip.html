@@ -1,0 +1,24 @@
+	 <div class="tips-container">
+	  <div ng-repeat="tip in tipsOfUser" class="tip-profile floatl tip" ng-show="tip.created_by == user.id">
+	    <div class="categoryTitleDiv ">
+	      <img src="../images/tipsMark.png" alt="" class="tipsImg">
+	      <div ng-repeat="category in categories"  class="categoryTitle" ng-show="category.id == tip.category_id">{{category.title}}
+	      </div>
+	    </div>
+	    <div class="desc tips-titel">{{tip.title}}</div>
+	    <hr class="hr">
+	    <div class="tipDetails">
+	      <div class="thumbs_up floatl">
+	        <img src="../images/thumbs_up.png" class="thumbsUpImg" alt="">
+	        <div class="numThumbsUp"> {{tip.thumbs_up}} </div> 
+	      </div>
+	      <div class="thumbs_down floatl"><img src="../images/thumbs_down.png" class="thumbsDownImg"  alt=""> <div class="numThumbsDown"> {{tip.thumbs_down}} </div></div>
+	      <div class="viewerDiv"><img src="../images/viewed.png" alt="" class="viewerImg">{{tip.thumbs_up + tip.thumbs_down}}</div>
+	    </div>
+	  </div>
+	  <div class="no-save-tip-div" ng-show="tipsOfUser.length == 0">
+		<img src="../images/sorry.png" class="sorry-message-img">
+		<h3 class="message">Sorry no tips to display</h3>
+		<a href="#/create" class="click-create-tip">Click here to create tips</a>
+	  </div>
+	</div>
