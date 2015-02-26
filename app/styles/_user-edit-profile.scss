@@ -65,6 +65,7 @@
 					@extend .bg-color-yellow-l;
 					padding: 7px 30px ;
 					border: 0px;
+					margin-left: 30px;
 					border-radius: 5px;	
 				
 				}
@@ -101,7 +102,9 @@
 	}
 }
 
-
+.user-tip-container{
+	clear: both;
+}
 .text-label{
 	width: 100px;
 	text-align: right;
@@ -111,17 +114,21 @@
 
 .user-profile{
 	text-align: left;
-	width: 500px;
+	width: 700px;
 	margin: 0 auto;
 }	
 .user-img{
-	@extend .floatl;
+	display: inline-block;
+	vertical-align: top;
 	.user-profile-img{
 		width: 150px;
+		display: inline-block;
+		vertical-align: top;
 	}
 }
 .user-info{
-		@extend .floatl;
+		display: inline-block;
+		vertical-align: top;
 		margin: 0px 30px;
 		height: 160px;
 	.user-username{
@@ -129,16 +136,36 @@
 			font-size: 20px;
 	}
 }
+.user-profile-border{
+	clear: both;
+	border-top:1px solid $gray;
+}
 .user-profile-edit{
 	color: $bg-sky-d;
+	padding: 16px 54px;
+	display: inline-block;
+	vertical-align: top;
+    cursor: pointer;
 }
-
 .user-data{
 	margin: 15px 0px 0px 0px;
 }
 .user-data-info{
 	margin: 10px 0px 0px 0px;
 }
-.tip-profile{
-	width: 210px !important;
+
+.hr-line{
+	clear: both;
+	margin: 0 auto;
 }
+
+.user-created-tips{
+	clear: both;	
+}
+
+.area-required{
+	color: $red-l;
+}
+// .tip-profile{
+// 	width: 210px !important;
+// }

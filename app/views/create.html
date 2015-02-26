@@ -2,32 +2,71 @@
 <!-- ../ and give the path of the file -->
 <div ng-include="'../views/user-nav.html'"></div> 
 
-<form class="create-tip create-tip-div">
+
+ <form novalidate class="create-tip create-tip-div" name="createtip">
 	<div class="create-tip-categories">
-		<div class="create-tip-categories-txt">Category:</div>
-		<select class="dropdown dropdown-category-list" ng-model="tip.category_id"> 
-			<option value="">ok select from the list</option>
-			<option ng-repeat="category in categories"  value="{{category.id}}"> {{category.title}} </option>
-		</select>
+		<div>
+			<div class="create-tip-categories-txt">Category:</div>
+		</div>
+		<div class="dropdown-categorylist">
+			<div>
+				<select class="dropdown dropdown-category-list"  name='categories' id="category" ng-model="tip.category_id" required> 
+				<option value="">Choose a Category list</option>
+				<option ng-repeat="category in categories"  value="{{category.id}}"> {{category.title}} </option>
+			</select>
+			</div>
+			<div  class="area-required-div">
+        		<span class="area-required" ng-show="createtip.categories.$error.required">Select a Category </span>
+
+			</div>
+		</div>
 	</div>
 
 	<div class="create-tip-title-div">
-		<div class="create-tip-title-txt">Title:</div>
-		<textarea type="textarea" class="create-tip-title" ng-model="tip.title"></textarea>
+		<div>
+			<label class="create-tip-title-txt">Title:</label>
+		</div>
+		<div class="createtip-title">
+			<div>
+				<textarea type="textarea" class="create-tip-title" ng-minlength="3" name='title' id="titleId" ng-model="tip.title" required></textarea>
+			</div>
+			<div  class="area-required-div">
+                <span class="area-required" ng-show="createtip.title.$error.required && createtip.title.$dirty"> Required, Give your tip title. </span>
+        		<span class="area-required" ng-show="createtip.title.$error.required">Give your tip title.</span>
+        		<span class="area-required" ng-show="createtip.title.$error.minlength">Minimum length 3</span>
+			</div>
+		</div>
 	</div>
 
 	<div class="create-tip-description-div">
-		<div class="create-tip-description-txt">Description:</div>
-		<textarea type="textarea" class="create-tip-description" ng-model="tip.description">
-		</textarea>
+		<div>	
+			<label class="create-tip-description-txt">Description:</label>
+		</div>
+		<div class="createtip-description">
+			<div>
+				<textarea type="textarea" class="create-tip-description" ng-minlength="10" name='description' ng-model="tip.description" required>
+				</textarea>
+			</div>
+			<div class="area-required-div">
+                <span class="area-required" ng-show="createtip.description.$error.required && createtip.description.$dirty"> Required, Give your tip Description.</span>
+        		<span class="area-required" ng-show="createtip.description.$error.required">Give your tip Description.</span>
+        		<span class="area-required" ng-show="createtip.description.$error.minlength">Minimum length 10</span>
+			</div>
+		</div>
 	</div>
 
 	<div class="create-tip-file-upload-div">
-		<div class="create-tip-file-upload-txt">Source File:</div>
-		<div class="create-tip-upload-file-div">Upload file
-			<input type="file" name="upload" class="create-tip-upload-file" ng-model="tip.file"></input>
+		<div>
+			<label class="create-tip-file-upload-txt">Source File:</label>
 		</div>
-		<!-- Upload file -->
-	</div>
-	<button class="btn-create-tip-submit" ng-click="create(tip)">Submit</button>
+		<div class="create-tip-upload-file-div">Upload file
+			<input type="file" name="upload" class="create-tip-upload-file" ng-model="tip.file">
+		</div>
+	</div> 
+	<button name="btn" class="btn-create-tip-submit"  ng-disabled="createtip.$invalid" ng-click="create(tip)">Save</button>
+	
+	<button name="btn"  class="btn-create-tip-submit"  ng-disabled="createtip.$invalid" ng-click="createNew(tip)">Save and Create New</button>
 </form>
+<!-- 
+ng-class="{ 'has-error' : createtip.$invalid && !createtip.$pristine}"
+ng-class="has-error: createtip.$invalid;" -->

@@ -12,7 +12,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'> -->
     <link src: url('scripts/costumes-scripts/MyriadProRegular.ttf');>
 
     <!-- endbuild -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-  <div class="container-fluid">
+  <div class="container-fluid padding-null">
     <div ng-view=""></div>     
   </div>
 
@@ -73,6 +73,7 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/costumes-scripts/freewall.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
@@ -85,7 +86,6 @@
 
         <script src="bower_components/bootstrap-sass-official/assets/javascripts/ui-bootstrap-tpls-0.12.0.js"></script>
 
-        <script src="scripts/directives/validpassword.js"></script>
         <script src="scripts/controllers/tips.js"></script>
         <script src="scripts/services/tip.js"></script>
         <script type="text/javascript" src="scripts/costumes-scripts/ckeditor.js"></script>
@@ -94,6 +94,16 @@
         <script src="scripts/services/update.js"></script>
         <script src="scripts/services/tipcategory.js"></script>
         <script src="scripts/services/tipsuser.js"></script>
+        <script src="scripts/services/vote.js"></script>
+        <script src="scripts/services/notebook.js"></script>
+        <script src="scripts/directives/compareto.js"></script>
+        <script src="scripts/services/follow.js"></script>
         <!-- endbuild -->
+
+    
+
+
+
+
 </body>
 </html>

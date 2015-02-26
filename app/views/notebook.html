@@ -2,39 +2,31 @@
 <!-- ../ and give the path of the file -->
 <div ng-include="'../views/user-nav.html'" ></div> 
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-5">
-  		<img src="../images/add.png" alt="">
-  		<input type="text" class="">
-  		<button type="submit" class="btn btn-default">New Notebook</button>
-  </div>
-  <div class="col-md-5">
+<div class="row create-notebook-tag">
+    <div class="col-md-1"></div>
+    <form class="col-md-5 create-notebook-form" name="notebookform">
+  		<!-- <img src="../images/add.png" class="create-img" ng-click="create = !create" > -->
+        <input type="textarea" name="notebook_name" class="create-tag" ng-show="create" ng-model="notebook.notebook_name">
+  		<button type="submit" class="btn btn-default" ng-model="user.created_by"  ng-disabled="notebookform.$invalid" ng-show="myNoteBook" ng-click="myNoteBook(notebook)">Add Notebook</button>
+    </form>
+    <div class="col-md-5">
 		<div class="search-div">
 			<input type="text" class="search-save-tip">
 			<img class="search-img" src="../images/search.png">
-			</input>
 		</div>
-  </div>
-  <div class="col-md-1"></div>
-</div>
-<div class="row">
-  <div class="col-md-1"></div>
-	Mac
-	<hr>
-  <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-1"></div>
 </div>
 
-<div class="row">
-  <div class="col-md-1"></div>
-	{{}}My Health tips
-	<hr>
-  <div class="col-md-1"></div>
+
+<!-- {{getMyNoteBook}} -->
+
+<div class="row" ng-repeat="notebook in myNoteBookData">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="notebook-name" id="test">{{notebook.notebook_name}}</div> 
+        <!-- <div class="tip-container notebook-container" ng-include="'../views/user-tip.html'"></div> -->
+    </div>
+    <div class="col-md-1"></div>
 </div>
 
-<div class="row">
-  <div class="col-md-1"></div>
-	{{}}Super Tips
-	<hr>
-  <div class="col-md-1"></div>
-</div>

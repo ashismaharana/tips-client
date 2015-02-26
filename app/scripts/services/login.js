@@ -14,7 +14,7 @@ angular.module('LoginServices', ['ngResource'])
   	 this.url = 'http://localhost:1337/login',
 
   	this.postLogin = function(user, cb){
-  	 	console.log('user in login service', user);
+  	 	// console.log('user in login service', user);
   	 	$http.post(this.url , user)
 		.success(function(data) {
 		    // this callback will be called asynchronously
@@ -24,7 +24,8 @@ angular.module('LoginServices', ['ngResource'])
 	        // console.log(data);
 		    
 		})
-		.error(function(data, status, headers, config) {
+		// .error(function(data, status, headers, config) {
+		.error(function(data) {
 		    // called asynchronously if an error occurs
 		    // or server returns response with an error status.
 		    cb(data, null);

@@ -1,66 +1,81 @@
-<div class="signInText">Sign Up</div>
-<form  novalidate class="sign-up-div-form" name="signup_form" ng-controller="SessionCtrl" >
+<form  class="signup-div-form login-div-form" name="signup_form" ng-controller="SessionCtrl" >
+    <div class="signup-text login-text">Sign Up</div>
 
-    <div class="email-id-div email-id-div-padding">
-        <div class="emailId">Name:</div>
-        <input type= "name" class="emailIdForm"  name="signup_name" ng-model="user.firstName" required >
-        <!-- <span class="error" ng-show="signup_form.signup_name.$error.required">Tell us your Name.</span> -->
+<!-- Name -->
+    <div class=" signup-name-div email-id-div">
+        <div class="signup-label email-id-label">
+            <label class="signup-name email-id-label-text">Name:</label>
+        </div>
+        <div class="signup-email-input login-password">
+            <input type= "name" class="signup-name login-password-input" ng-minlength="3" name="signup_name" ng-model="user.firstName" required >
+        </div>    
+        <div>    
+            <span ng-show="signup_form.signup_name.$error.minlength">Minimum length 3</span>
+            <span ng-show="signup_form.signup_name.$error.required && signup_form.signup_name.$dirty"> Tell us your Name</span>
+        </div>
     </div>
-
-    <div class="email-id-div passwordIdDiv">
-        <div class="emailId">Email id:</div>
-        <input type= "email" class="emailIdForm" id="email" name="signup_email" ngPattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="user.email" required> 
-        <div class="signup-error-field" ng-show="signup_form.signup_email.$dirty && signup_form.signup_email.$invalid"> 
-            <span ng-show="signup_form.signup_email.$error.required">Tell us your email.</span>
-            <span ng-show="signup_form.signup_email.$error.email">This is not a valid email.</span>
+<!-- email -->
+    <div class="email-id-div password-div">
+        <div class="signup-email-label password-text">
+            <label class="emai-label password-label">Email id:</label>
+        </div>
+        <div class="signup-email-input ">
+            <div class="email-input login-password">
+                <input type= "email" class="emailid-input login-password-input" id="email" name="signup_email" ngPattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="user.email" required > 
+            </div>
+            <div class="email-status-msg"> 
+                <span ng-show="signup_form.signup_email.$dirty && signup_form.signup_email.$invalid"></span>
+                <!-- <span ng-show="signup_form.signup_email.$error.required">Tell us your email.</span> -->
+                <span ng-show="signup_form.signup_email.$error.required && signup_form.signup_email.$dirty"> Tell us your email</span>
+                <span ng-show="signup_form.signup_email.$error.email">This is not a valid email.</span>
+            </div>
         </div>
     </div>
 
-    <div class="email-id-div passwordIdDiv">
+    <!-- password -->
+    <div class="signup-password-div password-div">
+        <div class="signup-password-label password-text">
+            <label class="password-label" for="password">Password:</label>
+        </div>
+        <div class="signup-password-input-div">
+            <div class="signup-password-input login-password">
+                <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required > -->
 
-        <label class="emailId" for="password">Password:</label>
-        <input class="emailIdForm" type="password" id="password" name="password" ng-model="user.password" ng-minlength="8" 
-            ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  />
-        <span ng-show="signup_form.password.$error.required && signup_form.password.$dirty">required</span>
-        <span ng-show="!signup_form.password.$error.required && (signup_form.password.$error.minlength || signup_form.password.$error.maxlength) && signup_form.password.$dirty">Passwords must be between 8 and 20 characters.</span>
-        <span ng-show="!signup_form.password.$error.required && !signup_form.password.$error.minlength && !signup_form.password.$error.maxlength && signup_form.password.$error.pattern && signup_form.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" required >
+            </div>
+            <div class="password-status-msg">
+                <span ng-show="signup_form.password.$error.required && signup_form.password.$dirty">required</span>
+                <!-- <span ng-show="!signup_form.password.$error.required && (signup_form.password.$error.minlength || signup_form.password $error.maxlength) && signup_form.password.$dirty">
+                    Passwords must be between 8 and 20 characters.
+                </span> -->
+                <span ng-show="!signup_form.password.$error.required && !signup_form.password.$error.minlength && !signup_form.password.$error.maxlength && signup_form.password.$error.pattern && signup_form.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol).
+                </span>
+            </div>
+        </div>
     </div>
-    
-    <div class="email-id-div passwordIdDiv">
-       <label class="emailId" for="password_c">Re-enter: </label>
-       <input  class="emailIdForm" type="password" id="password_c" name="password_c" ng-model="formData.password_c" 
-       valid-password-c required  />
-       <span ng-show="signup_form.password_c.$error.required && signup_form.password_c.$dirty">Please confirm your password.</span>
-       <span ng-show="!signup_form.password_c.$error.required && signup_form.password_c.$error.noMatch && signup_form.password_c.$dirty">Passwords do not match.</span>
+
+<!-- Re-enter password -->
+    <div class="signup-conf-password-div password-div">
+        <div class="signup-password-label password-text">
+            <label class="password-label" for="password_confirm">Re-enter: </label>
+        </div>
+        <div class="signup-password-input-div">
+           <div class="signup-password-input login-password">
+                <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" ng-minlength="8"  -->
+                <input  class="password-input login-password-input" type="password" id="password_confirm" name="password_confirm" ng-model="confirmPass" compare-to="user.password" required >
+           </div>
+           <div class="password-status-msg">
+                <span ng-model="confirmPass" ng-show="signup_form.password_confirm.$error.required && signup_form.password_confirm.$dirty">
+                    Please confirm your password.
+                </span>                
+                <!-- <span ng-model="confirmPass" ng-show="signup_form.password_confirm.$dirty">Most match the previous entry<span> -->
+                <span ng-model="confirmPass" ng-show="!signup_form.password_confirm.$error.required && signup_form.password_confirm.$error.noMatch && signup_form.password_confirm.$dirty">
+                    Passwords do not match.</span>
+
+           </div>
+        </div>
     </div>        
-
-    <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(user)" >Sign up</button>
+    <div class="btn-div">
+        <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(user)" >Sign up</button>
+    </div>    
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--         <div class="email-id-div passwordIdDiv">
-        <div class="emailId">Password:</div>
-        <input type="password" class="emailIdForm " id="new_password" name="password1" ng-model="user.password" required >
-    </div>
-
-    <div class="email-id-div passwordIdDiv">
-        <div class="emailId">Re-enter:</div>
-        <input type="password" class="emailIdForm " id="confirm_new_password" name="password2" ng-model="confirmpassword" required>
-        
-        <div ng-show="signup_form.password1.$dirty && signup_form.password1.$invalid || signup_form.password2.$dirty && signup_form.password2.$invalid ">
-            <span ng-show="signup_form.password1.$error.required">password.</span>
-            <span ng-show="signup_form.password1.$error.password">password</span>
-            <span ng-show="signup_form.password2.$error.required">confirm password</span>
-            <span ng-show="signup_form.password2.$error.password">confirm password</span>
-        </div>
-    </div> -->

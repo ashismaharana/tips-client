@@ -29,3 +29,36 @@
 .margin-all{
 	margin: 0px 20px;
 }
+
+.padding-null{
+	padding: 0px;
+}
+
+.centering{
+	display: inline-block;
+    vertical-align: top;
+}
+
+.display-middle{
+	display: inline-block;
+    vertical-align: middle;
+}
+
+.padding5px{
+	padding: 5px 0px;
+}
+.padding16px{
+        padding: 16px 0px 0px 0px;
+}
+
+.height-deff{
+	height: 20px;
+}
+
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}

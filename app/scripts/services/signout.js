@@ -20,11 +20,11 @@ angular.module('signoutServices', ['ngResource'] )
     	$http.delete(this.url)
 		.success(function(data) {
 		    // console.log("cb",data, status, headers, config);
-		    console.log("FRo " , data);
+		    console.log('FRo ' , data);
 		    cb(null, data);
 		})
 		.error(function(data) {
-		    cb("Error: ", data, null);
+		    cb('Error: ', data, null);
 
 		});
     };

@@ -1,0 +1,47 @@
+.create-notebook-form{
+	margin: 10px 0px;
+	font-family: Helvetica;
+}
+.create-notebook-tag{
+	padding: 35px 0px;
+}	
+.create-img{
+	height: 25px;
+	cursor: pointer;
+}
+.create-tag{
+	border: 0px;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	width: 321px;
+}
+
+
+.search-div{
+	clear: both;
+	.search-save-tip{
+			@extend .floatr;
+		width: 350px;	
+		@extend .radius-one;
+		margin: 10px 0px;
+		padding: 5px 35px 5px 10px;
+	}
+	.search-img{
+		float: right;
+		position: relative;
+		top: 15px;
+		left: 343px;
+	}
+}
+.tip-container{
+	margin: 0 auto;
+	width: 970px;
+}
+.notebook-name{
+	border-bottom: 1px solid $gray;
+	padding: 10px;
+	font-size: 15px;
+}
+.notebook-container{
+	clear: both;
+	padding-top: 20px;
+}

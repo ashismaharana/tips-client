@@ -2,6 +2,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular.ttf";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+
 // endbower
 @import "setcolour";
 
@@ -9,9 +10,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import "fonts";
 
+@import "login-signup";
+
 @import "create-tip";
 
 @import "user-edit-profile";
+
+@import "user-notebook";
+
+@import "dashboard";
 
 // $icon-font-path: "../styles/fonts/handlee.woff2";
 
@@ -154,6 +161,10 @@ body {
   }
 }
 
+button[disabled], html input[disabled] {
+  cursor: default;
+  background-color: $red-l;
+}
 
 .floatl{
   float: left;
@@ -185,7 +196,7 @@ body {
   text-align: center;
 }
 
-.searchBox{
+.search-box{
   width: 680px;
   min-width: 300px;
   font-size: 20px; 
@@ -197,7 +208,7 @@ body {
 
 .search-img2{
   position: relative;
-  right: 169px;
+  right: 180px;
   top: 12px;
 }
  
@@ -224,99 +235,6 @@ body {
   padding-top: 2px;
 }
 
-//sign in
-
-.sign-in-div{
-  background-color: $bg-y-d;
-  width: 580px;
-  height: 350px;
-  margin: 0 auto;
-  text-align: center;
-  color: $color-l-black;
-  font-weight: lighter;
-  font-family: $primary-font;
-  @extend .fontSize;
-  position: absolute;
-  z-index:1002;
-  overflow: auto;
-  top: 25%;
-  left: 25%;
-    .signInText{
-      font-size: 22px;
-      padding: 9px 0px;
-      background-color:$bg-y-l;
-    }
-    .sin-in-div-form{
-        top: 50px;
-        left: 0px;
-        height: 290px;
-    }
-
-    .email-id-div{
-        clear: both;
-        margin: 0 auto;
-        width: 510px;
-        font-family: Handlee;
-        padding: 45px 0px 0px 0px;
-      .emailId{
-        padding: 7px 0px;
-        @extend .floatl;
-      
-      }
-      .emailIdForm{
-        width: 400px;
-        height: 40px;
-        @extend .bg-color-yellow-l;
-        border: 0px;
-        border-radius: 5px;
-        @extend .floatr;
-        padding: 0px 15px;
-      }
-
-    }
-    .passwordIdDiv{
-        padding-top: 10px; 
-    }
-      
-    .forgotPassword{
-      clear: both;
-      text-decoration: underline;
-      padding: 5px 37px;
-      text-align: right;
-      font-size: 11px;
-      font-family: $primary-font;
-      color: black;
-    }
-    .btn-sign-in{
-        border-radius: 5px;
-        border: 0px;
-        padding: 7px 23px;
-        @extend .bg-color-yellow-l;
-        font-family: Handlee;
-        @extend .floatr;
-        margin: 18px 34px;
-
-    }
-    .hrGray{
-      border-top: 2px solid rgba(90, 87, 87, 0.22);
-      clear: both;
-    }
-    .sign-in-div-text{
-        .signupText{
-          text-decoration: underline;
-          color: black;
-
-        }
-    }
-}
-
-
-// sign up
-.sign-up{
-  height: 370px; 
-}
-
-
 .tips-category{
   @extend .floatl;
   text-align: center;
@@ -337,35 +255,53 @@ body {
 }
 .tips-container{
   @extend .floatl;
-  margin: 14px;
-  margin: 0 auto;
-  width: 100%;
+  // margin: 0 auto;
+  // width: 100%;
+  padding: 0px 10px;
 }
 .tip{
   width: 217px;
   @extend .font-helvetica;
-  margin: 0px 13px;
+  // margin: 0px 13px;
   overflow: hidden;
-  padding: 0px 0px 10px;
+  // padding: 0px 0px 10px;
 }
 
+// .container-tips{
+//   .tip-item{
+//     .category-title-div{
+//       width: 100%;
+//     }
+//     .tips-titel{
+//       width: 100%;
+
+//     }
+//     .tip-details{
+//       width: 100%;
+
+//     }
+//     .hr{
+//       width: 100%;
+//     }
+//   }
+// }
 .tips{
   width: 240px;
   margin: 0px 4px 4px;
   @extend .floatl;
   font-size: 18px;  
 }
-.categoryTitleDiv{
+.category-title-div{
   @extend .background-color-yL;
   width: 220px;
 }
-.tipsImg{
+.tips-img{
   @extend .floatl;
   padding: 10px 0px 0px 9px;
   position: relative;
   top: -3px;
 }
-.categoryTitle{
+.category-title{
   font-size: 18px;
   margin: 0px;
   padding: 10px;
@@ -379,12 +315,17 @@ body {
 .tips-titel{
   @extend .padding-tip;
   @extend .background-color-y;
+  @extend .wordwrap;
   text-align: justify;
   font-family: Handlee;
   font-size: 18px;
   padding: 11px 16px;
+  width: 220px;
+  border-bottom: 1px solid #d4cc5b;
 }
-.listOfCategoryDiv{
+
+.list-of-category-div{
+  overflow: hidden;
   background-color: gray;
   color: $bg-white;
   height: 45px;
@@ -400,49 +341,57 @@ body {
 
 
 
-.tipDetails{
+.tip-details{
   @extend .background-color-y;
   height: 50px;
+  width: 220px;
 }
 
 .thumbs_up{
-  width: 70px;
-  padding: 0px 10px;
+  width: 73px;
+  padding: 0px 0px 9px  10px;
 }
 
 .thumbs_down{
   @extend .thumbs_up;
 }
-.thumbsUpImg{
-  width: 17px;
-  padding: 7px 0px;
+.thumbs-up-img{
+  width: 18px;
+  padding: 11px 0px;
   @extend .floatl;
 }
-.thumbsDownImg{
-  @extend .thumbsUpImg;
+.thumbs-down-img{
+  @extend .thumbs-up-img;
   padding: 17px 0px 0px;;
-
 }
 
-.hr{
-  border-top: 1px solid rgba(124, 124, 124, 0.81);
-  margin: 0px;
-  clear: both;
-}
+// .hr{
+//   border-top: 1px solid #d4cc5b;
+//   margin: 0px;
+//   clear: both;
+//   width: 220px;
+// }
 
-.numThumbsUp{
-  font-size: 18px;
-  padding: 14px 0px 0px 37px;
+.num-thumbs-up{
+  font-size: 16px;
+  padding: 16px 0px 0px 30px;
+  margin: -4px;
 }
-.numThumbsDown{
-  @extend .numThumbsUp;
-
+.num-thumbs-down{
+  @extend .num-thumbs-up;
 }
-.viewerDiv{
+.viewer-div{
   @extend .floatl;
-  .viewerImg{
-    padding: 17px 8px ;
-    width: 38px;
+    width: 73px;
+  .viewer-img{
+    @extend .floatl;
+    padding: 13px 8px ;
+    width: 40px;
+  }
+  .num-of-viewer{
+    @extend .floatl;
+    font-size: 16px;
+    padding: 12px 0px;
   }
 }
 
@@ -450,8 +399,8 @@ body {
   width: 200px;
   @extend .background-color-y;
   position: relative;
-  left: 518px;
-  top: -32px;
+  // left: 518px;
+  // top: -32px;
   overflow: hidden;
   border: 1px solid gray;
 }
@@ -463,16 +412,235 @@ body {
   font-weight: lighter;
   @extend .floatr;
   height: 50px;
+  padding: 0px;
+
+  .manu-li-tag{
+    @extend .floatl;
+    padding: 22px 0px 4px;
+    margin: 0px 15px;
+    a{
+      color: $bg-white;
+      text-decoration: none;
+      &:hover {
+        border-bottom: 2px solid $bg-sky-d;
+      }
+    }
+  }
 }
 
-.manu-li-tag{
-  @extend .floatl;
-  padding: 22px 0px 4px;
-  margin: 0px 15px;
-  color: $bg-white;
-    &:hover {
+.active-tab{
       border-bottom: 2px solid $bg-sky-d;
+}
+.cons{
+  width:200px;
+  height: 300px;
+  background-color: yellow;
+  border: 1px solid black;
+}
+.cons2{
+  width:200px;
+  height: 350px;
+  background-color: red;
+  border: 1px solid black;
+}
+
+//popup bootstrap custom scss
+.popover-content {
+    font-family:  Helvetica,'Helvetica Neue', Arial, sans-serif;
+    width: 160px;
+    .list-unstyled{
+    height: 101px;
+    width: 110%;
+    overflow: hidden;
+    overflow-y: scroll;
+    &:hover{
+      overflow-y:scroll;
+    }
+  }
+  .addnotebook-div{
+    border-top: 1px solid;
+    padding: 8px 0px 0px 0px;
+    .addnotebtn{
+      margin: 0 auto;
+      display: inherit;
+      width: 18px;
+    }
+  }
+
+}
+.modal-dialog {
+width: 900px;
+margin: 30px auto;
+}
+.modal-header {
+min-height: 16.43px;
+padding: 15px;
+border-bottom: none;
+}
+.modal-footer {
+padding: 15px;
+text-align: right;
+border-top:none;
+}
+.popover.top>.arrow:after{
+  border-top-color: #F44;
+}
+.popover{
+  background-color: #F44;
+  border-radius: 4px;
+  border: none;
+}
+.popover-content {
+margin-bottom: 10px;
+padding: 9px 14px 0px;
+color: #fff;
+}
+.modal-backdrop.in {
+opacity: 0.9;
+background-color: white;
+}
+
+
+//popup main scss
+.modal-body{
+  
+  .left-right-container{
+    overflow: hidden;
+    .left-body{
+       width: 68%;
+      float: left;
+      // border: 1px solid;
+      border-radius: 4px;
+      background-color: #eee;
+      .main-title{
+        border-bottom: 1px solid #B3B3B3;
+        padding: 5px 0 0 28px;
+        text-align: center;
+        p{
+          font-weight: bold;
+        }
+      }
+      .title-img{
+        margin: 15px 0px 15px 0px;
+        text-align: center;
+        img{
+          width: 90%;
+        }
+      }
+      .all-points{
+          border-bottom: 1px solid #B3B3B3;
+          padding: 0px 11px 0px 11px;
+          text-align: justify;
+      }
+      .bottom-actions-container{
+        overflow: hidden;
+        padding: 10px 15px 10px 0px;
+        .left-action{
+          float: left;
+          margin: -13px 0px -12px 0px;
+          img{
+            width: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: -4px 5px 6px 12px;
+          }
+          .thumb-down-img{
+              margin: 20px 0px 16px 22px;
+          }
+          .thumb-number{
+              margin-left: 12px;
+          }
+        }
+        .right-action{
+          float: right;
+          .item{
+             display: inline-block;
+             vertical-align: middle;
+          a{
+            background-color: #F44;
+            padding: 5px 7px;
+            border-radius: 2px;
+            color: #fff;
+            border: none;
+          }
+          .filters {
+            display: none;
+             }
+         
+         }
+         button{
+             display: inline-block;
+            vertical-align: middle;
+            background-color: #F44;
+            padding: 4px 7px;
+            border-radius: 2px;
+            color: #fff;
+         }
+        }
+      }
+    }
+    .right-body{
+      float: right;
+      width: 30%;
+      // padding: 0 11px;
+      .right-space1{
+         background-color: #eee;
+         border-radius: 4px;
+         padding: 3px 0px 15px 0px;
+         .profile-image-about{
+          padding: 0px 0px 0px 10px;
+           .profile-image{
+            display: inline-block;
+            vertical-align: middle;
+            img{}
+           }
+           .profile-about{
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: 10px;
+            p{
+              width: 142px;
+            }
+           }
+         }
+         .follow-link{
+          text-align: center;
+          button{
+            background-color: #F44;
+            padding: 4px 25px;
+            border-radius: 2px;
+            color: #fff;
+          }
+         }
+      }
+      .right-space2{
+         background-color: #eee;
+         border-radius: 4px;
+         text-align: center;
+         .his-topics-heading{
+            h4{
+              padding: 16px 0px 0px 0px;
+            }
+         }
+      }
+    }
+  }
+  .other-tips-container{
+      background-color: #eee;
+      margin-top: 12px; 
+      border-radius: 4px;
+      .other-topic-heading{
+        padding: 18px;
+        text-align: center;
+      }
     }
 }
 
+//popup main scss end
+//popup bootstrap custom scss end
+
+
+
+
+//signin page as a popup
 

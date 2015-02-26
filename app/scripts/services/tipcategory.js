@@ -13,5 +13,5 @@ angular.module('tipCategoryServices', ['ngResource'])
 
   		this.tipCategoryId = function(){
   			return $resource(this.url + '/tips-by-category/' + category_id);
-  		}
+  		};
   });

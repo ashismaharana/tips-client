@@ -1,0 +1,204 @@
+//login
+.login-div-form{
+    background-color: $bg-y-d;
+    width: 580px;
+    // height: 370px;
+    margin: 0 auto;
+    text-align: center;
+    color: $color-l-black;
+    font-weight: lighter;
+    font-family: $primary-font;
+    @extend .fontSize;
+    position: absolute;
+    z-index:1002;
+    overflow: auto;
+    top: 25%;
+    left: 25%;
+    .login-text{
+        font-size: 22px;
+        padding: 9px 0px;
+        background-color:$bg-y-l;
+    }
+    .email-id-div{
+        font-family: Handlee;
+        padding: 45px 0px 0px 0px;
+        .email-id-label{
+            width: 100px;
+            @extend .centering;
+            .email-id-label-text{
+                @extend .floatl;
+            }
+        }
+        .email-id-input-div{
+            @extend .centering;
+            .email-id-input{
+                // margin-left: 24px;
+                .emailid{
+                    width: 400px;
+                    height: 40px;
+                    @extend .bg-color-yellow-l;
+                    border: 0px;
+                    border-radius: 5px;
+                    @extend .floatr;
+                    padding: 0px 15px;
+                }
+            }
+            .signup-error-field{
+
+            }
+        }
+    }
+
+    .password-div{
+        @extend .email-id-div;
+        padding: 22px 0px 15px 0px;
+        .password-text{
+            width: 100px;
+            @extend .email-id-label;
+            .password-label{
+                @extend .email-id-label-text;
+            }
+        }
+        .login-password{
+            @extend .centering;
+            // margin-left: 22px;
+            .login-password-input{
+               width: 400px;
+                height: 40px;
+                @extend .bg-color-yellow-l;
+                border: 0px;
+                border-radius: 5px;
+                @extend .floatr;
+                padding: 0px 15px;
+            }
+        }
+    }
+
+    .login-forgot-password{
+      clear: both;
+      text-decoration: underline;
+      padding: 0px 37px;
+      text-align: right;
+      font-size: 11px;
+      font-family: $primary-font;
+      color: black;
+    }
+    .btn-div{
+        .btn-sign-in{
+            border-radius: 5px;
+            border: 0px;
+            padding: 7px 23px;
+            @extend .bg-color-yellow-l;
+            font-family: Handlee;
+            @extend .floatr;
+            margin: 24px 34px 20px 0px;;
+        }
+    }
+    
+    .sign-in-div-text{
+        padding: 12px;
+        clear: both;
+        border-top: 1px solid #d4cc5b;
+        .signup-link{
+          text-decoration: underline;
+          color: black;
+
+        }
+    }
+}
+//login end
+
+//signup
+
+// sign up
+.signup-div-form{
+    @extend .login-div-form;
+    .signin-text{
+        @extend .login-text;
+    }
+    .signup-name-div{
+        @extend .password-div;
+        padding: 16px 0px 0px 0px;
+        .signup-label{
+            @extend .password-label;
+            .signup-name{
+                @extend .padding5px;
+                @extend .email-id-label-text;
+
+            }
+        }
+        .signup-name-input{
+            @extend .centering;
+            .signup-name{
+
+            }
+        }
+    }
+    .email-id-div{
+        padding: 16px 0px 0px 0px;
+        .signin-email-label{
+            @extend .centering;
+            .email-label{
+                @extend .padding5px;
+
+            }
+        }
+        .signup-email-input{
+            @extend .centering;
+            .email-input{
+            @extend .centering;
+                .emailid-input{
+                    @extend .login-password-input;
+                }
+            }
+            .email-status-msg{
+
+            }
+        }
+    }    
+    .signup-password-div{
+        padding: 16px 0px 0px 0px;
+        .signup-password-label{
+            @extend .centering;
+            .password-label{
+                @extend .padding5px;
+
+            }
+        }
+        .signup-password-input-div{
+            @extend .centering;
+            .signup-password-input{
+                @extend .centering;
+                .password-input{
+
+                }
+            }
+            .password-status-msg{
+
+            }
+        }
+    }
+    .signup-conf-password-div{
+        padding: 16px 0px 0px 0px;
+        .signup-password-label{
+            @extend .centering;
+            .password-label{
+                @extend .padding5px;
+
+            }
+        }
+        .signup-password-input-div{
+                @extend .centering;
+            .signup-password-input{
+                .password-input{
+
+                }
+            }
+        }
+        .password-status-msg{
+
+        }
+    }   
+    .btn-sign-in{
+    }
+}

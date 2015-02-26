@@ -10,7 +10,7 @@
  */
 
 
- var resolve = {
+var resolve = {
     data:function($rootScope, $q, $http, $location,  $cookieStore, IsLoggedIn, Login){
         var deferred = $q.defer();
         var currentUser = $cookieStore.get('current_user');
@@ -24,7 +24,7 @@
           $location.path('/');
         }
     }
-  };
+};
 
 
 
@@ -44,8 +44,9 @@ angular
     'IsLoggedInServices',
     'signoutServices',
     'updateServices',
-    'TipsUserServices'
-    // 'tipCategoryServices'
+    'TipsUserServices',
+    'VoteService',
+    'NoteBookService'
   ])
 
   .config(function ($routeProvider) {
