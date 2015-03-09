@@ -7,87 +7,134 @@
   <div class="main-container">
     <div class="left-right-container">
       <div class="left-container">
-         <div class="boxes-container">
+        <div class="boxes-container">
             <div class="box-row1">
                 <div class="box box1">
-                  <div class="box_text">
-                  <h4>182</h4>
-                  <h5>TIPS</h5>
-                  </div>
-                 <div class="box_text2"><p>156 Tips Last week</p></div>
+                    <div class="box_text">
+                        <h4>182</h4>
+                        <h5>TIPS</h5>
+                    </div>
+                    <div class="box_text2"><p>156 Tips Last week</p></div>
                 </div>
                 <div class="box box2">
-                  <div class="box_text">
-                  <h4>36</h4>
-                  <h5>FOLLOWERS</h5>
-                  </div>
+                    <div class="box_text">
+                    <h4>36</h4>
+                    <h5>FOLLOWERS</h5>
+                    </div>
                  <div class="box_text2"><p>29 Followers Last week</p></div>
                 </div>
                 <div class="box box3">
-                  <div class="box_text">
-                  <h4>52</h4>
-                  <h5>FOLLOWING</h5>
-                  </div>
-                 <div class="box_text2"><p>38 Following Last week</p></div>
+                    <div class="box_text">
+                        <h4>52</h4>
+                        <h5>FOLLOWING</h5>
+                    </div>
+                    <div class="box_text2"><p>38 Following Last week</p></div>
                 </div>
                 <div class="box box4">
-                  <div class="box_text">
-                  <h4>502</h4>
-                  <h5>VIEWS</h5>
-                  </div>
-                <div class="box_text2"><p>395 Views Last week</p></div>
+                    <div class="box_text">
+                        <h4>502</h4>
+                        <h5>VIEWS</h5>
+                    </div>
+                    <div class="box_text2"><p>395 Views Last week</p></div>
                 </div>
-              </div>
-           <div class="box-row2">
+            </div>
+            <div class="box-row2">
                 <div class="box box1">
-                  <div class="box_text">
-                  <h4>28</h4>
-                  <h5>NOTES</h5>
-                  </div>
-                 <div class="box_text2"><p>16 Notes Last week</p></div>
+                    <div class="box_text">
+                       <h4>28</h4>
+                       <h5>NOTES</h5>
+                    </div>
+                    <div class="box_text2"><p>16 Notes Last week</p></div>
                 </div>
                 <div class="box box2">
-                  <div class="box_text">
-                  <h4>538</h4>
-                  <h5>THUMBS UPS</h5>
-                  </div>
-                <div class="box_text2"><p>468 Best Last week</p></div>
+                    <div class="box_text">
+                        <h4>538</h4>
+                        <h5>THUMBS UPS</h5>
+                    </div>
+                    <div class="box_text2"><p>468 Best Last week</p></div>
                 </div>
                 <div class="box box3">
-                  <div class="box_text">
-                  <h4>23</h4>
-                  <h5>THUMBS DOWNS</h5>
-                  </div>
-                 <div class="box_text2"><p>15 Worst Last week</p></div>
+                    <div class="box_text">
+                        <h4>23</h4>
+                        <h5>THUMBS DOWNS</h5>
+                    </div>
+                    <div class="box_text2"><p>15 Worst Last week</p></div>
                 </div>
                 <div class="box box4">
-                  <div class="box_text">
-                  <h4>01</h4>
-                  <h5>REWARDS</h5>
-                  </div>
-                 <div class="box_text2"><p>0 Reward Last week</p></div>
+                    <div class="box_text">
+                        <h4>01</h4>
+                        <h5>REWARDS</h5>
+                    </div>
+                    <div class="box_text2"><p>0 Reward Last week</p></div>
                 </div>
-              </div>
-         </div>
-         <div class="week">
-          <div class="week_text"><p>Week</p></div> 
-          <div class="week_img"></div> 
-          <!-- <div class="week_img"><img src="img/down_arrow.png" alt="arrow_img"></div>  -->
-         </div>
+            </div>
+        </div><!-- boxes-container -->
+        <div class="week">
+            <div class="week_text">
+                <!-- dropdown -->
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+                    Week
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#/dashboard">Month</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#/dashboard">Year</a></li>
+                  </ul>
+                </div>
 
-         <div class="activity">
-           <div class="activity_text"><h5>ACTIVITY</h5></div>
-           <div class="activity_graph"></div>
-           <!-- <div class="activity_graph"><img src="img/graph.png" alt="graph"></div> -->
-         </div>
+            </div> 
 
+            <div class="week_img"></div> 
+        </div>
+
+        <div class="activity">
+            <div class="activity_text"><h5>ACTIVITY</h5></div>
+            <div class="activity_graph"></div>
+            <!-- <div class="activity_graph"><img src="img/graph.png" alt="graph"></div> -->
+        </div>
       </div>
+
       <div class="right-container">
         <h5>YOUR TOP TIPS</h5>
-        <div class="all_tips">
 
-        </div>
+
+            <div  class="user-created-tips" ng-include="'../views/user-tip.html'"></div>
+        
+<!--         <div class="all_tips">{{popularTip}}
+            <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item'>
+                <div class="category-title-div ">
+                    <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
+                        <div>
+                            <img src="../images/tipsMark.png" alt="" class="tips-img">
+                            <div class="category-title">{{popularTip.categoryTitle}}</div>
+                        </div>
+                        <div>
+                            <div class="desc tips-titel">{{popularTip.title}}</div>
+                        </div>
+                    </div>
+                        <div class="tip-details">
+                            <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                              <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                              <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
+                            </div>
+                            <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                              <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                              <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
+                            </div>
+                            <div class="viewer-div">
+                              <img src="../images/view.svg" alt="" class="viewer-img" />
+                              <div class="num-of-viewer"> {{popularTip.view}} </div> 
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div> -->
+
       </div>
     </div>
   </div>
 </div>
+
+

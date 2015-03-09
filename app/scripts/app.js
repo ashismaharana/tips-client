@@ -77,7 +77,7 @@ angular
       })
       .when('/notebook', {
         templateUrl: 'views/notebook.html',
-        controller: 'SessionCtrl',
+        controller: 'NotebookCtrl',
         resolve: resolve
       })      
       .when('/about', {

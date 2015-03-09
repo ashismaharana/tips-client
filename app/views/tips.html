@@ -24,21 +24,31 @@
     </div>
 </div> -->
 
+<!-- 
+    <style type="text/css">
+      .free-wall {
+        margin: 15px;
+      }
+      .brick {
+        width: 221.2px;
+      }
+/*      .info {
+        padding: 15px;
+        color: #333;
+      }
+      .brick img {
+        margin: 0px;
+        padding: 0px;
+        display: block;
+      }*/
+    </style>
+ -->
 
 
-  <style type="text/css">
-    .container-tips {
-      /*width: 100%;*/
-      /*margin: 1px ;*/
-    }
-    .tip-item {
-    /*width: 250px;*/
-    display: inline-block;
-    margin: 10px 10px;
-    }
-  </style>
-
-    <div ng-repeat="tip in tips" class='tip-item'>
+  <!-- <div  class="tips-container-freewall free-wall" id="freewall"> -->
+  <div id="freewall" class="free-wall" >
+    <div ng-repeat="tip in tips" class='brick'>
+    <!-- <div ng-repeat="tip in tips" class='tip-item floatl brick'> -->
     <!-- <div ng-repeat="tip in tips" class='tip-item' ng-click="tipdescription(tip)"> -->
         <div class="category-title-div ">
             <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)">
@@ -63,11 +73,10 @@
                       <img src="../images/view.svg" alt="" class="viewer-img" />
                       <div class="num-of-viewer"> {{tip.view}} </div> 
                     </div>
-
-
                 </div>
         </div>
     </div>
+  </div>
 
 
 <!-- popup tip -->
@@ -92,40 +101,47 @@
                       <p>{{tipDetails.description}}</p> 
                     </div>
 
-                    <div class="bottom-actions-container">
-                      <div class="left-action">
-                        <div class="display-middle" ng-click="thumbsUp(tipIndex, tipDetails.id)">
-                            <img src="../images/thumbs_up.svg" alt="">
-                            <span class="thumb-number">{{tipDetails.thumbs_up}}</span>
-                        </div>
-                        <div class="display-middle" ng-click="thumbsDown(tipIndex, tipDetails.id)">
-                          <img class="thumb-down-img" src="../images/thumbs_down.svg" alt="">
-                          <span class="thumb-number">{{tipDetails.thumbs_down}}</span>
-                        </div>
-                      </div>
-                      <div class="right-action">                        
-                        <div class="item">
-                           <a href="#" onclick="return false;" class="btn btn-primary">Add to my Notebook</a>
-                           <div class="filters">
-                              <ul class="list-unstyled">
-                                  <li>
-                                    <div ng-repeat="notebook in myNoteBookData">
-                                      <input type="checkbox" name="{{notebook.id}}" value="{{notebook.id}}" ng-model="notebook.id">
-                                      <!-- <input type="checkbox" name="notebook" onclick="selectCheckbox($index, notebook.id)" id="'notebook'+$index" > -->
-                                      <!-- <input type="checkbox" ng-model="notebook.notebook_name" ng-change="changeNotebook()"> -->
-                                      <!-- <input type="checkbox" ng-model="notetip" ng-click="addOrDeleteTipForNotebook()"> -->
-                                      <label for="{{notebook.id}}">{{notebook.notebook_name}}</label>
-                                    </div>
-                                  </li>
-                              </ul>
-                              <div class="addnotebook-div"> <img  class="addnotebtn" src="../images/ok.png" alt=""></div>       
+                    <div class="bottom-actions-container" ng-show="addToNb">
+                        <div class="left-action">
+                            <div class="display-middle" ng-click="thumbsUp(tipIndex, tipDetails.id)">
+                                <img src="../images/thumbs_up.svg" alt="">
+                                <span class="thumb-number">{{tipDetails.thumbs_up}}</span>
                             </div>
-                          </div>
+                            <div class="display-middle" ng-click="thumbsDown(tipIndex, tipDetails.id)">
+                              <img class="thumb-down-img" src="../images/thumbs_down.svg" alt="">
+                              <span class="thumb-number">{{tipDetails.thumbs_down}}</span>
+                            </div>
+                        </div>
+                        <div class="right-action">  
 
-                        <button type="button" class="btn">Share</button>
-                        <button type="button" class="btn">Print</button>
-                      </div>
+                            <div class="notebook-popover-content animate-show" ng-show="addToNbPopUp">        
+                                <div class="itom" >         
+                                    <div class="notebook-itom" >
+                                        <div ng-repeat="notebook in myNoteBookData">  
+                                            <div>
+                                                <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)">
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook()"> -->
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-model="notebook.id" ng-change="addOrDeleteTipForNotebook($tipIdx, {{notebook.id}})"> -->
+                                                <label for="{{notebook.id}}" class="notenook-label">{{notebook.notebook_name}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-show="myNoteBookData.length == 0" class="notebook-not-added">
+                                          <a href="#/notebook">Create Notebook</a>
+                                        </div>
+                                    </div>
+                                    <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()"> 
+                                        <img class="addnotebtn" src="../images/ok.png" alt="">
+                                    </button> -->
+                                </div>
+                                <div class="popup-triangle" style=''></div>
+                            </div>
+                            
+                            <button type="button" class="btn" ng-click="addToNb(addToNbPopUp)">Add to my Notebook</button>
+                            <button type="button" class="btn">Share</button>
+                            <button type="button" class="btn">Print</button>
+                        </div>
                     </div>
+
                 </div>
                 <div class="right-body">
                       <div class="right-space1">
@@ -146,37 +162,35 @@
                          <div class="his-topics-heading">
                              <h4>His Popular Tips</h4>
                           </div> 
-                          <div>
-                              <div ng-repeat="popularTip in popularTipsOfUser | limitTo: 5" class='tip-item'>
-                                  <div class="category-title-div ">
-                                      <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                                      <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
-                                          <div>
-                                              <img src="../images/tipsMark.png" alt="" class="tips-img">
-                                              <div class="category-title">{{popularTip.categoryTitle}}</div>
-                                          </div>
-                                          <div>
-                                              <div class="desc tips-titel">{{popularTip.title}}</div>
-                                          </div>
+
+                          <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item'>
+                              <div class="category-title-div ">
+                                  <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
+                                  <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
+                                      <div>
+                                          <img src="../images/tipsMark.png" alt="" class="tips-img">
+                                          <div class="category-title">{{popularTip.categoryTitle}}</div>
                                       </div>
-                                          <hr class="hr">
-                                          <div class="tip-details">
-                                              <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
-                                                <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
-                                                <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
-                                              </div>
-                                              <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
-                                                <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
-                                                <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
-                                              </div>
-                                              <div class="viewer-div">
-                                                <img src="../images/view.svg" alt="" class="viewer-img" />
-                                                <div class="num-of-viewer"> {{popularTip.view}} </div> 
-                                              </div>
-
-
-                                          </div>
+                                      <div>
+                                          <div class="desc tips-titel">{{popularTip.title}}</div>
+                                          <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
+                                      </div>
                                   </div>
+                                      <div class="tip-details">
+                                          <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                                            <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                                            <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
+                                          </div>
+                                          <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                                            <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                                            <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
+                                          </div>
+                                          <div class="viewer-div">
+                                            <img src="../images/view.svg" alt="" class="viewer-img" />
+                                            <div class="num-of-viewer"> {{popularTip.view}} </div> 
+                                          </div>
+
+                                      </div>
                               </div>
                           </div>
                       </div>
@@ -188,41 +202,37 @@
                     <h4>Other Tips related to topic</h4>
                 </div> 
                  <div class="all-tips-square">
-                   
+                
+                    <div ng-repeat="categoryTip in categoryWiseTips" class='tip-item'>
+                        <div class="category-title-div ">
+                            <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
+                            <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)">
+                                <div>
+                                    <img src="../images/tipsMark.png" alt="" class="tips-img">
+                                    <div class="category-title">{{categoryTip.categoryTitle}}</div>
+                                </div>
+                                <div>
+                                    <div class="desc tips-titel">{{categoryTip.title}}</div>
+                                    <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
+                                </div>
+                            </div>
+                                <div class="tip-details">
+                                    <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                                      <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                                      <div class="num-thumbs-up"> {{categoryTip.thumbs_up}} </div> 
+                                    </div>
+                                    <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                                      <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                                      <div class="num-thumbs-down"> {{categoryTip.thumbs_down}} </div>
+                                    </div>
+                                    <div class="viewer-div">
+                                      <img src="../images/view.svg" alt="" class="viewer-img" />
+                                      <div class="num-of-viewer"> {{categoryTip.view}} </div> 
+                                    </div>
 
-                               <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item'>
-                                  <div class="category-title-div ">
-                                      <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                                      <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
-                                          <div>
-                                              <img src="../images/tipsMark.png" alt="" class="tips-img">
-                                              <div class="category-title">{{popularTip.categoryTitle}}</div>
-                                          </div>
-                                          <div>
-                                              <div class="desc tips-titel">{{popularTip.title}}</div>
-                                          </div>
-                                      </div>
-                                          <hr class="hr">
-                                          <div class="tip-details">
-                                              <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
-                                                <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
-                                                <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
-                                              </div>
-                                              <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
-                                                <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
-                                                <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
-                                              </div>
-                                              <div class="viewer-div">
-                                                <img src="../images/view.svg" alt="" class="viewer-img" />
-                                                <div class="num-of-viewer"> {{popularTip.view}} </div> 
-                                              </div>
-
-
-                                          </div>
-                                  </div>
-                              </div>
-  
-
+                                </div>
+                        </div>
+                    </div>
 
                  </div>  
               </div>
@@ -233,6 +243,10 @@
           </div>
         </div>
     </div>
+
+
+
+
 <!-- popup tip end -->
 
 
@@ -259,5 +273,38 @@
             // wall.fitWidth();
             // wall.refresh()
         // }
-         
+
+
+        var wall = new freewall("#freewall");
+        wall.reset({
+
+            selector: '.brick',
+            cellW: 220,
+            cellH: 'auto',
+            gutterY: 15,
+            gutterX: 15,
+            animate: true,
+            delay: 0, 
+            // rightToLeft: true,
+            // keepOrder: true,
+            // draggable: true,
+            // cacheSize: true, // caches the original size of block;
+
+            onResize: function() {
+                    console.log("HI onResize");
+                  wall.fitWidth();
+            }
+        });
+        $( document ).ready(function() {
+            setTimeout(function(){wall.fitWidth()},100);
+        });
+
+        // wall.container.find('.brick2').load(function() {
+        //     //  // debugger;
+        //      console.log('brick img')
+        //      wall.fitWidth();
+        //     });
+
+    
   </script>
+

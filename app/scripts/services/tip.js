@@ -39,6 +39,6 @@ angular.module('TipsServices', ['ngResource'])
 				cb(data, null);
 			});
 
-	 	}
+	 	};
 
 	});

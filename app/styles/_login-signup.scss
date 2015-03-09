@@ -3,17 +3,17 @@
     background-color: $bg-y-d;
     width: 580px;
     // height: 370px;
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
     color: $color-l-black;
     font-weight: lighter;
     font-family: $primary-font;
     @extend .fontSize;
-    position: absolute;
-    z-index:1002;
-    overflow: auto;
-    top: 25%;
-    left: 25%;
+    // position: absolute;
+    // z-index:1002;
+    // overflow: auto;
+    // top: 25%;
+    // left: 25%;
     .login-text{
         font-size: 22px;
         padding: 9px 0px;
@@ -108,10 +108,21 @@
 }
 //login end
 
+//bootstrap
+.modal-dialog-edit{
+    width: 580px !important;
+}
+.modal-content-edit{
+    width:  580px !important;
+}
+
+
+
 //signup
 
 // sign up
 .signup-div-form{
+    min-height: 363px;
     @extend .login-div-form;
     .signin-text{
         @extend .login-text;

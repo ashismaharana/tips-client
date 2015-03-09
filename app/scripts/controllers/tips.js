@@ -10,6 +10,9 @@
 angular.module('tipsApp')
   .controller('TipsCtrl', function ($scope,  $cookieStore, $rootScope, $location, Tip, Category, Signout ) {
     
+    $scope.user = $cookieStore.get('current_user');
+    
+
     Category.getCategories().then(function(categoryResponse){
         console.log('categoryResponse', categoryResponse.data);
         $scope.categories = categoryResponse.data;
@@ -63,6 +66,9 @@ angular.module('tipsApp')
                 });
             }
         };
+    
+
+
     })
 
     .directive('create',function(){
@@ -70,3 +76,4 @@ angular.module('tipsApp')
 	      templateUrl: 'views/create.html'
 	    };
   	});
+

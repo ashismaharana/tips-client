@@ -12,4 +12,8 @@ angular.module('CategoriesServices', ['ngResource'])
     this.getCategories = function(){
     	return $http.get(this.url + '/tips/categories');
     }
+
+    this.getTipByCategories = function(categoryId){
+    	return $http.get(this.url + '/tips-by-category/' + categoryId);
+    }
 });

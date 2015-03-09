@@ -11,10 +11,35 @@
 
 angular.module('tipsApp')
 
-	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location,  Tip, Category, IsLoggedIn, Signup, Signout, Vote, Notebook, TipsUser ) {
+	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location,  Tip, Category, IsLoggedIn, Signup, Signout, Vote, Notebook, TipsUser,  $animate ) {
 		
 		//current user
 		$scope.user = $cookieStore.get('current_user');
+
+
+
+		//categories wise tip from nav category list
+		$scope.allCategories = function(category){
+			console.log(category.id);
+
+			Category.getTipByCategories(category.id).then(function(categoryWiseTip){
+				var categoryTips = categoryWiseTip.data;
+				// console.log('what',categoryTips);
+				Category.getCategories().then(function(getListOfCategory){
+					var categories = getListOfCategory.data;
+					// console.log('what',categories);
+					categoryTips.forEach(function(categoryTip){
+						$scope.categories.forEach(function(category){
+							if(category.id === categoryTip.category_id){
+								categoryTip.categoryTitle = category.title;
+							}
+						});
+					});
+						$scope.categoryWiseTips = categoryTips;
+						console.log('ok lets see',categoryTips);
+				});	
+			})
+		}
 		
 		// get tips from server
 		// $(function(){
@@ -50,7 +75,8 @@ angular.module('tipsApp')
 			console.log("ldsjfkldsjglksdjgklsdjg", id);
 		}
 
-		//tip description
+
+//tip description in popop
 		$scope.tipdescription = function(idx, tip){
 			console.log(tip);
 			$scope.tipDetailsDiv = true;
@@ -68,20 +94,54 @@ angular.module('tipsApp')
 				}
 			});
 
-			//get notebook for show and add the tip to notebook		
-			Notebook.getNoteBook($scope.user.id, function(err, data){
+		//notebook
+			//get notebook for show and add the tip to notebook	
+			//var tipParams = {tip_id: tipId};	
+			
+			Notebook.getNoteBook($scope.user.id, tipId, function(err, data){
+				// console.log('all notebook',data);
+				
 				$scope.myNoteBookData = data;
-				console.log('all notebook',data);
-				$scope.changeNotebook = function(){
-			 		console.log("Dummy notebook");
-			 		console.log("2Dummy notebook");
-		 		}
+				// $scope.changeNotebook = function(){
+			 // 		console.log("Dummy notebook");
+			 // 		console.log("2Dummy notebook");
+		 	// 	}
 			}); 
+
+			//notebook popup
+			$scope.addToNbPopUp = false;
+			$scope.addToNb = function(addToNbPopUp){
+
+				$scope.addToNbPopUp = !$scope.addToNbPopUp;
+
+				$scope.addOrDeleteTipForNotebook = function(tipIdx, notebook){
+					console.log("adding tipIdx",tipIdx);
+					console.log("adding notebook",notebook);
+					//$scope.notebookAdd = [];
+					console.log('ok what',notebook);
+					// Send a request to the backend with the tip id and notebook id
+					Notebook.addTipToNotebook(tipIdx, notebook, function(err, tip){
+						console.log("TIP::::::", tip);
+					});
+
+					    //$scope.data = [];
+
+					    // $scope.addItem = function () {
+					    //     var c = $scope.data.length + 1;
+					    //     var item = new String('Item ' + c)
+					    //     $scope.data.splice(0, 0, item);
+					    // };
+
+
+				}
+
+			}
 
 		//tips of the created_by user
 			var userCreatedById = tip.created_by;
 			// console.log('userCreatedById', userCreatedById);
 			if(userCreatedById){
+
 				TipsUser.getUserDetails(userCreatedById, function(err, data){
 					if(err){
 						console.log(err);
@@ -90,65 +150,115 @@ angular.module('tipsApp')
 						$scope.userIs = data;
 					}
 				});
+			
 
-				TipsUser.getUserTips(userCreatedById, function(err, data){
-					if(err){
-						console.log('Error getting the tips for the user');
-						$scope.popularTipsOfUser = [];
-					} else {
-						// console.log(data);
-						$scope.popularTipsOfUser = data;
-					}
+				//popular tip of the user
+				TipsUser.getPopularTips(userCreatedById).then(function(userTip){
+					var popularTipsOfUser = userTip.data;
+					Category.getCategories().then(function(categoryResponse){
+						$scope.categories = categoryResponse.data;
+						popularTipsOfUser.forEach(function(popularTip){
+							$scope.categories.forEach(function(category){
+								if(category.id === popularTip.category_id){
+									popularTip.categoryTitle = category.title;
+								}
+							});
+						});	
+						$scope.popularTipsOfUser = popularTipsOfUser;
+							// console.log($scope.tips);
+					},function(categoryFailResponse){
+						console.log('categoryFailResponse');
+						});
+				},function(tipsErrorReponse){
+						console.log('tipsErrorReponse');
 				});
+
+
+				//category wise tip
+				// console.log('tip is nea',tip.category_id);
+				var categoryId = tip.category_id
+				if(categoryId){
+					// console.log(categoryId);
+
+					Category.getTipByCategories(categoryId).then(function(categoryWiseTip){
+						var categoryTips = categoryWiseTip.data;
+						// console.log('what',categoryTips);
+						Category.getCategories().then(function(getListOfCategory){
+							var categories = getListOfCategory.data;
+							// console.log('what',categories);
+							categoryTips.forEach(function(categoryTip){
+								$scope.categories.forEach(function(category){
+									if(category.id === categoryTip.category_id){
+										categoryTip.categoryTitle = category.title;
+									}
+								});
+							});
+								$scope.categoryWiseTips = categoryTips;
+								console.log('category wise 	Tips',categoryTips);
+						});	
+					})
+				}
 			}
 
+
+			//onclick view the fulltip
 			$scope.popularTipOfUser =  function(popularTip){
 				console.log('my tip',popularTip);
 				$scope.tipDetails = popularTip;
 			}
 
-			var selectCheckbox = function(index, notebookId){
-				var idString = 'notebook'+index;
-				console.log(idString, notebookId);
+			//onclick view the fulltip
+			$scope.categoryWiseTipsShow = function(categoryTip){
+				console.log('click hua',categoryTip);
+				$scope.tipDetails = categoryTip;
 			}
- 
-		//follow
-			// Follow.subscribe
 
-			// $scope.createdBy = $scope.tipDetails.created_by;
-			// $scope.tipId = $scope.tipDetails.id;
-			// if($scope.createdBy){
-			// 	// console.log($scope.created_by);
-			// 	// console.log($scope.tipId);
-			// 	var userData ={ user_id: $scope.createdBy, tip_id: $scope.tipId }	
-			// 	console.log('Data:', userData );
-			// }
+			
+				// var selectCheckbox = function(index, notebookId){
+				// 	 var idString = 'notebook'+index;
+				// 	console.log(idString, notebookId);
+				// }
+	 
+			//follow
+				// Follow.subscribe
 
-			//add the viewer
- 			//popup checkbox list
-			$(function () {
-		        $('.item').popover({
-		            placement: 'top',
-		            html: true,
-		            content: function () {
-		            	console.log('test1');
-		                return $(this).find('.filters').html();
-		            }
-		        });
+				// $scope.createdBy = $scope.tipDetails.created_by;
+				// $scope.tipId = $scope.tipDetails.id;
+				// if($scope.createdBy){
+				// 	// console.log($scope.created_by);
+				// 	// console.log($scope.tipId);
+				// 	var userData ={ user_id: $scope.createdBy, tip_id: $scope.tipId }	
+				// 	console.log('Data:', userData );
+				// }
 
-		        $('#count').click(function() {
-		            var filter = $('input[type=checkbox]:checked').map(function () {
-		            	console.log('test2');
-		                return this.value;
-		            }).get();
-		            $('#res').text(filter);
-		            	console.log('test3');
-		        });
+				//add the viewer
 
-		        
-		    });  
+	 			//popup checkbox list
+			// $(function () {
+		 //        $('.item').popover({
+		 //            placement: 'top',
+		 //            html: true,
+		 //            content: function () {
+		 //            	console.log('test1');
+		 //                return $(this).find('.filters').html();
+		 //            }
+		 //        });
 
-		}//end tip description
+		        // $('#count').click(function() {
+		        //     var filter = $('.item input[type=checkbox]:checked').map(function () {
+		        //     	console.log('test2');
+		        //         return this.value;
+		        //     }).get();
+		        //     $('#res').text(filter);
+		        //     	console.log('test3');
+
+		        // })
+		    // }) 
+
+		};//end tip description
+
+
+
 
 		//user of the opened tip
 		$scope.userInfo = function (userIs){
@@ -164,7 +274,7 @@ angular.module('tipsApp')
 	   	// $scope.categories = Category.query();
 	   	
 
-	   	console.log('wekdhweku');
+	   	// console.log('wekdhweku');
 	   	// for(var i=0;i<$scope.tips;i++){
 	   	// 	console.log($scope.tips)
 
@@ -185,22 +295,22 @@ angular.module('tipsApp')
 	      $rootScope.isLoggedIn = false;
 	   	}
 
-		$scope.signIn = function(){
-	        console.log($scope.signin); 
-    			if(!IsLoggedIn.LoggedIn()){
-    				console.log('user');
-    				// $scope.signInBtn = true;
-    			}else{
-    				// user 
-    			}   //loggedIn
+		// $scope.signIn = function(){
+	 //        console.log($scope.signin); 
+  //   			if(!IsLoggedIn.LoggedIn()){
+  //   				console.log('user');
+  //   				// $scope.signInBtn = true;
+  //   			}else{
+  //   				// user 
+  //   			}   //loggedIn
 			       
-		        // console.log($scope.lastName);
+		//         // console.log($scope.lastName);
 
-	        $scope.signin = !$scope.signin;
-	         if($scope.signupView){
-	         	$scope.signupView = !$scope.signupView ;
-	         }
-	    };
+	 //        $scope.signin = !$scope.signin;
+	 //         if($scope.signupView){
+	 //         	$scope.signupView = !$scope.signupView ;
+	 //         }
+	 //    };
 
 
 	    $scope.signup = function(user){
@@ -278,25 +388,6 @@ angular.module('tipsApp')
 	    };
 
 
-	// //popup checkbox list
-	// $(function () {
-	//     $('.item').popover({
-	//         placement: 'top',
-	//         html: true,
-	//         content: function () {
-	//             return $(this).find('.filters').html();
-	//         }
-	//     });
-
-	//     $('#count').click(function() {
-	//         var filter = $('.item input[type=checkbox]:checked').map(function () {
-	//             return this.value;
-	//         }).get();
-
-	//         $('#res').text(filter);
-	//     });
-	// });    
-
 	    //freewall 
 	 //    var myVar = setTimeout(function(){myTimer()},2000);
 		// function myTimer() {
@@ -313,7 +404,37 @@ angular.module('tipsApp')
 		// }
 
 
+	//freewall
+   //      var wall = new freewall("#freewall");
+   //      wall.reset({
 
+	  //       selector: '.brick',
+	  //       cellW: 220,
+	  //       cellH: 'auto',
+	  //       gutterY: 15,
+	  //       gutterX: 15,
+	  //       animate: true,
+	  //       delay: 0, 
+	  //       rightToLeft: true,
+	  //       // keepOrder: true,
+	  //       // draggable: true,
+	  //       // cacheSize: true, // caches the original size of block;
+
+		 //    onResize: function() {
+		 //            console.log("HI main ctrl");
+		 //          wall.fitWidth();
+		 //    }
+   //    	});
+	  //   $( document ).ready(function() {
+	  //       setTimeout(function(){wall.fitWidth()},100);
+	  //   });
+	  //   	wall.container.find('.brick2').load(function() {
+			// 	// debugger;
+			// 	console.log('brick img')
+			// 	wall.fitWidth();
+			// });
+
+	      
 	})
 		
 	.directive('categories', function() {
@@ -323,6 +444,3 @@ angular.module('tipsApp')
 	});
 
 	
-
-
-

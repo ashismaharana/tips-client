@@ -23,15 +23,34 @@ angular.module('NoteBookService', ['ngResource'])
   			});
   		};
 
-  		this.getNoteBook = function(userId, cb){
+  		this.getNoteBook = function(userId, tipId, cb){
+        // console.log("kdfgjkldsgjklvdsfsdfds", userId, tipId);
   			// console.log(userId);
-  			return  $http.get(this.url + '/notebook-by-user/' + userId)
-  			 .success(function(mynotebook){
-  			 	// console.log(mynotebook);
-  			 	cb(null, mynotebook);
-  			 })
+        // $http({
+        //   url: this.url + '/notebook-by-user/' + userId,
+        //   method: "GET",
+        //   params: tipParams
+        // });
+  			return $http.get(this.url + '/notebook-by-user/' + userId + '?tip_id=' + tipId)
+  			  .success(function(mynotebook){
+  			 	  // console.log("jkdsgkgksldg", mynotebook);
+  			 	  cb(null, mynotebook);
+  			  })
   			 .error(function(data){
-  			 	cb(data, null);
+  			 	  cb(data, null);
   			 });
   		};
+
+      this.addTipToNotebook = function(tipid, notebookid, cb){
+        console.log('INFO: Before saving tip to notebook ', tipid, notebookid);
+        // var tipid = ( typeof(tipid) == "string" ? [tipid] : tipid );
+        $http.put(this.url + '/user/notebook/' + notebookid, {tip_id: tipid})
+        .success( function(data) {
+          console.log('INFO: After Saving tip to notebook', data);
+          cb(null, data);
+        })
+        .error( function(data){
+          cb(data, null);
+        });
+      };
   });

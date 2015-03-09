@@ -20,8 +20,7 @@
 
 
 <!-- {{getMyNoteBook}} -->
-
-<div class="row" ng-repeat="notebook in myNoteBookData">
+<div class="row" ng-repeat="notebook in myNoteBookData" ng-controller="NotebookCtrl">
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="notebook-name" id="test">{{notebook.notebook_name}}</div> 
@@ -29,4 +28,3 @@
     </div>
     <div class="col-md-1"></div>
 </div>
-

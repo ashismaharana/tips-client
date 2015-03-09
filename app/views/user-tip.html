@@ -1,4 +1,71 @@
-<div>
+  <div id="freewall" class="free-wall" >
+    <div ng-repeat="tip in tipsOfUser" class='brick'>
+<!-- <div ng-repeat="tip in tipsOfUser" class='tip-item'> -->
+    <!-- <div class="category-title-div "> -->
+        <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
+        <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
+            <div>
+                <img src="../images/tipsMark.png" alt="" class="tips-img">
+                <div class="category-title">{{tip.categoryTitle}}</div>
+            </div>
+            <div>
+                <div class="desc tips-titel">{{tip.title}}</div>
+                <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
+            </div>
+        </div>
+            <div class="tip-details">
+                <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                  <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                  <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
+                </div>
+                <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                  <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                  <div class="num-thumbs-down"> {{tip.thumbs_down}} </div>
+                </div>
+                <div class="viewer-div">
+                  <img src="../images/view.svg" alt="" class="viewer-img" />
+                  <div class="num-of-viewer"> {{tip.view}} </div> 
+                </div>
+            </div>
+    </div>
+</div>
+<div class="no-save-tip-div" ng-show="tipsOfUser.length == 0">
+	<img src="../images/sorry.png" class="sorry-message-img">
+	<h3 class="message">Sorry no tips to display</h3>
+	<a href="#/create" class="click-create-tip">Click here to create tips</a>
+</div>
+
+
+
+<script>
+        var wall = new freewall("#freewall");
+        wall.reset({
+
+            selector: '.brick',
+            cellW: 220,
+            cellH: 'auto',
+            gutterY: 15,
+            gutterX: 15,
+            animate: true,
+            delay: 0, 
+            rightToLeft: true,
+            // keepOrder: true,
+            // draggable: true,
+            // cacheSize: true, // caches the original size of block;
+
+            onResize: function() {
+                    console.log("HI onResize");
+                  wall.fitWidth();
+            }
+        });
+        $( document ).ready(function() {
+            setTimeout(function(){wall.fitWidth()},100);
+        });
+
+  </script>
+
+<!-- work -->
+<!-- <div>
 	<div class="tips-container">
 		<div ng-repeat="tip in tipsOfUser" class="tip-profile floatl" ng-show="tip.created_by == user.id">
 	   		<div class="category-title-div ">
@@ -29,7 +96,7 @@
 		<a href="#/create" class="click-create-tip">Click here to create tips</a>
 	</div>
 </div>
-
+ -->
 
 
 
