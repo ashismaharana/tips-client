@@ -9,11 +9,20 @@
  */
 angular.module('tipsApp')
 
-	.controller('SessionCtrl', function ($scope, $http, $modal, $log, $location, $cookieStore, $rootScope, Signup, Login, IsLoggedIn, Category, Tip, Signout, Update, TipsUser, Notebook) {
+	.controller('UserCtrl', function ($scope, $http, $modal, $log, $location, $cookieStore, $rootScope, Signup, Vote, Login, IsLoggedIn, Category, Tip, Signout, Update, TipsUser, Notebook, $route) {
 
 		//get tips and categories data to show
 		// $scope.tips = Tip.getTips();  
 		// $scope.categories = Category.query();
+
+
+    //user nav active path
+        $scope.$route = $route;
+
+        $(window).load(function() {
+    		$('#loading').hide();
+  		});
+
 
 		var path = $location.url();
 		// console.log(path);
@@ -48,6 +57,8 @@ angular.module('tipsApp')
 						});
 					});	
 					$scope.tipsOfUser = tips;
+							setTimeout(function(){callFreeWall();},300);//added the freewall
+					
 				},function(categoryFailResponse){
 
 				});
@@ -55,90 +66,71 @@ angular.module('tipsApp')
 
 			})
 		}
-		
-		//get user tip
-		// if($scope.user && $scope.user.id){
-		// 	TipsUser.getUserTips($scope.user.id, function(err, data){
-		// 		if(err){
-		// 			console.log('Error getting the tips for the user');
-		// 			$scope.tipsOfUser = [];
-		// 		} else {
-		// 			$scope.tipsOfUser = data;
-		// 		}
-		// 	});
-		// }
-		
+		  
 
+		// used for signup service
 		$scope.signup = function(user){
 			console.log('user', user);
 			Signup.postSignup(user, function(err, userRecord){
 				if(err){
-						console.log(err);
+					console.log(err);
+					$scope.err = err;
 				} else {
-					console.log('user is ', userRecord);
-						// $location.path('/user');
+					console.log('user is ', userRecord);	
+					$scope.user = userRecord;
+					$('.bs-example-modal-sm1').modal('hide');
+					$('.bs-example-modal-sm').modal('show');
+
+					// if($scope.user){
+					// 	console.log('user hahaha')
+					// 	// $modalInstance.close($scope.selected.item);
+					// }
+
+					// console.log($scope.signin);
 					// alert('welcome ', userRecord);
-					$scope.signin = !$scope.signin;
-					if($scope.signupView){
-						$scope.signupView = !$scope.signupView ;
-					}
+					// $scope.signin = !$scope.signin;
+					// if($scope.signupView){
+					// 	$scope.signupView = !$scope.signupView ;
+					// }
 				}
 			});
 		};
 
-		$scope.login = function (user){
-			Login.postLogin(user, function(err, userRecord){
-				if(err){
-					console.log(err);
-				} else {
-					console.log('User is :', userRecord);
-					
-				$scope.user = userRecord;
 
-					if(userRecord.id){
-						$cookieStore.put('current_user', userRecord);
-						$rootScope.isLoggedIn = true;
-						$location.path('/user');
+		// used for Login service
+		$scope.login = function (user){
+			console.log( 'email',user.email,'user.password',user.password)
+			if( !user.email && !user.password){
+				console.log("not entered")
+			}
+			if(user.email && user.password){
+				Login.postLogin(user, function(err, userRecord){
+					if(err){
+						console.log(err);
+						$scope.err = err;
 					} else {
-						$cookieStore.put('current_user', null);
-						$rootScope.isLoggedIn = false;
-					} 
-				}
-			});
+						console.log('User is', userRecord);
+						
+						// $scope.user = userRecord;
+
+						if(userRecord.id){
+							$cookieStore.put('current_user', userRecord);
+							
+							console.log('if userRecord',userRecord);
+							
+							$rootScope.isLoggedIn = true;
+							$location.path('/user');
+						} else {
+							console.log('else userRecord',userRecord);
+							$cookieStore.put('current_user', null);
+							$rootScope.isLoggedIn = false;
+						} 
+					}
+				});
+			}
 		};
 
 		
-		// profile.html 
-		$scope.profile = true;
-		$scope.update = function(user){
-			console.log('user', user);
-			Update.postUpdate(user, function(err, userUpdate){
-				if(err){
-						console.log(err);
-				} else {
-					console.log('cookie user',$cookieStore.get('current_user'));
-					$cookieStore.put('current_user', userUpdate);
-					console.log('INFO: user update :', userUpdate);
-					// $location.path('/');
-					$scope.profile = true;
-				}
-			});
-		};
-
-	//go for profile edit
-		$scope.profile = true;
-		$scope.profileEdit = function(){
-			console.log('profile');
-			$scope.profile = false;
-		};
-
-	//profile edit cancel
-		$scope.updateCancel = function(){
-			$scope.profile = true;
-		};
-
-
-
 		// used for Signout service
 		$scope.signOut = function(){
 			// check if the current user is existing 
@@ -156,6 +148,40 @@ angular.module('tipsApp')
 			}
 		};
 
+
+	//thumbs up
+	    $scope.thumbsUp = function(idx, tipId){
+	    	if($scope.user){
+				// console.log($scope.user); 
+				console.log('tip id is :',tipId);  
+				// var voted = Vote.upVote(tipId);
+				Vote.upVote(tipId, function(err, data){
+					if(err){
+						console.log(err);
+					} else {
+						console.log('data is >>:', data);
+						$scope.tips[idx].thumbs_up = data.thumbs_up;
+					}
+				})
+	    	}
+	    };
+
+	//thumbs down
+	    $scope.thumbsDown = function(idx, tipId){
+	    	if($scope.user){
+				// console.log($scope.user); 
+				console.log('tip id is :',tipId);  	
+				Vote.downVote(tipId, function(err, data){
+					console.log('data is :', data);
+					if(err){
+						console.log("Error in down voting", err);
+					} else {
+						console.log('data is <<:', data);
+						$scope.tips[idx].thumbs_down = data.thumbs_down;
+					}
+				});
+	    	}
+	    };
 		// //create user notebook
 		// $scope.myNoteBook = function(notebook){
 		// 	console.log($scope.user.id);
@@ -204,7 +230,7 @@ angular.module('tipsApp')
 
 		// 			angular.forEach(notebookData, function(value,key){
 		// 				if(value.tip_ids)
-		// 					console.log(value.tip_ids);
+		// 					console.log('tip_ids :',value.tip_ids);
 		// 			})
 
 		// 			// for(var i = 0; i < notebookData.length; i++){
@@ -231,14 +257,49 @@ angular.module('tipsApp')
 	})//end
 
 //directive used here
-	.directive('login',function(){
-		return{
-			templateUrl: 'views/signin.html'
-		};
-	})
+	// .directive('login',function(){
+	// 	return{
+	// 		templateUrl: 'views/signin.html'
+	// 	};
+	// })
 
-	.directive('signup',function(){
-		return{
-			templateUrl: 'views/signup.html'
-		};
-	});
+	// .directive('signup',function(){
+	// 	return{
+	// 		templateUrl: 'views/signup.html'
+	// 	};
+	// });
+
+
+
+
+
+	// function callFreeWall(){
+ //        var wall = new freewall("#freewall");
+ //        wall.reset({
+
+	//         selector: '.brick',
+	//         cellW: 220,
+	//         cellH: 'auto',
+	//         gutterY: 15,
+	//         gutterX: 15,
+	//         animate: true,
+	//         delay: 0, 
+	//         rightToLeft: true,
+	//         // keepOrder: true,
+	//         // draggable: true,
+	//         // cacheSize: true, // caches the original size of block;
+
+	// 	    onResize: function() {
+	// 	        console.log("HI main ctrl");
+	// 	        wall.fitWidth();
+	// 	    }
+
+ //      	});
+ //      		 wall.container.find('.brick').load(function() {
+	// 			// debugger;
+	// 			console.log('brick img')
+	// 			wall.fitWidth();
+	// 		});
+ //      		  wall.fitWidth();
+
+ //   	}

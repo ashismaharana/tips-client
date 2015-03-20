@@ -27,7 +27,9 @@
 				<!-- user img -->
 				<div class="profile-img-div">
 					<img class="profile-img" src="../images/Generic_Male_Profile.jpg">
+					<span class="uploed-text" title="uploed">Uploed</span>
 				</div>
+
 				<!-- user details -->
 				<div class="user-profile-data-div">
 					<div class="user-profile-fullname-div">
@@ -49,6 +51,8 @@
 						<label class="text-label">Email ID:</label>
 						<input type="text" name="email" class="user-email" ng-model="user.email" placeholder="{{user.email}}">
 		                <!-- <span ng-show="user_profile_form.email.$error.required && user_profile_form.email.$dirty">required</span> -->
+						<p data-ng-message="emailexists">Email already exists</p>
+		                
 					</div>
 					<div class="user-profile-submit"><!-- submit div-->
 						<button class="btn-submit-user-profile"  ng-disabled="!user_profile_form.$valid" ng-click="update(user)">Submit</button>

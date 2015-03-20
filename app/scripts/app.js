@@ -58,38 +58,44 @@ angular
       .when('/user', {
         templateUrl: 'views/user.html',
         controller: 'MainCtrl',
+        activetab: 'user',
         resolve: resolve
       })
       .when('/create', {
         templateUrl: 'views/create.html',
         controller: 'TipsCtrl',
-        resolve: resolve
+        activetab: 'create',
+        resolve: resolve,
       })
       .when('/profile', {
         templateUrl: 'views/profile.html',
-        controller: 'SessionCtrl',
+        controller: 'ProfileCtrl',
+        activetab: 'profile',
         resolve: resolve
       })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
-        controller: 'SessionCtrl',
+        controller: 'DashboardCtrl',
+        activetab: 'dashboard',
         resolve: resolve
       })
       .when('/notebook', {
         templateUrl: 'views/notebook.html',
         controller: 'NotebookCtrl',
+        activetab: 'notebook',
         resolve: resolve
-      })      
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        resolve: resolve
-      }) 
-      .when('/signin', {
-        templateUrl: 'views/sign.html',
-        controller: 'SessionCtrl'
-        // resolve:resolve
-      })
+      })    
+
+      // .when('/about', {
+      //   templateUrl: 'views/about.html',
+      //   controller: 'AboutCtrl',
+      //   resolve: resolve
+      // }) 
+      // .when('/signin', {
+      //   templateUrl: 'views/sign.html',
+      //   controller: 'UserCtrl'
+      //   // resolve:resolve
+      // })
       .otherwise({
         redirectTo: '/'  
       });

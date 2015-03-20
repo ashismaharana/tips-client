@@ -8,10 +8,14 @@
  * Controller of the tipsApp
  */
 angular.module('tipsApp')
-  .controller('TipsCtrl', function ($scope,  $cookieStore, $rootScope, $location, Tip, Category, Signout ) {
+  .controller('TipsCtrl', function ($scope,  $cookieStore, $rootScope, $location, Tip, Category, Signout ,$route) {
     
     $scope.user = $cookieStore.get('current_user');
     
+    //user nav active path
+    // function widgetsController($scope, $route) {
+        $scope.$route = $route;
+    // }
 
     Category.getCategories().then(function(categoryResponse){
         console.log('categoryResponse', categoryResponse.data);
@@ -50,24 +54,6 @@ angular.module('tipsApp')
             }
         });
     };
-
-    $scope.signOut = function(){
-            // check if the current user is existing 
-            if($cookieStore.get('current_user')){
-                    console.log('is signOut? :');
-
-            // if exists, send a request to server and destroy the current session
-                var isSignedOut = Signout.destroySession(function(err, data){
-                    console.log('is session destroyed? :', data);
-                    // on successful removal of session, delete the cookie ( make current user null )
-                    $cookieStore.remove('current_user');
-                    $rootScope.isLoggedIn = false;
-                    $location.path('/');
-                });
-            }
-        };
-    
-
 
     })
 

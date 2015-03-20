@@ -1,23 +1,10 @@
-<div ng-include="'../views/nav.html'"></div> 
-<div ng-include="'../views/user-nav.html'" ng-show="isLoggedIn"></div> 
+<div ng-include="'../views/nav.html'" ></div> 
+<div ng-include="'../views/user-nav.html'" ng-show="isLoggedIn" ></div> 
 
 <!-- Category List -->
 <div class="list-of-category-div">
   <categories></categories>
 </div>
-
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
-
-<!-- <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" ng-show="signin" >
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <div class="sign-in-div" >
-   			<login></login>
-		</div>
-    </div>
-  </div>
-</div> -->
 <!-- sign in -->
 <div class="sign-in-div" ng-show="signin" >
     <login></login>
@@ -31,6 +18,6 @@
 <!-- sign up end-->
 
 <!--all tip -->
-<div ng-include="'../views/tips.html'"></div> 
+<div ng-include="'../views/tips.html'" ></div> 
 <!--all tip end-->
 

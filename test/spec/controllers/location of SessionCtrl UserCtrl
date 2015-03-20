@@ -1,0 +1,72 @@
+Searching 27973 files for "SessionCtrl"
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/app/scripts/app.js:
+   68        .when('/profile', {
+   69          templateUrl: 'views/profile.html',
+   70:         controller: 'SessionCtrl',
+   71          resolve: resolve
+   72        })
+   73        .when('/dashboard', {
+   74          templateUrl: 'views/dashboard.html',
+   75:         controller: 'SessionCtrl',
+   76          resolve: resolve
+   77        })
+   ..
+   88        // .when('/signin', {
+   89        //   templateUrl: 'views/sign.html',
+   90:       //   controller: 'SessionCtrl'
+   91        //   // resolve:resolve
+   92        // })
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/app/scripts/controllers/user.js:
+    3  /**
+    4   * @ngdoc function
+    5:  * @name tipsApp.controller:SessionCtrl
+    6   * @description
+    7:  * # SessionCtrl
+    8   * Controller of the tipsApp
+    9   */
+   10  angular.module('tipsApp')
+   11  
+   12: 	.controller('SessionCtrl', function ($scope, $http, $modal, $log, $location, $cookieStore, $rootScope, Signup, Login, IsLoggedIn, Category, Tip, Signout, Update, TipsUser, Notebook) {
+   13  
+   14  		//get tips and categories data to show
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/app/views/nav.html:
+   52    <div class="modal-dialog modal-sm modal-dialog-edit">
+   53      <div class="modal-content modal-content-edit">
+   54:         <form class="login-div-form"  ng-controller="SessionCtrl" name="signinForm" > 
+   55              <div class="login-text" >Sign In</div>
+   56  
+   ..
+  101    <div class="modal-dialog modal-sm modal-dialog-edit">
+  102      <div class="modal-content">
+  103:         <form  class="signup-div-form login-div-form" name="signup_form" ng-controller="SessionCtrl" >
+  104              <div class="signup-text login-text">Sign Up</div>
+  105  
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/app/views/user.html:
+   14  </div>
+   15  
+   16: <div ng-include="'../views/tips.html'" ng-controller="SessionCtrl"></div> 
+   17  
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/test/spec/controllers/session.js:
+    1  'use strict';
+    2  
+    3: describe('Controller: SessionCtrl', function () {
+    4  
+    5    // load the controller's module
+    6    beforeEach(module('tipsApp'));
+    7  
+    8:   var SessionCtrl,
+    9      scope;
+   10  
+   ..
+   12    beforeEach(inject(function ($controller, $rootScope) {
+   13      scope = $rootScope.$new();
+   14:     SessionCtrl = $controller('SessionCtrl', {
+   15        $scope: scope
+   16      });
+
+13 matches across 5 files

@@ -5,6 +5,9 @@
 	padding: 30px;
 	font-family: Handlee;
 	font-size: 14px;
+	&:hover{
+		overflow-y: auto;
+	}
 }
 
 .create-tip-categories{

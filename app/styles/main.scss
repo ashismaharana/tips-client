@@ -1,9 +1,19 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular.ttf";
 // bower:scss
+
+// @import "../../script/costumes-scripts/juOaTHBX9N7mCQYS68pw6QLUuEpTyoUstqEm5AMlJo4.woff2";
+
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
+
+// @import "bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular";
+// @import "Handlee-Regular.ttf";
+
+// @import "Handlee-Regular";
+
 @import "setcolour";
+
+@import "font";
 
 @import "mixin";
 
@@ -20,6 +30,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "dashboard";
 
 // $icon-font-path: "../styles/fonts/handlee.woff2";
+
+.active{
+    // border-bottom: 2px solid $bg-sky-d;
+    border-bottom: 2px solid $tipsly;
+    padding: 0px 0px 8px 0px;
+}
 
 .background-color-redD{
   background-color:$bg-r-d;
@@ -200,8 +216,9 @@ button[disabled], html input[disabled] {
 
 .search-box{
   // width: 680px;
-  width: 580px;
-  min-width: 300px;
+  // width: 580px;
+  // min-width: 300px;
+  width: 100%;
   font-size: 20px; 
   padding: 7px 45px 7px 30px;
   border: 1px solid $br-g;
@@ -211,7 +228,9 @@ button[disabled], html input[disabled] {
 
 .search-img2{
   position: relative;
-  right: 34px;
+  // right: 34px;
+  left: 310px;
+  top: -30px;
 }
  
 .search-results{
@@ -242,15 +261,25 @@ button[disabled], html input[disabled] {
   padding-top: 2px;
 }
 .user-name{
-  padding:25px 5px;
-
+  padding: -2px 10px;
+  // padding:25px 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.user-notsign{
+  padding: 6px 50px;
+  // padding:25px 5px;
+  display: inline-block;
+  vertical-align: middle;
 }
 .dropdown-sign-button{
   color: #fff;
   background-color: #363636;
   border-color: #ccc;
-  padding-right: 10px;
+  // padding-right: 10px;
+  padding: 0px;
   width: 145px;
+  height: 34px;
 }
 
 .tips-category{
@@ -304,14 +333,14 @@ button[disabled], html input[disabled] {
 //   }
 // }
 .tips{
-  // width: 240px;
+  width: 240px;
   margin: 0px 4px 4px;
   @extend .floatl;
   font-size: 18px;  
 }
 .category-title-div{
   @extend .background-color-yL;
-  width: 240px;
+  // width: 240px;
 }
 .tips-img{
   @extend .floatl;
@@ -363,25 +392,74 @@ button[disabled], html input[disabled] {
   @extend .background-color-y;
   height: 50px;
   // width: 220px;
+  width: 100%;
+    .thumbs_up{
+        @extend .floatl;
+        width: 33%;
+      .thumbs-up-img{
+          @extend .floatl;        
+          padding: 11px 8px ;
+          width: 37px;
+      }
+      .num-thumbs-up{          
+          @extend .floatl;
+          font-size: 16px;
+          padding: 14px 0px;
+      }
+    }
+
+    .thumbs_down{
+          @extend .floatl;
+          width: 33%;
+      .thumbs-down-img{
+          @extend .floatl;        
+          padding: 18px 8px 8px;
+          width: 37px;
+      }
+      .num-thumbs-down{
+          @extend .floatl;
+          font-size: 16px;
+          padding: 14px 0px;
+      }
+    }
+
+    .viewer-div{
+      @extend .floatl;
+        // width: 73px;
+        width: 33%;
+      .viewer-img{
+        @extend .floatl;
+        padding: 13px 8px ;
+        width: 40px;
+      }
+      .num-of-viewer{
+        @extend .floatl;
+        font-size: 16px;
+        padding: 13px 0px;
+      }
+    }
+
 }
 
-.thumbs_up{
-  width: 73px;
-  padding: 0px 0px 9px  10px;
-}
 
-.thumbs_down{
-  @extend .thumbs_up;
-}
-.thumbs-up-img{
-  width: 18px;
-  padding: 11px 0px;
-  @extend .floatl;
-}
-.thumbs-down-img{
-  @extend .thumbs-up-img;
-  padding: 17px 0px 0px;;
-}
+// .thumbs_up{
+//   // width: 73px;
+//   width: 33%;
+//   padding: 0px 0px 9px  10px;
+// }
+
+// .thumbs_down{
+//   @extend .thumbs_up;
+// }
+// .thumbs-up-img{
+//   width: 18px;
+//   padding: 11px 0px;
+//   @extend .floatl;
+// }
+// .thumbs-down-img{
+//   @extend .thumbs-up-img;
+//   padding: 17px 0px 0px;;
+// }
 
 // .hr{
 //   border-top: 1px solid #d4cc5b;
@@ -390,28 +468,18 @@ button[disabled], html input[disabled] {
 //   width: 220px;
 // }
 
-.num-thumbs-up{
-  font-size: 16px;
-  padding: 16px 0px 0px 30px;
-  margin: -4px;
-}
-.num-thumbs-down{
-  @extend .num-thumbs-up;
-}
-.viewer-div{
-  @extend .floatl;
-    width: 73px;
-  .viewer-img{
-    @extend .floatl;
-    padding: 13px 8px ;
-    width: 40px;
-  }
-  .num-of-viewer{
-    @extend .floatl;
-    font-size: 16px;
-    padding: 12px 0px;
-  }
-}
+// .num-thumbs-up{
+//   font-size: 16px;
+//   padding: 16px 0px 0px 30px;
+//   margin: -4px;
+// }
+// .num-thumbs-down{
+//   @extend .num-thumbs-up;
+// }
+
+
+
+
 
 .signup-error-field{
   width: 200px;
@@ -439,9 +507,9 @@ button[disabled], html input[disabled] {
     a{
       color: $bg-white;
       text-decoration: none;
-      &:hover {
-        border-bottom: 2px solid $bg-sky-d;
-      }
+      // &:hover {
+      //   border-bottom: 2px solid $bg-sky-d;
+      // }
     }
   }
 }
@@ -569,7 +637,7 @@ background-color: white;
 
 //popup main scss
 .modal-body{
-  
+  overflow: scroll;
   .left-right-container{
     overflow: hidden;
     .left-body{
@@ -684,6 +752,7 @@ background-color: white;
          border-radius: 4px;
          text-align: center;
          min-height: 63px;
+         padding:0px 12px;
          .his-topics-heading{
             h4{
               padding: 16px 0px 0px 0px;
@@ -711,9 +780,12 @@ background-color: white;
   }
 //popup main scss end
 //popup bootstrap custom scss end
-
-
-
-
 //signin page as a popup
 
+.model-open{
+  overflow: scroll;
+}
+.logo-svg{
+  width: 50px;
+  margin-right: 10px; 
+}

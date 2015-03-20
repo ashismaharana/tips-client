@@ -12,7 +12,6 @@ angular.module('TipsServices', ['ngResource'])
 		this.url = 'http://localhost:1337',
 
 		// console.log('create it',postCreate);
-
 		this.postCreate = function(tip, cb){
 			console.log('INFO: Before saving', tip);
 			$http.post(this.url + '/tips', tip)
@@ -25,8 +24,25 @@ angular.module('TipsServices', ['ngResource'])
 			});
 		};
 
-	 	this.getTips = function(){
-	 		return $http.get(this.url + '/tips');
+	 	this.getTips = function(tip_ids){
+	 		if(tip_ids){
+		 		return $http.get(this.url + '/tips?tip_ids=' + tip_ids );
+		 		// var r = $http(method: 'GET', url: this.url + '/tips',
+		 		// 	params: {
+		 		// 	  tip_ids: JSON.stringify(tip_ids)
+		 		// 	});
+		 		// return r;
+		 	// 	var x = $http(
+ 			// 	  method: 'GET',
+  		// 		  url: this.url + '/tips',
+  		// 		  params: {
+    // 				tip_ids: JSON.stringify(tip_ids) // tip ids is [1, 2, 3, 4]
+  		// 		  }
+				// )
+				// return x;
+	 		} else {
+		 		return $http.get(this.url + '/tips');
+	 		}
 	 	};
 
 	 	this.postView = function(tipId, cb){

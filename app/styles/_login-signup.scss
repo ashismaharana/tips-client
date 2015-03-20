@@ -122,7 +122,7 @@
 
 // sign up
 .signup-div-form{
-    min-height: 363px;
+    // min-height: 363px;
     @extend .login-div-form;
     .signin-text{
         @extend .login-text;
@@ -213,3 +213,8 @@
     .btn-sign-in{
     }
 }
+
+
+// .modal-dialog{
+//     margin-top: 110px;
+// }

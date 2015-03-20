@@ -7,7 +7,7 @@
     <form class="col-md-5 create-notebook-form" name="notebookform">
   		<!-- <img src="../images/add.png" class="create-img" ng-click="create = !create" > -->
         <input type="textarea" name="notebook_name" class="create-tag" ng-show="create" ng-model="notebook.notebook_name">
-  		<button type="submit" class="btn btn-default" ng-model="user.created_by"  ng-disabled="notebookform.$invalid" ng-show="myNoteBook" ng-click="myNoteBook(notebook)">Add Notebook</button>
+  		<button type="submit" class="btn btn-default" ng-model="user.created_by"  ng-disabled="notebook.$invalid" ng-show="myNoteBook" ng-click="myNoteBook(notebook)" >Add Notebook</button>
     </form>
     <div class="col-md-5">
 		<div class="search-div">
@@ -22,9 +22,75 @@
 <!-- {{getMyNoteBook}} -->
 <div class="row" ng-repeat="notebook in myNoteBookData" ng-controller="NotebookCtrl">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <div class="notebook-name" id="test">{{notebook.notebook_name}}</div> 
+    <div class="col-md-10" id="freewall" class="free-wall">
+        <div class="notebook-name" id="test" class='brick'>{{notebook.notebook_name}}</div> 
         <!-- <div class="tip-container notebook-container" ng-include="'../views/user-tip.html'"></div> -->
+        
+        <div id="freewall" class="free-wall" >
+            <div ng-repeat="tip in tips" class='brick'>
+            <!-- <div ng-repeat="tip in tips" class='tip-item floatl brick'> -->
+            <!-- <div ng-repeat="tip in tips" class='tip-item' ng-click="tipdescription(tip)"> -->
+                <div class="category-title-div ">
+                    <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)">
+                        <div>
+                            <img src="../images/tipsMark.png" alt="" class="tips-img">
+                            <div class="category-title">{{tip.categoryTitle}}</div>
+                        </div>
+                        <div>
+                            <div class="desc tips-titel">{{tip.title}}</div>
+                        </div>
+                    </div>
+                        <div class="tip-details">
+                            <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                              <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                              <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
+                            </div>
+                            <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                              <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                              <div class="num-thumbs-down"> {{tip.thumbs_down}} </div>
+                            </div>
+                            <div class="viewer-div">
+                              <img src="../images/view.svg" alt="" class="viewer-img" />
+                              <div class="num-of-viewer"> {{tip.view}} </div> 
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <div class="col-md-1"></div>
 </div>
+
+
+<!-- 
+
+
+<script>
+        var wall = new freewall("#freewall");
+        wall.reset({
+
+            selector: '.brick',
+            cellW: 220,
+            cellH: 'auto',
+            gutterY: 15,
+            gutterX: 15,
+            animate: true,
+            // delay: 0, 
+            // rightToLeft: true,
+            // keepOrder: true,
+            // draggable: true,
+            // cacheSize: true, // caches the original size of block;
+
+            onResize: function() {
+                console.log("HI onResize nb");
+                wall.fitWidth();
+            }
+        })
+        $( document ).ready(function() {
+            setTimeout(function(){wall.fitWidth()},300);
+        });
+
+  </script>
+ -->

@@ -8,7 +8,7 @@
  * Controller of the tipsApp
  */
 angular.module('tipsApp')
-  .controller('NotebookCtrl', function ($scope, $http, $cookieStore, Category, Tip, Signout, Signup, Login, Notebook,  $rootScope, $location) {
+  .controller('NotebookCtrl', function ($scope, $http, $cookieStore, Category, Tip, Signout, Signup, Login, Notebook,  $rootScope, $location, $route) {
     // $scope.awesomeThings = [
     //   'HTML5 Boilerplate',
     //   'AngularJS',
@@ -19,6 +19,11 @@ angular.module('tipsApp')
 		$scope.signin = false;
 
 		$scope.user = $cookieStore.get('current_user');
+		
+    //user nav active path
+    // function widgetsController($scope, $route) {
+        $scope.$route = $route;
+    // }
 
     //create user notebook
 	$scope.myNoteBook = function(notebook){
@@ -28,8 +33,8 @@ angular.module('tipsApp')
 		if($scope.create){
 			Notebook.createNoteBook(notebook, function(err, mynb){
 				if(err){
-						console.log('no',err);
-						console.log(err);
+						// console.log('no',err);
+						// console.log(err);
 				} else {
 					// console.log('notebook name', mynb);
 					
@@ -66,10 +71,36 @@ angular.module('tipsApp')
 				console.log(notebookData);
 
 
-				angular.forEach(notebookData, function(value,key){
-					if(value.tip_ids)
-						console.log(value.tip_ids);
-				})
+			angular.forEach(notebookData, function(value,key){
+				if(value.tip_ids){
+					// console.log(value.tip_ids);
+					var tipIds = value.tip_ids;
+					console.log("TIPID",tipIds);
+						
+					tipIds.forEach(function(tipId){
+
+					Tip.getTips().then(function(tipsSuccessResponse){
+							var tips = tipsSuccessResponse.data; 
+
+							Category.getCategories().then(function(categoryResponse){
+									$scope.categories = categoryResponse.data;
+									tips.forEach(function(tip){
+										$scope.categories.forEach(function(category){
+											if(category.id === tip.category_id){
+												tip.categoryTitle = category.title;
+											}
+										});
+									});	
+									$scope.tips = tips;
+									// console.log($scope.tips);
+							},function(categoryFailResponse){
+							});
+						},function(tipsErrorReponse){
+							// console.log(tipsErrorReponse)
+						});	
+					})
+				}
+			})
 
 				// for(var i = 0; i < notebookData.length; i++){
 				// 	console.log('length is:',data.length);
@@ -92,21 +123,5 @@ angular.module('tipsApp')
 
 	};
 
-
-    $scope.signOut = function(){
-        // check if the current user is existing 
-        if($cookieStore.get('current_user')){
-                console.log('is signOut? :');
-
-        // if exists, send a request to server and destroy the current session
-            var isSignedOut = Signout.destroySession(function(err, data){
-                console.log('is session destroyed? :', data);
-                // on successful removal of session, delete the cookie ( make current user null )
-                $cookieStore.remove('current_user');
-                $rootScope.isLoggedIn = false;
-                $location.path('/');
-            });
-        }
-    };
 
 });

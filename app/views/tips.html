@@ -1,59 +1,14 @@
-<!-- <div class=" tips-container freewall-use">
-    <div ng-repeat="tip in tips" class="tip floatl tipcontainer">
-      <div class="categoryTitleDiv ">
-        <img src="../images/tipsMark.png" alt="" class="tipsImg">
-        <div ng-repeat="category in categories"  class="categoryTitle" ng-show="category.id == tip.category_id">{{category.title}}
-        </div>
-      </div>
-      <div class="desc tips-titel">{{tip.title}}</div>
-      <hr class="hr">
-      <div class="tipDetails">
-        <div class="thumbs_up floatl" ng-click="thumbsUp(tip.id)">
-          <img src="../images/thumbs_up.png" class="thumbsUpImg" alt="">
-          <div class="numThumbsUp"> {{tip.thumbs_up}} </div> 
-        </div>
-        <div class="thumbs_down floatl" ng-click="thumbsDown(tip.id)">
-          <img src="../images/thumbs_down.png" class="thumbsDownImg"  alt=""> 
-          <div class="numThumbsDown"> {{tip.thumbs_down}} </div>
-        </div>
-        <div class="viewer-div">
-          <img src="../images/viewed.png" alt="" class="viewer-img" />
-          <div class="num-of-viewer"> {{tip.thumbs_up + tip.thumbs_down}} </div> 
-        </div>
-      </div>
-    </div>
-</div> -->
-
-<!-- 
-    <style type="text/css">
-      .free-wall {
-        margin: 15px;
-      }
-      .brick {
-        width: 221.2px;
-      }
-/*      .info {
-        padding: 15px;
-        color: #333;
-      }
-      .brick img {
-        margin: 0px;
-        padding: 0px;
-        display: block;
-      }*/
-    </style>
- -->
-
-
-  <!-- <div  class="tips-container-freewall free-wall" id="freewall"> -->
+<!-- <div  class="tips-container-freewall free-wall" id="freewall"> -->
   <div id="freewall" class="free-wall" >
     <div ng-repeat="tip in tips" class='brick'>
     <!-- <div ng-repeat="tip in tips" class='tip-item floatl brick'> -->
     <!-- <div ng-repeat="tip in tips" class='tip-item' ng-click="tipdescription(tip)"> -->
-        <div class="category-title-div ">
+        <div class="category-title-div">
             <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)">
                 <div>
-                    <img src="../images/tipsMark.png" alt="" class="tips-img">
+                    <div>
+                      <img src="../images/tipsMark.png" alt="" class="tips-img">
+                    </div>
                     <div class="category-title">{{tip.categoryTitle}}</div>
                 </div>
                 <div>
@@ -61,17 +16,23 @@
                 </div>
             </div>
                 <div class="tip-details">
-                    <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
-                      <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
-                      <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
+                    <div class="thumbs_up" ng-click="thumbsUp($index, tip.id)">
+                        <div>
+                            <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                        </div>
+                        <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
                     </div>
-                    <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
-                      <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
-                      <div class="num-thumbs-down"> {{tip.thumbs_down}} </div>
+                    <div class="thumbs_down" ng-click="thumbsDown($index, tip.id)">
+                        <div>
+                            <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                        </div>
+                        <div class="num-thumbs-down"> {{tip.thumbs_down}} </div>
                     </div>
                     <div class="viewer-div">
-                      <img src="../images/view.svg" alt="" class="viewer-img" />
-                      <div class="num-of-viewer"> {{tip.view}} </div> 
+                        <div>
+                            <img src="../images/view.svg" alt="" class="viewer-img" />
+                        </div>
+                        <div class="num-of-viewer"> {{tip.view}} </div> 
                     </div>
                 </div>
         </div>
@@ -101,7 +62,8 @@
                       <p>{{tipDetails.description}}</p> 
                     </div>
 
-                    <div class="bottom-actions-container" ng-show="addToNb">
+                    <div class="bottom-actions-container">
+                    <!-- <div class="bottom-actions-container" ng-show="addToNb"> -->
                         <div class="left-action">
                             <div class="display-middle" ng-click="thumbsUp(tipIndex, tipDetails.id)">
                                 <img src="../images/thumbs_up.svg" alt="">
@@ -112,7 +74,7 @@
                               <span class="thumb-number">{{tipDetails.thumbs_down}}</span>
                             </div>
                         </div>
-                        <div class="right-action">  
+                        <div class="right-action" ng-controller="NotebookCtrl" >  
 
                             <div class="notebook-popover-content animate-show" ng-show="addToNbPopUp">        
                                 <div class="itom" >         
@@ -128,10 +90,16 @@
                                         <div ng-show="myNoteBookData.length == 0" class="notebook-not-added">
                                           <a href="#/notebook">Create Notebook</a>
                                         </div>
+
+                                    <!--     <div ng-show="user.firstName == null" class="notebook-not-added">
+                                          <ang ng-click="signIn()" >Login to Create Notebook</a>
+                                        </div>
+ -->                                        
                                     </div>
-                                    <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()"> 
+                                    <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()">  -->
+                                    <button class="addnotebook-div"> 
                                         <img class="addnotebtn" src="../images/ok.png" alt="">
-                                    </button> -->
+                                    </button>
                                 </div>
                                 <div class="popup-triangle" style=''></div>
                             </div>
@@ -163,7 +131,7 @@
                              <h4>His Popular Tips</h4>
                           </div> 
 
-                          <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item'>
+                          <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item padding12'>
                               <div class="category-title-div ">
                                   <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
                                   <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
@@ -201,21 +169,23 @@
                 <div class="other-topic-heading">
                     <h4>Other Tips related to topic</h4>
                 </div> 
-                 <div class="all-tips-square">
+                <div class="all-tips-square">
                 
-                    <div ng-repeat="categoryTip in categoryWiseTips" class='tip-item'>
-                        <div class="category-title-div ">
-                            <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                            <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)">
-                                <div>
-                                    <img src="../images/tipsMark.png" alt="" class="tips-img">
-                                    <div class="category-title">{{categoryTip.categoryTitle}}</div>
+
+                    <div id="freewall" class="free-wall" >
+                        <div ng-repeat="categoryTip in categoryWiseTips" class='brick'>
+                            <div class="category-title-div">
+                                <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
+                                <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)">
+                                    <div>
+                                        <img src="../images/tipsMark.png" alt="" class="tips-img">
+                                        <div class="category-title">{{categoryTip.categoryTitle}}</div>
+                                    </div>
+                                    <div>
+                                        <div class="desc tips-titel">{{categoryTip.title}}</div>
+                                        <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="desc tips-titel">{{categoryTip.title}}</div>
-                                    <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
-                                </div>
-                            </div>
                                 <div class="tip-details">
                                     <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
                                       <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
@@ -229,8 +199,8 @@
                                       <img src="../images/view.svg" alt="" class="viewer-img" />
                                       <div class="num-of-viewer"> {{categoryTip.view}} </div> 
                                     </div>
-
                                 </div>
+                            </div>
                         </div>
                     </div>
 
@@ -275,31 +245,120 @@
         // }
 
 
-        var wall = new freewall("#freewall");
-        wall.reset({
+        // var wall = new freewall("#freewall");
+        // wall.reset({
 
-            selector: '.brick',
-            cellW: 220,
-            cellH: 'auto',
-            gutterY: 15,
-            gutterX: 15,
-            animate: true,
-            delay: 0, 
-            // rightToLeft: true,
+        //     selector: '.brick',
+        //     cellW: 220,
+        //     cellH: 'auto',
+        //     gutterY: 15,
+        //     gutterX: 15,
+        //     animate: true,
+
+            // delay: 0, 
+            // rightToLeft: false,
+            // cacheSize: true, // caches the original size of block;
             // keepOrder: true,
             // draggable: true,
-            // cacheSize: true, // caches the original size of block;
 
-            onResize: function() {
-                    console.log("HI onResize");
-                  wall.fitWidth();
-            }
-        });
-        $( document ).ready(function() {
-            setTimeout(function(){wall.fitWidth()},100);
-        });
+            // onResize: function() {
+            //     console.log("HI onResize");
+            //     wall.fitWidth();
+            // },
 
-        // wall.container.find('.brick2').load(function() {
+            // onGapFound: function() {
+            //     console.log('onGapFound')
+            //     wall.fitWidth();
+            // },
+            // onComplete: function() {
+            //     console.log('onComplete')
+            //   wall.fitWidth();
+            //   wall.refesh();
+            // },
+
+            // onBlockDrag: function() {
+            //     console.log('onBlockDrag')
+            //   wall.fitWidth();
+            // },
+
+            // onBlockMove: function() {
+            //     console.log('onBlockMove')
+            //   wall.fitWidth();
+            // },
+
+            // onBlockDrop: function() {
+            //   wall.fitWidth();
+            // },
+
+            // onBlockReady: function() {
+            //     console.log('onBlockReady')
+            //   wall.fitWidth();
+            // }
+
+            // onBlockFinish: function() {
+            //   wall.fitWidth();
+            // },
+
+            // onBlockActive: function() {
+            //   wall.fitWidth();
+            // },
+
+            // onBlockResize: function() {
+            //   wall.fitWidth();
+            // }
+
+
+
+
+
+
+//         });
+//         $( document ).ready(function() {
+//             // setTimeout(function(){wall.fitWidth()},100);
+//             setTimeout(function(){wall.fitWidth()},300);
+
+//         });
+          
+// wall.container.find('.brick .category-title-div').load(function() {
+//         wall.fitWidth();
+//       });
+
+
+//           // var wall = new freewall('.free-wall');
+//           // wall.reset({
+//           //   selector: '.brick',
+//           //   onComplete: function() {
+//           //     this.fitWidth();
+//           //   }
+//           // });
+          
+//           // var wall = new freewall('.free-wall');
+//           wall.reset({
+//             selector: '.brick',
+//             fillHoles: function() {
+//               this.fitWidth();
+//             }
+//           });
+
+          // wall.container.find('.free-wall').load(function() {
+          //   wall.fitWidth();
+
+          // console.log('wall',wall);
+          // console.log('container',container);
+          // });
+
+
+        // var wall = new freewall('.free-wall');
+        // wall.reset({
+        //   selector: '.brick',
+        //   onResize: function() {
+        //     this.fitWidth();
+        //   }
+        // });
+
+
+
+        // wall.container.reset('.free-wall').load(function() {
         //     //  // debugger;
         //      console.log('brick img')
         //      wall.fitWidth();

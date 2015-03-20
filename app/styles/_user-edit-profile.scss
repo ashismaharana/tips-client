@@ -1,7 +1,7 @@
 .user-profile-div{
 	padding: 20px 0px;
 	margin: 0 auto;
-	width: 945px;
+	// width: 945px;
 	.profile-form{
 		margin: 0 auto;
 		width: 750px;
@@ -9,6 +9,15 @@
 			.profile-img{
   				@extend .floatl;
 				width: 150px;
+				&:hover{
+					opacity: .5;
+				}
+			}
+			.uploed-text{
+				color: $bg-sky-d;
+ 				position: relative;
+                top: 140px;
+                left: -85px;		
 			}
 		}	
 		.user-profile-data-div{
@@ -76,6 +85,7 @@
 
 	.search-div{
 		clear: both;
+		margin: 0px 15px;
 		.search-save-tip{
   			@extend .floatr;
 			width: 350px;	
@@ -125,6 +135,11 @@
 		display: inline-block;
 		vertical-align: top;
 	}
+	// &:hover{
+	// 	background-color: red;
+	// 	color: red;
+	// }
+
 }
 .user-info{
 		display: inline-block;
@@ -132,7 +147,7 @@
 		margin: 0px 30px;
 		height: 160px;
 	.user-username{
-			@extend .floatl;
+			// @extend .floatl;
 			font-size: 20px;
 	}
 }
@@ -148,20 +163,20 @@
     cursor: pointer;
 }
 .user-data{
-	margin: 15px 0px 0px 0px;
+	margin: 7px 0px 0px 0px;
 }
 .user-data-info{
 	margin: 10px 0px 0px 0px;
 }
 
-.hr-line{
-	clear: both;
-	margin: 0 auto;
-}
+// .hr-line{
+// 	clear: both;
+// 	margin: 0 auto;
+// }
 
 .user-created-tips{
-	display: inline-block;
-	clear: both;	
+	// display: inline-block;
+	// clear: both;	
 }
 
 .area-required{
