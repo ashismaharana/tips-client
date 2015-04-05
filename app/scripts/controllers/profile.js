@@ -16,7 +16,6 @@ angular.module('tipsApp')
         $scope.$route = $route;
     // }
 
-
 		$scope.user = $cookieStore.get('current_user');
 
 	// profile.html 
@@ -48,4 +47,11 @@ angular.module('tipsApp')
 			$scope.profile = true;
 		};
 		
+
+	//upload profile img
+		// $scope.uploadFile = function(myFile){
+		// 	console.log('myFile',myFile);
+		// 	console.log('upload',myFile);
+
+		// }
 	});

@@ -45,6 +45,7 @@ angular.module('TipsServices', ['ngResource'])
 	 		}
 	 	};
 
+	//this is for create thumb function
 	 	this.postView = function(tipId, cb){
 	 		// console.log('service tip',tipId);
 	 		return $http.put(this.url + '/tips/' + tipId + '/view')
@@ -56,5 +57,17 @@ angular.module('TipsServices', ['ngResource'])
 			});
 
 	 	};
+
+	//edit tip
+	 	this.putTip = function(tip, cb){
+	 		console.log(tip);
+	 		return $http.put(this.url + '/tips/' + tip.id, tip)
+	 		.success(function(tip){
+	 			cb(null, tip);
+	 		})
+	 		.error(function(tip){
+	 			cb(tip, null)
+	 		});
+	 	}
 
 	});

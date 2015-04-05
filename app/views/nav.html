@@ -3,12 +3,13 @@
         <div class="nav row" ng-controller="UserCtrl"> 
             
             
-            <div class="col-md-2 logo"><a href="#/" >
+            <div class="col-md-2 col-xs-2 logo"><a href="#/" >
                 <img src="../images/tipsly.svg" alt="" class="logo-svg" >
+                <span class="tipsly">tipsly</span>
             </a>
             </div>
             
-            <div class="col-md-7">
+            <div class="col-md-7 col-xs-7">
                 <input type="search" class="search-box" placeholder="search eg: unix" ng-model="search"> 
                 <img class="search-img search-img2" src="../images/search.png">
                 <div class="search-results" ng-repeat="category in categories | filter:search" ng-show="search"> {{category.title}}
@@ -16,7 +17,7 @@
                 <!-- <div class="search-close"><img src=""></div> -->
             </div>
             
-            <div class="btn-div floatr col-md-3">
+            <div class="btn-div floatr col-md-3 col-xs-3">
                 <!-- <button  class="btn-sign" ng-click="signIn()"  ng-hide="isLoggedIn" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Sign in /  Sign up </button>
                 <button class="btn-sign" ng-click="signOut()" ng-show="isLoggedIn">Sign Out</button> -->
                 
@@ -119,7 +120,7 @@
                         <label class="signup-name email-id-label-text">Name:</label>
                     </div>
                     <div class="signup-email-input login-password">
-                        <input type= "name" class="signup-name login-password-input" ng-minlength="3" name="signup_name" ng-model="user.firstName" required >
+                        <input type= "name" class="signup-name login-password-input" ng-minlength="3" name="signup_name" ng-model="signupUser.firstName" required >
                     </div>    
                     <div class="area-required">    
                         <span ng-show="signup_form.signup_name.$error.minlength">Minimum length 3</span>
@@ -133,7 +134,7 @@
                     </div>
                     <div class="signup-email-input ">
                         <div class="email-input login-password">
-                            <input type= "email" class="emailid-input login-password-input" id="email" name="signup_email" ngPattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="user.email" required > 
+                            <input type= "email" class="emailid-input login-password-input" id="email" name="signup_email" ngPattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="signupUser.email" required > 
                         </div>
                         <div class="email-status-msg area-required"> 
                             <span ng-show="signup_form.signup_email.$dirty && signup_form.signup_email.$invalid"></span>
@@ -154,9 +155,9 @@
                     </div>
                     <div class="signup-password-input-div">
                         <div class="signup-password-input login-password">
-                            <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required > -->
+                            <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="signupUser.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required > -->
 
-                            <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" required >
+                            <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="signupUser.password" required >
                         </div>
                         <div class="password-status-msg area-required">
                             <span ng-show="signup_form.password.$error.required && signup_form.password.$dirty">required</span>
@@ -176,8 +177,8 @@
                     </div>
                     <div class="signup-password-input-div">
                        <div class="signup-password-input login-password">
-                            <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="user.password" ng-minlength="8"  -->
-                            <input  class="password-input login-password-input" type="password" id="password_confirm" name="password_confirm" ng-model="confirmPass" compare-to="user.password" required />
+                            <!-- <input class="password-input login-password-input" type="password" id="password" name="password" ng-model="signupUser.password" ng-minlength="8"  -->
+                            <input  class="password-input login-password-input" type="password" id="password_confirm" name="password_confirm" ng-model="confirmPass" compare-to="signupUser.password" required />
                        </div>
                        <div class="password-status-msg area-required">
                             <span ng-model="confirmPass" ng-show="signup_form.password_confirm.$error.required && signup_form.password_confirm.$dirty">
@@ -191,9 +192,9 @@
                     </div>
                 </div>        
                 <div class="btn-div">
-                    <!-- <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(user)"  data-dismiss="modal" data-toggle="modal" data-target=".bs-example-modal-sm">Sign up</button> -->
-                    <!-- <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(user)" data-target=".bs-example-modal-sm">Sign up</button> -->
-                    <button class="btn-sign-in" ng-click="signup(user)" data-target=".bs-example-modal-sm">Sign up</button>
+                    <!-- <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(signupUser)"  data-dismiss="modal" data-toggle="modal" data-target=".bs-example-modal-sm">Sign up</button> -->
+                    <!-- <button class="btn-sign-in" ng-disabled="!signup_form.$valid" ng-click="signup(signupUser)" data-target=".bs-example-modal-sm">Sign up</button> -->
+                    <button class="btn-sign-in" ng-click="signup(signupUser)" data-target=".bs-example-modal-sm">Sign up</button>
                 </div> 
                 <div class="sign-in-div-text">You Have Account? 
                     <!-- <a href="" class="signup-link" ng-click="signUpClick()"> Sign up </a> now  -->

@@ -180,8 +180,28 @@
 }
 
 .area-required{
-	color: $red-l;
+	color: $tipsly;
 }
 // .tip-profile{
 // 	width: 210px !important;
 // }
+
+.desc-category-title{
+	@extend .category-title;
+}
+.desc-tip{
+	height: auto;
+	@extend .background-color-yL;
+	font-family: Handlee;
+	padding: 11px 18px;
+	border-bottom: 1px solid #d4cc5b;
+		label{
+			font-weight: bold;
+		}
+
+		textarea{
+			width: 100%
+		}
+
+}
+

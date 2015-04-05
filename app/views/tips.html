@@ -1,10 +1,10 @@
 <!-- <div  class="tips-container-freewall free-wall" id="freewall"> -->
-  <div id="freewall" class="free-wall" >
+  <div id="freewall"  class="free-wall" >
     <div ng-repeat="tip in tips" class='brick'>
     <!-- <div ng-repeat="tip in tips" class='tip-item floatl brick'> -->
     <!-- <div ng-repeat="tip in tips" class='tip-item' ng-click="tipdescription(tip)"> -->
         <div class="category-title-div">
-            <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)">
+            <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)" class="cursor-pointer">
                 <div>
                     <div>
                       <img src="../images/tipsMark.png" alt="" class="tips-img">
@@ -49,9 +49,14 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="overflow: inherit;">
               <div class="left-right-container">
                 <div class="left-body">
+                    
+                    <div class="category-title">
+                      {{tipDetails.categoryTitle}}
+                    </div>
+
                     <div class="main-title">
                       <p>{{tipDetails.title}}</p>
                     </div>
@@ -76,6 +81,7 @@
                         </div>
                         <div class="right-action" ng-controller="NotebookCtrl" >  
 
+                <!-- add to notebook -->
                             <div class="notebook-popover-content animate-show" ng-show="addToNbPopUp">        
                                 <div class="itom" >         
                                     <div class="notebook-itom" >
@@ -91,11 +97,10 @@
                                           <a href="#/notebook">Create Notebook</a>
                                         </div>
 
-                                    <!--     <div ng-show="user.firstName == null" class="notebook-not-added">
+                                        <!-- <div ng-show="user.firstName == null" class="notebook-not-added">
                                           <ang ng-click="signIn()" >Login to Create Notebook</a>
                                         </div>
- -->                                        
-                                    </div>
+ -->                                    </div>
                                     <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()">  -->
                                     <button class="addnotebook-div"> 
                                         <img class="addnotebtn" src="../images/ok.png" alt="">
@@ -104,8 +109,28 @@
                                 <div class="popup-triangle" style=''></div>
                             </div>
                             
+                <!-- share -->
+                           <div class="share-popover-content animate-show left90" ng-show="share">        
+                                <div class="itom" >         
+                                    <div class="notebook-itom" >
+                                       <!--  <div class="notebook-itom">  
+
+                                        </div>
+                                        <div ng-show="myNoteBookData.length == 0" class="notebook-not-added">
+                                          <a href="#/notebook">Create Notebook</a>
+                                        </div> -->
+                                    </div>
+                                    <button class="addnotebook-div"> 
+                                        <img class="addnotebtn" src="../images/ok.png" alt="">
+                                    </button>
+                                </div>
+                                <div class="popup-triangle" style=''></div>
+                            </div>
+
+
+
                             <button type="button" class="btn" ng-click="addToNb(addToNbPopUp)">Add to my Notebook</button>
-                            <button type="button" class="btn">Share</button>
+                            <button type="button" class="btn" ng-click="shareBtn(share)">Share</button>
                             <button type="button" class="btn">Print</button>
                         </div>
                     </div>
@@ -119,11 +144,21 @@
                             </div>
                             <div class="profile-about" ng-click="userInfo(userIs)">
                                  <h4>{{userIs.firstName}} {{userIs.lastName}}</h4>
-                                 <p>Expert in Travel Cooking Fitness and Sports</p>
+                                 <p>Expert in {{  userIs.expert  }}</p>
                             </div>
                           </div>
                           <div class="follow-link">
-                            <button type="button" class="btn" ng-click="followUser">Follow</button>
+                            <button   type="button" class="btn button1" ng-click="followUser(userIs, tipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Follow the person">
+                                <!-- <span ng-hide="like">Follow</span> -->
+                                <!-- <span ng-show="like">Following</span> -->
+                                <span ng-hide="isFollowing">Follow</span>
+                                <span ng-show="isFollowing">Following</span>
+                            </button>
+                             <!-- <button  type="button" class="btn button1" ng-click="followUser(userIs, tipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Follow the person"> -->
+                                <!-- <p  style="display: none; color: #22AAF0">Following</p> -->
+                            <!-- </button> -->
+
+                            <!-- <button type="button" class="btn" ng-click="followUser(userIs, tipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Follow for all category</button> -->
                           </div>
                       </div>
                       <div class="right-space2">
@@ -134,7 +169,7 @@
                           <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item padding12'>
                               <div class="category-title-div ">
                                   <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                                  <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)">
+                                  <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)"  class="cursor-pointer">
                                       <div>
                                           <img src="../images/tipsMark.png" alt="" class="tips-img">
                                           <div class="category-title">{{popularTip.categoryTitle}}</div>
@@ -170,13 +205,12 @@
                     <h4>Other Tips related to topic</h4>
                 </div> 
                 <div class="all-tips-square">
-                
 
-                    <div id="freewall" class="free-wall" >
+                    <div id="freewall1" class="free-wall" >
                         <div ng-repeat="categoryTip in categoryWiseTips" class='brick'>
                             <div class="category-title-div">
                                 <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                                <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)">
+                                <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)"  class="cursor-pointer">
                                     <div>
                                         <img src="../images/tipsMark.png" alt="" class="tips-img">
                                         <div class="category-title">{{categoryTip.categoryTitle}}</div>
@@ -208,8 +242,6 @@
               </div>
 
             </div>
-            <div class="modal-footer">
-            </div>
           </div>
         </div>
     </div>
@@ -221,6 +253,14 @@
 
 
     <script>
+
+
+
+
+      // $( ".button1" ).click(function() {
+      //   $( ".fo" ).toggle();
+      // });
+
         // $(function() {
         //   var wall = new freewall("#main-con");
         //   wall.fitWidth();

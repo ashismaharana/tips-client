@@ -15,7 +15,7 @@ var resolve = {
         var deferred = $q.defer();
         var currentUser = $cookieStore.get('current_user');
         if(currentUser){
-          console.log('Hi user',currentUser);
+          console.log('Hi User',currentUser);
           $rootScope.isLoggedIn = true;
           deferred.resolve(currentUser);
         } else{
@@ -46,7 +46,8 @@ angular
     'updateServices',
     'TipsUserServices',
     'VoteService',
-    'NoteBookService'
+    'NoteBookService',
+    'FollowService'
   ])
 
   .config(function ($routeProvider) {

@@ -25,27 +25,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-  <div class="container-fluid padding-null">
-    
-    <!-- nav bar search and login/ signup -->
-    <!-- <div ng-include="'../views/nav.html'" ng-controller="MainCtrl"></div>  -->
-    <!-- user nav -->
-   <!--  <div class="nav-div" ng-show="isLoggedIn">
-        <div class="wrapper">
-            <div class="nav nav-user">
-                <ul class="manu-tag" >
-                    <li class="manu-li-tag"><a ng-href="#/profile" class="">Profile</a></li>
-                    <li class="manu-li-tag"><a ng-href="#/dashboard" class="">Dashboard</a></li>
-                    <li class="manu-li-tag"><a ng-href="#/user" class="">Tips</a></li>
-                    <li class="manu-li-tag" ng-click="createTip()"><a ng-href="#/create"class="">Create Tips</a></li>
-                    <li class="manu-li-tag"><a ng-href="#/notebook" class="">My Notebook</a></li>
-                </ul>
-            </div>
-        </div>
-    </div> --><!-- user nav -->
-    
+  <div class="container-fluid padding-null">    
     <div ng-view=""></div> 
-
   </div>
 
 
@@ -122,6 +103,7 @@
         <script src="scripts/controllers/notebook.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/services/upload.js"></script>
         <!-- endbuild -->
 
 </body>

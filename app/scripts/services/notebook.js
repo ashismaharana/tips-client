@@ -24,6 +24,7 @@ angular.module('NoteBookService', ['ngResource'])
   		};
 
   		this.getNoteBook = function(userId, tipId, cb){
+        console.log("Get Notebook -- Service", new Date());
         // console.log("kdfgjkldsgjklvdsfsdfds", userId, tipId);
   			// console.log(userId);
         // $http({
@@ -41,6 +42,7 @@ angular.module('NoteBookService', ['ngResource'])
   			 });
   		};
 
+      //add tips to notebook
       this.addTipToNotebook = function(tipid, notebookid, cb){
         console.log('INFO: Before saving tip to notebook ', tipid, notebookid);
         // var tipid = ( typeof(tipid) == "string" ? [tipid] : tipid );
@@ -53,4 +55,11 @@ angular.module('NoteBookService', ['ngResource'])
           cb(data, null);
         });
       };
+
+      // this.getNoteBookWithTips = function(){
+
+      //   // Get notebooks by user
+      //   // var notebooks = []
+      //   $http.get(this.url + '/user/notebook')
+      // }
   });

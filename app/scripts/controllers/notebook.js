@@ -14,6 +14,8 @@ angular.module('tipsApp')
     //   'AngularJS',
     //   'Karma'
     // ];
+		console.log("Notebook Controller!!");
+
 		$scope.signupView = false;
 
 		$scope.signin = false;
@@ -24,6 +26,23 @@ angular.module('tipsApp')
     // function widgetsController($scope, $route) {
         $scope.$route = $route;
     // }
+
+    // $scope.getNotebookTips = function(){
+    // 	//$scope.notebookTips = [];
+    // 	$scope.notebookTips = [
+    // 	 {"id": "nb1", "notebook_name": "NB1", "tips": [{"id": "tip1", 'title': "Tip1 NB1"}, {"id": "tip2", 'title': "Tip2 NB2"}]},
+    // 	 {"id": "nb2", "notebook_name": "NB2", "tips": [{"id": "tip2", 'title': "Tip2 NB2"}]},
+    // 	 {"id": "nb3", 'notebook_name': "NB3", "tips": [{"id": "tip3", 'title': "Tip3 NB3"}]}
+    // 	];
+
+        
+    // 	// [
+    // 	   //   {id: notebook1Id, tips: [{id: tipId, ..}]},
+    // 	   //   {id: notebook2Id, tips: [{id: tipId, ..}]},
+    // 	   //   {id: notebook3Id, tips: [{id: tipId, ..}]},
+    // 	// ]
+    // };
+    //$scope.getNotebookTips();
 
     //create user notebook
 	$scope.myNoteBook = function(notebook){
@@ -43,64 +62,72 @@ angular.module('tipsApp')
 					}
 					$scope.create = false;
 
-					//get user notebook
-					Notebook.getNoteBook($scope.user.id, null, function(err, data){
-						$scope.myNoteBookData = data;
-					});  
+					// //get user notebook
+					// Notebook.getNoteBook($scope.user.id, null, function(err, data){
+					// 	$scope.myNoteBookData = data;
+					// });  
 				}
 			});
 		} else {
 			$scope.create = true;
-			$scope.notebook={
+			$scope.notebook = {
      			'notebook_name': ''
 			}	
 		}
 	};
 
+	// var count = 0;
+
 	//get user notebook
 	if($scope.user && $scope.user.id){
+		console.log('-----------------------------------get NoteBook---------ctrl-------------------------')
+
 		// console.log($scope.user.id); 
 		Notebook.getNoteBook($scope.user.id, null, function(err, data){
+		console.log('-------------------<<<<<----------------get NoteBook---------ctrl-------------------------')
+
+			// count++;
+			// console.log("Count", count);
 			if(err){
-				// console.log(err);
-				$scope.myNoteBookData = [];
+				console.log(err);
+				// $scope.myNoteBookData = [];
 			} else {
 				// console.log(data);
-				$scope.myNoteBookData = data;
-				var notebookData = $scope.myNoteBookData
-				console.log(notebookData);
 
+				var notebookData = data;
+				$scope.myNoteBookData = notebookData;
+				console.log("NB DATA--ctrl", notebookData);
 
-			angular.forEach(notebookData, function(value,key){
-				if(value.tip_ids){
-					// console.log(value.tip_ids);
-					var tipIds = value.tip_ids;
-					console.log("TIPID",tipIds);
+			// angular.forEach(notebookData, function(value,key){
+			// 	if(value.tip_ids){
+			// 		// console.log(value.tip_ids);
+			// 		var tipIds = value.tip_ids;
+			// 		console.log("TIPID",tipIds);
 						
-					tipIds.forEach(function(tipId){
+			// 		tipIds.forEach(function(tipId){
 
-					Tip.getTips().then(function(tipsSuccessResponse){
-							var tips = tipsSuccessResponse.data; 
+			// 		Tip.getTips().then(function(tipsSuccessResponse){
+			// 				var tips = tipsSuccessResponse.data; 
 
-							Category.getCategories().then(function(categoryResponse){
-									$scope.categories = categoryResponse.data;
-									tips.forEach(function(tip){
-										$scope.categories.forEach(function(category){
-											if(category.id === tip.category_id){
-												tip.categoryTitle = category.title;
-											}
-										});
-									});	
-									$scope.tips = tips;
-									// console.log($scope.tips);
-							},function(categoryFailResponse){
-							});
-						},function(tipsErrorReponse){
-							// console.log(tipsErrorReponse)
-						});	
-					})
-				}
-			})
+			// 				Category.getCategories().then(function(categoryResponse){
+			// 						$scope.categories = categoryResponse.data;
+			// 						tips.forEach(function(tip){
+			// 							$scope.categories.forEach(function(category){
+			// 								if(category.id === tip.category_id){
+			// 									tip.categoryTitle = category.title;
+			// 								}
+			// 							});
+			// 						});	
+			// 						$scope.tips = tips;
+			// 						// console.log($scope.tips);
+			// 				},function(categoryFailResponse){
+			// 				});
+			// 			},function(tipsErrorReponse){
+			// 				// console.log(tipsErrorReponse)
+			// 			});	
+			// 		})
+			// 	}
+			// })
 
 				// for(var i = 0; i < notebookData.length; i++){
 				// 	console.log('length is:',data.length);

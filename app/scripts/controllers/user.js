@@ -57,7 +57,7 @@ angular.module('tipsApp')
 						});
 					});	
 					$scope.tipsOfUser = tips;
-							setTimeout(function(){callFreeWall();},300);//added the freewall
+							setTimeout(function(){callFreeWall();},10);//added the freewall
 					
 				},function(categoryFailResponse){
 
@@ -69,9 +69,9 @@ angular.module('tipsApp')
 		  
 
 		// used for signup service
-		$scope.signup = function(user){
-			console.log('user', user);
-			Signup.postSignup(user, function(err, userRecord){
+		$scope.signup = function(signupUser){
+			console.log('signup user', signupUser);
+			Signup.postSignup(signupUser, function(err, userRecord){
 				if(err){
 					console.log(err);
 					$scope.err = err;
@@ -182,6 +182,37 @@ angular.module('tipsApp')
 				});
 	    	}
 	    };
+
+
+//tipdescription
+
+	$scope.getMyTipDescription = function(index, tip){
+		// console.log(tip.categoryTitle);
+		// console.log(tip.title);
+		// console.log(tip.description);
+		$scope.myCurrentTip = tip;
+
+		$scope.mtt = tip;
+	}
+
+	$scope.saveEditTip = function(myCurrentTip){
+		// console.log(myCurrentTip.id);
+		// var id = myCurrentTip.id;
+		Tip.putTip (myCurrentTip, function( err, tipEdited){
+			if(!err){
+				$scope.myCurrentTip = tipEdited;
+			}	else{
+				alert(err);
+			}
+
+		})
+	}
+
+	// $ecope.notSaveEditTip = function(){
+	// 	// $scope.mtt = tip;
+	// }
+
+
 		// //create user notebook
 		// $scope.myNoteBook = function(notebook){
 		// 	console.log($scope.user.id);
