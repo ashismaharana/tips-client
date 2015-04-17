@@ -13,7 +13,7 @@
 					opacity: .5;
 				}
 			}
-			.uploed-text{
+			.upload-text{
 				color: $bg-sky-d;
  				position: relative;
                 top: 140px;
@@ -195,13 +195,19 @@
 	font-family: Handlee;
 	padding: 11px 18px;
 	border-bottom: 1px solid #d4cc5b;
+	text-align: justify;
 		label{
 			font-weight: bold;
+			font-size: 16px;
 		}
 
 		textarea{
 			width: 100%
 		}
 
+}
+
+.editHover{
+	
 }
 

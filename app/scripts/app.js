@@ -11,15 +11,15 @@
 
 
 var resolve = {
-    data:function($rootScope, $q, $http, $location,  $cookieStore, IsLoggedIn, Login){
+    data:function($rootScope, $q, $cookieStore, $location){
         var deferred = $q.defer();
         var currentUser = $cookieStore.get('current_user');
         if(currentUser){
           console.log('Hi User',currentUser);
-          $rootScope.isLoggedIn = true;
+          // $rootScope.isLoggedIn = true;
           deferred.resolve(currentUser);
         } else{
-          $rootScope.isLoggedIn = false;
+          // $rootScope.isLoggedIn = false;
           deferred.reject();
           $location.path('/');
         }
@@ -47,10 +47,16 @@ angular
     'TipsUserServices',
     'VoteService',
     'NoteBookService',
-    'FollowService'
+    'FollowService',
+    'searchServices',
+    'xeditable'
   ])
 
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+
+    // use the HTML5 History API & set HTM5 mode true
+    // $locationProvider.html5Mode(true);
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -99,6 +105,12 @@ angular
       // })
       .otherwise({
         redirectTo: '/'  
+      });
+      
+      // use the HTML5 History API
+      $locationProvider.html5Mode({
+         enabled: true,
+         requireBase: false
       });
   });
 

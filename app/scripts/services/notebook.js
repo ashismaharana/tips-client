@@ -9,11 +9,11 @@
  */
 angular.module('NoteBookService', ['ngResource'])
   .service('Notebook', function ($resource, $http) {
-  		this.url = 'http://localhost:1337',
 
+//create new notebook
   		this.createNoteBook = function(mynb, cb){
 			console.log('INFO: Before saving', mynb);
-  			$http.post(this.url + '/user/notebook', mynb)
+  			$http.post('/api/user/notebook', mynb)
   			.success( function(data) {
   				console.log('INFO: After Saving', data);
   				cb(null, data);
@@ -23,30 +23,22 @@ angular.module('NoteBookService', ['ngResource'])
   			});
   		};
 
+// get notebook
   		this.getNoteBook = function(userId, tipId, cb){
-        console.log("Get Notebook -- Service", new Date());
-        // console.log("kdfgjkldsgjklvdsfsdfds", userId, tipId);
-  			// console.log(userId);
-        // $http({
-        //   url: this.url + '/notebook-by-user/' + userId,
-        //   method: "GET",
-        //   params: tipParams
-        // });
-  			return $http.get(this.url + '/notebook-by-user/' + userId + '?tip_id=' + tipId)
+  			return $http.get('/api/notebook-by-user/' + userId + '?tip_id=' + tipId)
   			  .success(function(mynotebook){
-  			 	  // console.log("jkdsgkgksldg", mynotebook);
   			 	  cb(null, mynotebook);
   			  })
-  			 .error(function(data){
+  			  .error(function(data){
   			 	  cb(data, null);
   			 });
   		};
 
-      //add tips to notebook
+//add tips to notebook
       this.addTipToNotebook = function(tipid, notebookid, cb){
         console.log('INFO: Before saving tip to notebook ', tipid, notebookid);
         // var tipid = ( typeof(tipid) == "string" ? [tipid] : tipid );
-        $http.put(this.url + '/user/notebook/' + notebookid, {tip_id: tipid})
+        $http.put('/api/user/notebook/' + notebookid, {tip_id: tipid})
         .success( function(data) {
           console.log('INFO: After Saving tip to notebook', data);
           cb(null, data);
@@ -56,10 +48,20 @@ angular.module('NoteBookService', ['ngResource'])
         });
       };
 
-      // this.getNoteBookWithTips = function(){
+// rename the notebook
+      this.renameNotebook = function(id,notebook, cb){
+        console.log(id);
+        $http.put('/api/user/notebook/' + id, notebook)
+      };
 
-      //   // Get notebooks by user
-      //   // var notebooks = []
-      //   $http.get(this.url + '/user/notebook')
-      // }
+// delete this notebook
+      this.deleteNotebook = function(NotebookId, cb){
+        $http.delete('/api/user/notebook/' + NotebookId)
+        .success(function(data){
+          cb(null, data);
+        })
+        .error(function(data){
+          cb(data, null);
+        })
+      }
   });

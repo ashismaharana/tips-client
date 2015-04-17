@@ -1,5 +1,6 @@
 // Generated on 2015-01-12 using generator-angular 0.10.0
 'use strict';
+var modRewrite = require('connect-modrewrite');
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -11,6 +12,9 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+
+//addByme
+  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -72,11 +76,33 @@ module.exports = function (grunt) {
         // hostname: '0.0.0.0',
         livereload: 35729
       },
+      //Add server ak
+      server: {
+       options: {
+         middleware: function (connect, options) {
+           return [proxySnippet];
+         }
+       },
+       proxies: [
+         {
+           context: '/api/',
+           host: 'localhost',
+           https: false,
+           port: 1337,
+           rewrite: {
+             '^/api': ''
+           },
+           ws: true
+         }
+       ],
+      },
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
             return [
+              // modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /index.html [L]']),
+              proxySnippet,
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -388,6 +414,9 @@ module.exports = function (grunt) {
     }
   });
 
+  //add ak
+  grunt.loadNpmTasks('grunt-connect-proxy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -397,6 +426,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'configureProxies:server',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',

@@ -1,5 +1,6 @@
+<div class="loader" ng-controller="MainCtrl"></div>
 <!-- <div  class="tips-container-freewall free-wall" id="freewall"> -->
-  <div id="freewall"  class="free-wall" >
+  <div id="freewall-tips"  class="free-wall" >
     <div ng-repeat="tip in tips" class='brick'>
     <!-- <div ng-repeat="tip in tips" class='tip-item floatl brick'> -->
     <!-- <div ng-repeat="tip in tips" class='tip-item' ng-click="tipdescription(tip)"> -->
@@ -7,7 +8,7 @@
             <div data-toggle="modal" data-target="#myModal" ng-click="tipdescription($index, tip)" class="cursor-pointer">
                 <div>
                     <div>
-                      <img src="../images/tipsMark.png" alt="" class="tips-img">
+                      <img src="/images/tipsMark.png" alt="" class="tips-img">
                     </div>
                     <div class="category-title">{{tip.categoryTitle}}</div>
                 </div>
@@ -18,19 +19,19 @@
                 <div class="tip-details">
                     <div class="thumbs_up" ng-click="thumbsUp($index, tip.id)">
                         <div>
-                            <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                            <img src="/images/thumbs_up.svg" class="thumbs-up-img" alt="">
                         </div>
                         <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
                     </div>
                     <div class="thumbs_down" ng-click="thumbsDown($index, tip.id)">
                         <div>
-                            <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                            <img src="/images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
                         </div>
                         <div class="num-thumbs-down"> {{tip.thumbs_down}} </div>
                     </div>
                     <div class="viewer-div">
                         <div>
-                            <img src="../images/view.svg" alt="" class="viewer-img" />
+                            <img src="/images/view.svg" alt="" class="viewer-img" />
                         </div>
                         <div class="num-of-viewer"> {{tip.view}} </div> 
                     </div>
@@ -49,7 +50,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
             </div>
-            <div class="modal-body" style="overflow: inherit;">
+            <div class="modal-body">
               <div class="left-right-container">
                 <div class="left-body">
                     
@@ -61,7 +62,7 @@
                       <p>{{tipDetails.title}}</p>
                     </div>
                     <div class="title-img">
-                      <img src="../images/popup-img.jpg" alt="">
+                      <img src="/images/popup-img.jpg" alt="">
                     </div>
                     <div class="all-points">
                       <p>{{tipDetails.description}}</p> 
@@ -71,15 +72,16 @@
                     <!-- <div class="bottom-actions-container" ng-show="addToNb"> -->
                         <div class="left-action">
                             <div class="display-middle" ng-click="thumbsUp(tipIndex, tipDetails.id)">
-                                <img src="../images/thumbs_up.svg" alt="">
+                                <img src="/images/thumbs_up.svg" alt="">
                                 <span class="thumb-number">{{tipDetails.thumbs_up}}</span>
                             </div>
                             <div class="display-middle" ng-click="thumbsDown(tipIndex, tipDetails.id)">
-                              <img class="thumb-down-img" src="../images/thumbs_down.svg" alt="">
+                              <img class="thumb-down-img" src="/images/thumbs_down.svg" alt="">
                               <span class="thumb-number">{{tipDetails.thumbs_down}}</span>
                             </div>
                         </div>
                         <div class="right-action" ng-controller="NotebookCtrl" >  
+
 
                 <!-- add to notebook -->
                             <div class="notebook-popover-content animate-show" ng-show="addToNbPopUp">        
@@ -87,9 +89,63 @@
                                     <div class="notebook-itom" >
                                         <div ng-repeat="notebook in myNoteBookData">  
                                             <div>
-                                                <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)">
+
+                        <a href="#" editable-checklist="user.status" e-ng-options="notebook.tip_ids.indexOf(tipDetails.id)">
+                           {{notebook.notebook_name}}
+                          </a>
+
+
+
+      <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+      ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-load="abc({{notebook.id}},{{notebook.tip_ids.indexOf(tipDetails.id) != -1}})"> -->
+
+
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  -->
+                                               <!-- ng-changed="(notebook.tip_ids.indexOf(tipDetails.id) != -1)"> -->
+
+                                               <!--  
+                                                <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                                                ng-model="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" >
+ -->
+
+  
+
+
+                                                <!-- <input type="checkbox" checklist-comparator="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" > -->
+
+                                              <!-- {{notebook.tip_ids}}>{{tipDetails.id}}>>{{notebook.tip_ids.indexOf(tipDetails.id) != -1}} -->
+
+                                                
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  ng-checked="true"> -->
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" ng-checked="{{}}"> -->
+
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  -->
+                                                       <!-- ng-checked="notebook.isChecked"> -->
+
+
                                                 <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook()"> -->
                                                 <!-- <input type="checkbox" id="{{notebook.id}}" ng-model="notebook.id" ng-change="addOrDeleteTipForNotebook($tipIdx, {{notebook.id}})"> -->
+
+
+
+                                                <!-- working -->
+
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                                                ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-load="abc({{notebook.id}},{{notebook.tip_ids.indexOf(tipDetails.id) != -1}})"> -->
+
+                                                <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                                                ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-load="function(){
+                                                if({{notebook.tip_ids.indexOf(tipDetails.id) != -1}}==true)
+                                                  $('#{{notebook.id}}').prop('checked',true);
+                                              }"> -->
+                                              <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                                                ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-init="console.log('{{notebook.id}}')">
+<script>
+  function abc(a)
+  {
+    console.log(a);
+  }
+</script>
                                                 <label for="{{notebook.id}}" class="notenook-label">{{notebook.notebook_name}}</label>
                                             </div>
                                         </div>
@@ -103,7 +159,7 @@
  -->                                    </div>
                                     <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()">  -->
                                     <button class="addnotebook-div"> 
-                                        <img class="addnotebtn" src="../images/ok.png" alt="">
+                                        <img class="addnotebtn" src="/images/ok.png" alt="">
                                     </button>
                                 </div>
                                 <div class="popup-triangle" style=''></div>
@@ -121,7 +177,7 @@
                                         </div> -->
                                     </div>
                                     <button class="addnotebook-div"> 
-                                        <img class="addnotebtn" src="../images/ok.png" alt="">
+                                        <img class="addnotebtn" src="/images/ok.png" alt="">
                                     </button>
                                 </div>
                                 <div class="popup-triangle" style=''></div>
@@ -140,7 +196,7 @@
                       <div class="right-space1">
                           <div class="profile-image-about">
                             <div class="profile-image">
-                              <img src="../images/passport.jpg" alt="">
+                              <img src="/images/passport.jpg" alt="">
                             </div>
                             <div class="profile-about" ng-click="userInfo(userIs)">
                                  <h4>{{userIs.firstName}} {{userIs.lastName}}</h4>
@@ -165,35 +221,36 @@
                          <div class="his-topics-heading">
                              <h4>His Popular Tips</h4>
                           </div> 
+                          <div class="">
+                              <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item padding12'>
+                                <div class="category-title-div ">
+                                    <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
+                                    <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)"  class="cursor-pointer">
+                                        <div>
+                                            <img src="/images/tipsMark.png" alt="" class="tips-img">
+                                            <div class="category-title">{{popularTip.categoryTitle}}</div>
+                                        </div>
+                                        <div>
+                                            <div class="desc tips-titel">{{popularTip.title}}</div>
+                                            <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
+                                        </div>
+                                    </div>
+                                    <div class="tip-details">
+                                        <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
+                                          <img src="/images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                                          <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
+                                        </div>
+                                        <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
+                                          <img src="/images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                                          <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
+                                        </div>
+                                        <div class="viewer-div">
+                                          <img src="/images/view.svg" alt="" class="viewer-img" />
+                                          <div class="num-of-viewer"> {{popularTip.view}} </div> 
+                                        </div>
 
-                          <div ng-repeat="popularTip in popularTipsOfUser" class='tip-item padding12'>
-                              <div class="category-title-div ">
-                                  <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
-                                  <div data-toggle="modal" ng-click="popularTipOfUser(popularTip)"  class="cursor-pointer">
-                                      <div>
-                                          <img src="../images/tipsMark.png" alt="" class="tips-img">
-                                          <div class="category-title">{{popularTip.categoryTitle}}</div>
-                                      </div>
-                                      <div>
-                                          <div class="desc tips-titel">{{popularTip.title}}</div>
-                                          <!-- <div class="desc tips-titel">{{popularTip.title}}</div> -->
-                                      </div>
-                                  </div>
-                                      <div class="tip-details">
-                                          <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
-                                            <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
-                                            <div class="num-thumbs-up"> {{popularTip.thumbs_up}} </div> 
-                                          </div>
-                                          <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
-                                            <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
-                                            <div class="num-thumbs-down"> {{popularTip.thumbs_down}} </div>
-                                          </div>
-                                          <div class="viewer-div">
-                                            <img src="../images/view.svg" alt="" class="viewer-img" />
-                                            <div class="num-of-viewer"> {{popularTip.view}} </div> 
-                                          </div>
-
-                                      </div>
+                                    </div>
+                                </div>
                               </div>
                           </div>
                       </div>
@@ -206,13 +263,13 @@
                 </div> 
                 <div class="all-tips-square">
 
-                    <div id="freewall1" class="free-wall" >
+                    <div id="freewall-category" class="free-wall" >
                         <div ng-repeat="categoryTip in categoryWiseTips" class='brick'>
                             <div class="category-title-div">
                                 <!-- <div data-toggle="modal" data-target="#myModal" ng-click="popularTipOfUser(popularTip)"> -->
                                 <div data-toggle="modal" ng-click="categoryWiseTipsShow(categoryTip)"  class="cursor-pointer">
                                     <div>
-                                        <img src="../images/tipsMark.png" alt="" class="tips-img">
+                                        <img src="/images/tipsMark.png" alt="" class="tips-img">
                                         <div class="category-title">{{categoryTip.categoryTitle}}</div>
                                     </div>
                                     <div>
@@ -222,15 +279,15 @@
                                 </div>
                                 <div class="tip-details">
                                     <div class="thumbs_up floatl" ng-click="thumbsUp($index, tip.id)">
-                                      <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
+                                      <img src="/images/thumbs_up.svg" class="thumbs-up-img" alt="">
                                       <div class="num-thumbs-up"> {{categoryTip.thumbs_up}} </div> 
                                     </div>
                                     <div class="thumbs_down floatl" ng-click="thumbsDown($index, tip.id)">
-                                      <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
+                                      <img src="/images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
                                       <div class="num-thumbs-down"> {{categoryTip.thumbs_down}} </div>
                                     </div>
                                     <div class="viewer-div">
-                                      <img src="../images/view.svg" alt="" class="viewer-img" />
+                                      <img src="/images/view.svg" alt="" class="viewer-img" />
                                       <div class="num-of-viewer"> {{categoryTip.view}} </div> 
                                     </div>
                                 </div>
@@ -245,165 +302,3 @@
           </div>
         </div>
     </div>
-
-
-
-
-<!-- popup tip end -->
-
-
-    <script>
-
-
-
-
-      // $( ".button1" ).click(function() {
-      //   $( ".fo" ).toggle();
-      // });
-
-        // $(function() {
-        //   var wall = new freewall("#main-con");
-        //   wall.fitWidth();
-        // });
-        // $(document).ready(function(){
-        //     freewallDesk();
-        // });
-        
-        // function freewallDesk(){
-            // var wall = new freewall('.container-tips');
-            // console.log('freewall');
-            // wall.reset({
-            //   selector: '.tip-item',
-            //   animate: true,
-            //   // cellW: 220,
-            //   cellH: 'auto',
-            //   gutterY: 15,
-            //   gutterX: 15,
-            // });
-            // wall.fitWidth();
-            // wall.refresh()
-        // }
-
-
-        // var wall = new freewall("#freewall");
-        // wall.reset({
-
-        //     selector: '.brick',
-        //     cellW: 220,
-        //     cellH: 'auto',
-        //     gutterY: 15,
-        //     gutterX: 15,
-        //     animate: true,
-
-            // delay: 0, 
-            // rightToLeft: false,
-            // cacheSize: true, // caches the original size of block;
-            // keepOrder: true,
-            // draggable: true,
-
-            // onResize: function() {
-            //     console.log("HI onResize");
-            //     wall.fitWidth();
-            // },
-
-            // onGapFound: function() {
-            //     console.log('onGapFound')
-            //     wall.fitWidth();
-            // },
-            // onComplete: function() {
-            //     console.log('onComplete')
-            //   wall.fitWidth();
-            //   wall.refesh();
-            // },
-
-            // onBlockDrag: function() {
-            //     console.log('onBlockDrag')
-            //   wall.fitWidth();
-            // },
-
-            // onBlockMove: function() {
-            //     console.log('onBlockMove')
-            //   wall.fitWidth();
-            // },
-
-            // onBlockDrop: function() {
-            //   wall.fitWidth();
-            // },
-
-            // onBlockReady: function() {
-            //     console.log('onBlockReady')
-            //   wall.fitWidth();
-            // }
-
-            // onBlockFinish: function() {
-            //   wall.fitWidth();
-            // },
-
-            // onBlockActive: function() {
-            //   wall.fitWidth();
-            // },
-
-            // onBlockResize: function() {
-            //   wall.fitWidth();
-            // }
-
-
-
-
-
-
-//         });
-//         $( document ).ready(function() {
-//             // setTimeout(function(){wall.fitWidth()},100);
-//             setTimeout(function(){wall.fitWidth()},300);
-
-//         });
-          
-// wall.container.find('.brick .category-title-div').load(function() {
-//         wall.fitWidth();
-//       });
-
-
-//           // var wall = new freewall('.free-wall');
-//           // wall.reset({
-//           //   selector: '.brick',
-//           //   onComplete: function() {
-//           //     this.fitWidth();
-//           //   }
-//           // });
-          
-//           // var wall = new freewall('.free-wall');
-//           wall.reset({
-//             selector: '.brick',
-//             fillHoles: function() {
-//               this.fitWidth();
-//             }
-//           });
-
-          // wall.container.find('.free-wall').load(function() {
-          //   wall.fitWidth();
-
-          // console.log('wall',wall);
-          // console.log('container',container);
-          // });
-
-
-        // var wall = new freewall('.free-wall');
-        // wall.reset({
-        //   selector: '.brick',
-        //   onResize: function() {
-        //     this.fitWidth();
-        //   }
-        // });
-
-
-
-        // wall.container.reset('.free-wall').load(function() {
-        //     //  // debugger;
-        //      console.log('brick img')
-        //      wall.fitWidth();
-        //     });
-
-    
-  </script>
-

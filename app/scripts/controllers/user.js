@@ -9,7 +9,7 @@
  */
 angular.module('tipsApp')
 
-	.controller('UserCtrl', function ($scope, $http, $modal, $log, $location, $cookieStore, $rootScope, Signup, Vote, Login, IsLoggedIn, Category, Tip, Signout, Update, TipsUser, Notebook, $route) {
+	.controller('UserCtrl', function ($scope, $http, $modal, $log, $location, $cookieStore, $rootScope, Signup, Vote, Login, Category, Tip, Signout, Update, TipsUser, Notebook, $route) {
 
 		//get tips and categories data to show
 		// $scope.tips = Tip.getTips();  
@@ -57,7 +57,7 @@ angular.module('tipsApp')
 						});
 					});	
 					$scope.tipsOfUser = tips;
-							setTimeout(function(){callFreeWall();},10);//added the freewall
+							setTimeout(function(){callFreeWall('#freewall');},10);//added the freewall
 					
 				},function(categoryFailResponse){
 
@@ -99,7 +99,7 @@ angular.module('tipsApp')
 
 		// used for Login service
 		$scope.login = function (user){
-			console.log( 'email',user.email,'user.password',user.password)
+			// console.log( 'email',user.email,'user.password',user.password)
 			if( !user.email && !user.password){
 				console.log("not entered")
 			}
@@ -117,20 +117,29 @@ angular.module('tipsApp')
 							$cookieStore.put('current_user', userRecord);
 							
 							console.log('if userRecord',userRecord);
-							
-							$rootScope.isLoggedIn = true;
+							 $(".ng-scope").removeClass('modal-open');
+							// $rootScope.isLoggedIn = true;
 							$location.path('/user');
 						} else {
 							console.log('else userRecord',userRecord);
 							$cookieStore.put('current_user', null);
-							$rootScope.isLoggedIn = false;
+							// $rootScope.isLoggedIn = false;
 						} 
 					}
 				});
 			}
 		};
 
-		
+
+		//forgot password
+		$scope.forgotpassword = function(forgotuser){
+			console.log(forgotuser)
+			Login.resetRequest(forgotuser, function(err, responceRequest){
+				console.log(responceRequest)
+			})
+		};
+
+
 		// used for Signout service
 		$scope.signOut = function(){
 			// check if the current user is existing 
@@ -142,7 +151,7 @@ angular.module('tipsApp')
 					console.log('is session destroyed? :', data);
 					// on successful removal of session, delete the cookie ( make current user null )
 					$cookieStore.remove('current_user');
-					$rootScope.isLoggedIn = false;
+					// $rootScope.isLoggedIn = false;
 					$location.path('/');
 				});
 			}
@@ -207,6 +216,7 @@ angular.module('tipsApp')
 
 		})
 	}
+
 
 	// $ecope.notSaveEditTip = function(){
 	// 	// $scope.mtt = tip;

@@ -1,0 +1,21 @@
+Searching 103 files for "glyphicon-ok"
+
+/Users/ashismaharana/Documents/mantra/angularjs/tips-client/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss:
+   51  .glyphicon-th                     { &:before { content: "\e011"; } }
+   52  .glyphicon-th-list                { &:before { content: "\e012"; } }
+   53: .glyphicon-ok                     { &:before { content: "\e013"; } }
+   54  .glyphicon-remove                 { &:before { content: "\e014"; } }
+   55  .glyphicon-zoom-in                { &:before { content: "\e015"; } }
+   ..
+  121  .glyphicon-minus-sign             { &:before { content: "\e082"; } }
+  122  .glyphicon-remove-sign            { &:before { content: "\e083"; } }
+  123: .glyphicon-ok-sign                { &:before { content: "\e084"; } }
+  124  .glyphicon-question-sign          { &:before { content: "\e085"; } }
+  125  .glyphicon-info-sign              { &:before { content: "\e086"; } }
+  126  .glyphicon-screenshot             { &:before { content: "\e087"; } }
+  127  .glyphicon-remove-circle          { &:before { content: "\e088"; } }
+  128: .glyphicon-ok-circle              { &:before { content: "\e089"; } }
+  129  .glyphicon-ban-circle             { &:before { content: "\e090"; } }
+  130  .glyphicon-arrow-left             { &:before { content: "\e091"; } }
+
+3 matches in 1 file

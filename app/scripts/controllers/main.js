@@ -11,9 +11,16 @@
 
 angular.module('tipsApp')
 
-	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location,  Tip, Category, IsLoggedIn, Signup, Signout, Notebook, TipsUser,  $animate, $route, Follow ) {
-		
-		console.log("Main Controller!!");
+	.controller('MainCtrl', function ($scope, $cookieStore, $rootScope, $location,  Tip, Category, IsLoggedIn, Signup, Signout, Notebook, TipsUser,  $animate, $route, Follow,Search ) {
+
+
+
+//loader 
+	$(document).ready(function() {
+		$(".loader").fadeOut(1000);
+	});
+
+		// console.log("Main Controller!!");
 		//current user
 		$scope.user = $cookieStore.get('current_user');
 		
@@ -46,7 +53,7 @@ angular.module('tipsApp')
 						});
 					});
 						$scope.categoryWiseTips = categoryTips;
-						setTimeout(function(){callFreeWall();},50);//freewall call
+						setTimeout(function(){callFreeWall('#freewall-tips');},50);//freewall call
 						console.log('ok lets see',categoryTips);
 						$scope.tips = categoryTips;
 				});	
@@ -59,8 +66,8 @@ angular.module('tipsApp')
 		// 	wall.fitwidth();
 		// })
 		
-		callGetTips();//call the get tips
-		function callGetTips(){
+		// callGetTips();//call the get tips
+		// function callGetTips(){
 			// $scope.$watch(function(scope) { return scope.tips.myVar },
    //            function(newValue, oldValue) {
    //                document.getElementById("").innerHTML =
@@ -80,14 +87,14 @@ angular.module('tipsApp')
 						});	
 						$scope.tips = tips;
 						// console.log($scope.tips);
-						setTimeout(function(){callFreeWall();},50);//freewall call
+						setTimeout(function(){callFreeWall('#freewall-tips');},50);//freewall call
 				},function(categoryFailResponse){
 				});
 
 			},function(tipsErrorReponse){
 				// console.log(tipsErrorReponse)
 			});
-		}
+		// }
 
 		// selection
 		$scope.isSelected = function(id){
@@ -101,13 +108,13 @@ angular.module('tipsApp')
 
 //tip description in popop
 		$scope.tipdescription = function(idx, tip){
-			console.log(tip);
+			console.log("INFO: Current Tip IS:", tip);
 			$scope.tipDetailsDiv = true;
 			$scope.tipDetails = tip;
 			$scope.tipIndex = idx;
+			console.log(idx);
 
-
-			console.log('-----------------user id----------------',user_id)
+			// console.log('-----------------user id----------------',user_id)
 
 
 			//tip viewer
@@ -118,6 +125,7 @@ angular.module('tipsApp')
 					if(err){
 						console.log(err);
 					} else{
+						// console.log(data);
 					$scope.tips[idx].view = data[0].view;
 					}
 				});
@@ -128,10 +136,42 @@ angular.module('tipsApp')
 				// console.log('Who is the user',$scope.user.id);
 				if($scope.user){
 					// Notebook.getNoteBook($scope.user.id, tipId, function(err, data){
-					Notebook.getNoteBook($scope.user.id, tipId, function(err, data){
-						// console.log('all notebook',data);
-						$scope.myNoteBookData = data;
-					}); 
+					// Notebook.getNoteBook($scope.user.id, tipId, function(err, data){
+					// 	// console.log('all notebook',data);
+					// 	$scope.myNoteBookData = data;
+					// }); 
+
+					// $scope.tipDetails.notebook_ids = [];
+					// var myNoteBooks = $scope.myNoteBookData;
+					// var currentTip = $scope.tipDetails;
+
+					//angular.forEach($scope.myNoteBookData, function(val, key){
+
+					//});
+
+					// for(var i = 0; i < myNoteBooks.length; i++){
+					// 	if(myNoteBooks[i]["tip_ids"].indexOf(currentTip.id) != -1){
+					// 		$scope.tipDetails.notebook_ids.push($scope.myNoteBookData[i]["id"]);
+					// 	}
+					// }
+					//$scope.apply(function(){
+
+						console.log("BEFORE::", $scope.myNoteBookData);
+						// angular.forEach($scope.myNoteBookData, function(value, key){
+
+						// 	console.log("BEFORE VALUE: ", value);
+						// 	console.log("DEBUG ", value.tip_ids, "current tip", $scope.tipDetails.id);
+
+						// 	if(value.tip_ids.indexOf($scope.tipDetails.id) != -1){
+						// 		value.isChecked = true;
+						// 	} else {
+						// 		value.isChecked = false;
+						// 	}
+						// 	console.log("AFTER VALUE: ", value);
+						// }, $scope.myNoteBookData);
+						// console.log("AFTER::", $scope.myNoteBookData);
+
+					//});
 
 					//notebook popup
 					$scope.addToNbPopUp = false;
@@ -141,14 +181,17 @@ angular.module('tipsApp')
 						$scope.addToNbPopUp = !$scope.addToNbPopUp;
 
 						$scope.addOrDeleteTipForNotebook = function(tipIdx, notebook){
-							console.log("adding tipIdx",tipIdx);
-							console.log("adding notebook",notebook);
+							// console.log("adding tipIdx",tipIdx);
+							// console.log("adding notebook",notebook);
 							//$scope.notebookAdd = [];
-							console.log('ok what',notebook);
+							
+							// console.log('ok what',notebook);
 							// Send a request to the backend with the tip id and notebook id
 							Notebook.addTipToNotebook(tipIdx, notebook, function(err, tip){
 								console.log("TIP::::::", tip);
 							});
+
+
 
 							    //$scope.data = [];
 
@@ -171,10 +214,10 @@ angular.module('tipsApp')
 
 
 
-				console.log('INFO tip is: ', tip.created_by);
+				// console.log('INFO tip is: ', tip.created_by);
 				//tips of the created_by user
 					var userCreatedById = tip.created_by;
-					console.log('userCreatedById >>>----------------->', userCreatedById);
+					// console.log('userCreatedById >>>----------------->', userCreatedById);
 
 					if(userCreatedById){
 						TipsUser.getUserDetails(userCreatedById, function(err, data){
@@ -201,7 +244,7 @@ angular.module('tipsApp')
 									});	
 									$scope.popularTipsOfUser = popularTipsOfUser;
 										// console.log($scope.tips);
-									// setTimeout(function(){callFreeWall();},300);//added the freewall
+									setTimeout(function(){callFreeWall();},100);//added the freewall
 
 								},function(categoryFailResponse){
 									console.log('categoryFailResponse');
@@ -212,7 +255,7 @@ angular.module('tipsApp')
 
 
 						//category wise tip
-						console.log('tip category id :',tip.category_id);
+						// console.log('tip category id :',tip.category_id);
 
 						var categoryId = tip.category_id
 						if(categoryId){
@@ -232,8 +275,8 @@ angular.module('tipsApp')
 										});
 									});
 									$scope.categoryWiseTips = categoryTips;
-									console.log('category wise 	Tips',categoryTips);
-									setTimeout(function(){callFreeWall1();},50);//freewall call
+									// console.log('category wise 	Tips',categoryTips);
+									setTimeout(function(){callFreeWall('#freewall-category');},100);//freewall call
 								});	
 							})
 						}
@@ -346,11 +389,36 @@ angular.module('tipsApp')
 		if($cookieStore.get('current_user')){
 			Follow.followingGet(user_id, function(err, followingList){
 				if(!err){
-					$scope.userFollowings = followingList;
+					$rootScope.userFollowings = followingList;
 				} else{
-					$scope.userFollowings = [];
+					$rootScope.userFollowings = [];
 				}
 			});
+
+			Notebook.getNoteBook($scope.user.id, null, function(err, data){
+				$scope.myNoteBookData = data;
+				for(var i in data)
+				{
+					// console.log(data[i]);
+					for(var j in i)
+					{
+								// console.log(j);
+
+						for(var k in j)
+						{
+								// console.log(k);
+
+							for(var l in k)
+							{
+								// console.log(l);
+							}
+						}
+					}
+				}
+
+			    // console.log('all notebook', $scope.myNoteBookData);
+
+			}); 
 		}
 
 
@@ -372,28 +440,79 @@ angular.module('tipsApp')
 	   	}
 
 
+	// $(window).load(function() {
+	// 	$(".loader").fadeOut("slow");
+	// })	
 
-//scroll and lode old tips
-		$(function(){
-		   $(window).scroll(function(){
-		       if($(document).height()==$(window).scrollTop()+$(window).height()){
-		           // alert('I am at the bottom');
-				   // callGetTips();//call the get tips
+//Autocomplete
+	$('#autocomplete').devbridgeAutocomplete({
+	    serviceUrl: '/api/tip/suggest',
+	    delimiter: /(,)\s*/, // regex or character
+	    autoSelectFirst: true,
+	    paramName: 'term',
+	    appendTo: '.autocomplete-list',
+	    
+	    transformResult: function(response) {
+	    	console.log("RESPONSE",response);
 
-		       }
-		   });
-		});
+	    	// $scope.suggestions = response;
+	    	// console.log("Current Tips", $scope.tips);
+	        return {
+	            suggestions: $.map(JSON.parse(response), function(dataItem) {
+	                return { value: dataItem.text, data: dataItem };
+	                //return { value: dataItem.text };
+	            })
+	        };
+	    },
+	    onSelect: function (suggestion) {
+        	// console.log(suggestion.value);
+        	var search = suggestion.value;
+        	// console.log(suggestion.data);
+        	console.log(search);
+        	Search.searchGet( search, function(err, tipsresponse){
+        		if(err){
+	        		console.log(err);
+        		} else{
+        			console.log(tipsresponse.hits);
+        			var foundTips = tipsresponse.hits;
+        			var tip = [];
 
+        			for(var i=0; i<foundTips.length; i++){
+        				var src = foundTips[i]["_source"];
+        				delete(src["suggest"]);
+        				tip.push(src);
+        				console.log("SRC", src);
 
+        				// console.log('i',i)
+        				// var newArray.push(tip[i]._source);
+        				// console.log(newArray);
+        			}
+        				// console.log('tip',tip);
 
+        		}
+        	});
+    	}
+    	
+	})
 
-
-	      
+	// $scope.search = function(){
+	// 	console.log($scope.data);
+	// }
+	//     $scope.$watch('b', function() {
+	//         // do something here
+	//         $scope.count += 1;
+	//     }, true);
+	
 	})//end the controller
-		
+	
+
+
 	.directive('categories', function() {
 	  return {
 	    templateUrl: 'views/categories.html'
 	  };
 	});
-	
+
+
+
+

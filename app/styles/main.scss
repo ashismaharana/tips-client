@@ -1,15 +1,15 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular.ttf";
+$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular.ttf";
 // bower:scss
 
 // @import "../../script/costumes-scripts/juOaTHBX9N7mCQYS68pw6QLUuEpTyoUstqEm5AMlJo4.woff2";
 
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 
+// @import "bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss";
+
 // @import "bootstrap-sass-official/assets/fonts/bootstrap/Handlee-Regular";
 // @import "Handlee-Regular.ttf";
-
-// @import "Handlee-Regular";
 
 @import "setcolour";
 
@@ -95,8 +95,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 /* Space out content a bit */
 body {
   padding-bottom: 20px;
-  overflow-x: hidden;
   @extend .background-color-w;
+  overflow-x: hidden;
+  
   // font-family: $icon-font-path;
 
 }
@@ -178,7 +179,7 @@ body {
 
 button[disabled], html input[disabled] {
   cursor: default;
-  background-color: $tipsly;
+  background-color: #A1A1A1;
 }
 
 .floatl{
@@ -312,7 +313,9 @@ button[disabled], html input[disabled] {
   left: 310px;
   top: -30px;
 }
- 
+.dropdown{
+  display: inline-block;
+}
 .search-results{
   width: 100px;
   margin: 0 auto;
@@ -335,7 +338,8 @@ button[disabled], html input[disabled] {
 }
 .dropdown-menu{
   min-width: 83px;
-  margin-left: 62px;
+  // margin-left: 62px;
+  margin: 0px;
 }
 .btn-div{
   padding-top: 2px;
@@ -534,7 +538,7 @@ button[disabled], html input[disabled] {
   // left: 518px;
   // top: -32px;
   overflow: hidden;
-  border: 1px solid gray;
+  // border: 1px solid gray;
 }
 
 
@@ -660,10 +664,14 @@ color: #fff;
 .modal-backdrop.in {
 opacity: 0.9;
 background-color: white;
+position: fixed;
 }
 
 
 //popup main scss
+.modal{
+  overflow: auto;
+  overflow-y: scroll; 
 .modal-body{
   overflow: scroll;
   .left-right-container{
@@ -804,7 +812,7 @@ background-color: white;
           padding:0px 12px;
           height: 340px;
           margin: 10px 0px;
-          overflow-y: auto;
+          overflow-y: scroll;
          .his-topics-heading{
             h4{
               padding: 16px 0px 0px 0px;
@@ -823,6 +831,7 @@ background-color: white;
       }
     }
 }
+}
 
   .free-wall {
     margin: 15px;
@@ -834,8 +843,15 @@ background-color: white;
 //popup bootstrap custom scss end
 //signin page as a popup
 
+body.model-open{
+  overflow: scroll;
+}
+
 .model-open{
-  // overflow: scroll;
+  overflow: scroll !important;
+}
+#myModal{
+  // overflow: auto;
 }
 .logo-svg{
   width: 50px;
@@ -959,7 +975,6 @@ background-color: white;
 
 
 
-
 // share btn start
 .share-popover-content{
   @extend .notebook-popover-content;
@@ -968,3 +983,21 @@ background-color: white;
     }
 }
 
+// loader
+.loader{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('../images/tipslyspinner.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+//Autocomplete
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }

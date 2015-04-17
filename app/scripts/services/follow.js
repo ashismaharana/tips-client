@@ -9,11 +9,10 @@
  */
 angular.module('FollowService', ['ngResource'])
   .service('Follow', function ($resource, $http) {
-  	this.url = 'http://localhost:1337/',
   
     this.followCreate = function(categoryId, createdBy, cb){
     	// console.log('hello');
-    	$http.post(this.url + 'user/subscribe/' + categoryId + '/' + createdBy)
+    	$http.post('/api/user/subscribe/' + categoryId + '/' + createdBy)
     	.success( function(following){
     		// console.log('Info: service following ',following);
     		cb(null, following);
@@ -25,7 +24,7 @@ angular.module('FollowService', ['ngResource'])
     },
 
     this.followingGet = function(list ,cb){
-        $http.get(this.url + 'user/user-subscribe/' + list )
+        $http.get('/api/user/user-subscribe/' + list)
         .success(function(following){
             cb(null, following);
         })

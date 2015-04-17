@@ -9,12 +9,11 @@
  */
 angular.module('TipsServices', ['ngResource'])
 	.service('Tip', function ($resource, $http) {
-		this.url = 'http://localhost:1337',
 
 		// console.log('create it',postCreate);
 		this.postCreate = function(tip, cb){
 			console.log('INFO: Before saving', tip);
-			$http.post(this.url + '/tips', tip)
+			$http.post('/api/tips', tip)
 			.success(function(data) {
 				console.log('INFO: After saving', data);
 				cb(null, data);
@@ -26,7 +25,7 @@ angular.module('TipsServices', ['ngResource'])
 
 	 	this.getTips = function(tip_ids){
 	 		if(tip_ids){
-		 		return $http.get(this.url + '/tips?tip_ids=' + tip_ids );
+		 		return $http.get('/api/tips?tip_ids=' + tip_ids.toString() );
 		 		// var r = $http(method: 'GET', url: this.url + '/tips',
 		 		// 	params: {
 		 		// 	  tip_ids: JSON.stringify(tip_ids)
@@ -41,14 +40,14 @@ angular.module('TipsServices', ['ngResource'])
 				// )
 				// return x;
 	 		} else {
-		 		return $http.get(this.url + '/tips');
+		 		return $http.get('/api/tips');
 	 		}
 	 	};
 
 	//this is for create thumb function
 	 	this.postView = function(tipId, cb){
 	 		// console.log('service tip',tipId);
-	 		return $http.put(this.url + '/tips/' + tipId + '/view')
+	 		return $http.put('/api/tips/' + tipId + '/view')
 	 		.success(function(data) {
 				cb(null, data);
 			})
@@ -61,7 +60,7 @@ angular.module('TipsServices', ['ngResource'])
 	//edit tip
 	 	this.putTip = function(tip, cb){
 	 		console.log(tip);
-	 		return $http.put(this.url + '/tips/' + tip.id, tip)
+	 		return $http.put('/api/tips/' + tip.id, tip)
 	 		.success(function(tip){
 	 			cb(null, tip);
 	 		})

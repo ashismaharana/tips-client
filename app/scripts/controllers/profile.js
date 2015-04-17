@@ -46,8 +46,21 @@ angular.module('tipsApp')
 		$scope.updateCancel = function(){
 			$scope.profile = true;
 		};
-		
-
+	$(document).ready(function(){
+		$(".editHover").hide();
+		$(".modal-content").hover(function(){
+			$(".editHover").fadeIn(200);
+		},
+		function(){
+			$(".editHover").fadeOut(200);	
+		}
+		);
+	});
+	// $(".modal-content").on("hover",function(){
+	// $(".modal-content").fadeIn(); or $(".modal-content").slideDown();
+	// },function(){
+	// 	$("modal-content").fadeOut(); or $("modal-content").slideUp();
+	// });
 	//upload profile img
 		// $scope.uploadFile = function(myFile){
 		// 	console.log('myFile',myFile);
