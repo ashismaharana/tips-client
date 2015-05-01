@@ -71,62 +71,67 @@ angular.module('tipsApp')
 		// used for signup service
 		$scope.signup = function(signupUser){
 			console.log('signup user', signupUser);
-			Signup.postSignup(signupUser, function(err, userRecord){
-				if(err){
-					console.log(err);
-					$scope.err = err;
-				} else {
-					console.log('user is ', userRecord);	
-					$scope.user = userRecord;
-					$('.bs-example-modal-sm1').modal('hide');
-					$('.bs-example-modal-sm').modal('show');
+			if(signupUser.firstName != null && signupUser.email != null && signupUser.password){
+				Signup.postSignup(signupUser, function(err, userRecord){
+					if(err){
+						console.log(err);
+						$scope.err = err;
+					} else {
+						console.log('user is ', userRecord);
+						if(userRecord){
+							$scope.user = userRecord;
+							$('.bs-example-modal-sm1').modal('hide');
+							$('.bs-example-modal-sm').modal('show');
+						}	
 
-					// if($scope.user){
-					// 	console.log('user hahaha')
-					// 	// $modalInstance.close($scope.selected.item);
-					// }
+						// if($scope.user){
+						// 	console.log('user hahaha')
+						// 	// $modalInstance.close($scope.selected.item);
+						// }
 
-					// console.log($scope.signin);
-					// alert('welcome ', userRecord);
-					// $scope.signin = !$scope.signin;
-					// if($scope.signupView){
-					// 	$scope.signupView = !$scope.signupView ;
-					// }
-				}
-			});
+						// console.log($scope.signin);
+						// alert('welcome ', userRecord);
+						// $scope.signin = !$scope.signin;
+						// if($scope.signupView){
+						// 	$scope.signupView = !$scope.signupView ;
+						// }
+					}
+				});
+			} else{
+				// alert("fill the form");
+			}
+
 		};
 
 
 		// used for Login service
 		$scope.login = function (user){
+			// console.log(user);
 			// console.log( 'email',user.email,'user.password',user.password)
-			if( !user.email && !user.password){
-				console.log("not entered")
-			}
-			if(user.email && user.password){
+			if($scope.user.email && user.password){
 				Login.postLogin(user, function(err, userRecord){
 					if(err){
-						console.log(err);
+						// console.log(err);
 						$scope.err = err;
 					} else {
-						console.log('User is', userRecord);
-						
+						// console.log('User is', userRecord);
 						// $scope.user = userRecord;
-
 						if(userRecord.id){
 							$cookieStore.put('current_user', userRecord);
 							
-							console.log('if userRecord',userRecord);
+							// console.log('if userRecord',userRecord);
 							 $(".ng-scope").removeClass('modal-open');
 							// $rootScope.isLoggedIn = true;
 							$location.path('/user');
 						} else {
-							console.log('else userRecord',userRecord);
+							// console.log('else userRecord',userRecord);
 							$cookieStore.put('current_user', null);
 							// $rootScope.isLoggedIn = false;
 						} 
 					}
 				});
+			}else{
+				console.log("not entered")
 			}
 		};
 
@@ -148,7 +153,7 @@ angular.module('tipsApp')
 
 			// if exists, send a request to server and destroy the current session
 				var isSignedOut = Signout.destroySession(function(err, data){
-					console.log('is session destroyed? :', data);
+					// console.log('is session destroyed? :', data);
 					// on successful removal of session, delete the cookie ( make current user null )
 					$cookieStore.remove('current_user');
 					// $rootScope.isLoggedIn = false;
@@ -200,100 +205,49 @@ angular.module('tipsApp')
 		// console.log(tip.title);
 		// console.log(tip.description);
 		$scope.myCurrentTip = tip;
-
+		console.log(index);
+		$scope.indexDel = index;
 		$scope.mtt = tip;
-	}
+	};
 
 	$scope.saveEditTip = function(myCurrentTip){
 		// console.log(myCurrentTip.id);
 		// var id = myCurrentTip.id;
+		// delete.myCurrentTip.categoryTitle;
+		console.log(myCurrentTip.categoryTitle);
 		Tip.putTip (myCurrentTip, function( err, tipEdited){
 			if(!err){
 				$scope.myCurrentTip = tipEdited;
+				setTimeout(function(){callFreeWall('#freewall');},10);//added the freewall
 			}	else{
 				alert(err);
 			}
 
 		})
+	};
+
+
+// Profile Delete
+	$scope.deleteTips = function(index, tipId){
+		console.log(tipId);
+		console.log(index);
+		var r = confirm("Are you sure to delete the tip ? \n You won't be able to recover your tip");
+		if (r == true) {
+		    console.log("You pressed OK!");
+		    Tip.deleteTip(tipId, function(err, deleteResponse){
+		    	if(err){
+		    		console.log(err);
+		    	}else{
+					console.log('Delete Res:',deleteResponse);
+					setTimeout(function(){callFreeWall('#freewall');},50);//freewall call
+				    $('#deleted').modal('toggle');
+				    console.log(tipId);
+		    	}
+			});
+		} else{
+
+		}
 	}
-
-
-	// $ecope.notSaveEditTip = function(){
-	// 	// $scope.mtt = tip;
-	// }
-
-
-		// //create user notebook
-		// $scope.myNoteBook = function(notebook){
-		// 	console.log($scope.user.id);
-		// 	console.log(notebook);
-			
-		// 	if($scope.create){
-		// 		Notebook.createNoteBook(notebook, function(err, mynb){
-		// 			if(err){
-		// 					console.log('no',err);
-		// 					console.log(err);
-		// 			} else {
-		// 				// console.log('notebook name', mynb);
-						
-		// 				$scope.create={
-		// 					 'notebook_name': ''
-		// 				}
-		// 				$scope.create = false;
-
-		// 				//get user notebook
-		// 				Notebook.getNoteBook($scope.user.id, null, function(err, data){
-		// 					$scope.myNoteBookData = data;
-		// 				});  
-		// 			}
-		// 		});
-		// 	} else {
-		// 		$scope.create = true;
-		// 		$scope.notebook={
-	 //     			'notebook_name': ''
-		// 		}	
-		// 	}
-		// };
-
-		// //get user notebook
-		// if($scope.user && $scope.user.id){
-		// 	// console.log($scope.user.id); 
-		// 	Notebook.getNoteBook($scope.user.id, null, function(err, data){
-		// 		if(err){
-		// 			// console.log(err);
-		// 			$scope.myNoteBookData = [];
-		// 		} else {
-		// 			// console.log(data);
-		// 			$scope.myNoteBookData = data;
-		// 			var notebookData = $scope.myNoteBookData
-		// 			console.log(notebookData);
-
-
-		// 			angular.forEach(notebookData, function(value,key){
-		// 				if(value.tip_ids)
-		// 					console.log('tip_ids :',value.tip_ids);
-		// 			})
-
-		// 			// for(var i = 0; i < notebookData.length; i++){
-		// 			// 	console.log('length is:',data.length);
-		// 			// notebookData.forEach
-		// 			// 	notebookData.forEach(function(notebook){
-
-		// 				// $scope.categories.forEach(function(category){
-		// 				// 	if(category.id === categoryTip.category_id){
-		// 				// 		categoryTip.categoryTitle = category.title;
-		// 				// 	}
-		// 				// });
-		// 				// });
-
-		// 				// console.log("All notebook with tips id",data[0].tip_ids);
-		// 		}
-
-		// 			// console.log($scope.myNoteBookData);
-				
-		// 	});  
-
-		// }
 
 	})//end
 
@@ -312,35 +266,3 @@ angular.module('tipsApp')
 
 
 
-
-
-	// function callFreeWall(){
- //        var wall = new freewall("#freewall");
- //        wall.reset({
-
-	//         selector: '.brick',
-	//         cellW: 220,
-	//         cellH: 'auto',
-	//         gutterY: 15,
-	//         gutterX: 15,
-	//         animate: true,
-	//         delay: 0, 
-	//         rightToLeft: true,
-	//         // keepOrder: true,
-	//         // draggable: true,
-	//         // cacheSize: true, // caches the original size of block;
-
-	// 	    onResize: function() {
-	// 	        console.log("HI main ctrl");
-	// 	        wall.fitWidth();
-	// 	    }
-
- //      	});
- //      		 wall.container.find('.brick').load(function() {
-	// 			// debugger;
-	// 			console.log('brick img')
-	// 			wall.fitWidth();
-	// 		});
- //      		  wall.fitWidth();
-
- //   	}

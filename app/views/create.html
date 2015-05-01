@@ -4,7 +4,7 @@
 <div ng-include="'../views/user-nav.html'"></div> 
 
 
- <form novalidate class="create-tip create-tip-div" name="createtip">
+ <form novalidate class="create-tip create-tip-div" name="createtip" >
 	<div class="create-tip-categories">
 		<div>
 			<div class="create-tip-categories-txt">Category:</div>
@@ -13,7 +13,8 @@
 			<div>
 				<select class="dropdown dropdown-category-list"  name='categories' id="category" ng-model="tip.category_id" required> 
 				<option value="">Choose a Category list</option>
-				<option ng-repeat="category in categories"  value="{{category.id}}"> {{category.title}} </option>
+				<option ng-repeat="category in categories"  value="{{category.id}}">{{category.title}}</option>
+				<!-- <option ng-repeat="category in categories"  value="{{category.id}}-{{category.title}}">{{category.title}}</option> -->
 			</select>
 			</div>
 			<div  class="area-required-div">
@@ -44,9 +45,10 @@
 		<div>	
 			<label class="create-tip-description-txt">Description:</label>
 		</div>
-		<div class="createtip-description">
+		<div class="createtip-description">		
 			<div>
-				<textarea type="textarea" class="create-tip-description" ng-minlength="10" name='description' ng-model="tip.description" required>
+				<!-- <textarea  id="ashis" contenteditable="true" rows="10" cols="80" type="textarea" class="create-tip-description" name='description' required></textarea> -->
+				<textarea  rows="10" cols="80" type="textarea" class="create-tip-description" ng-minlength="10" name='description' ng-model="tip.description" required>
 				</textarea>
 			</div>
 			<div class="area-required-div">
@@ -65,7 +67,9 @@
 			<input type="file" name="upload" class="create-tip-upload-file" ng-model="tip.file">
 		</div>
 	</div> 
+	
 	<button name="btn" class="btn-create-tip-submit"  ng-disabled="createtip.$invalid" ng-click="create(tip)">Save</button>
+	<!-- <button name="btn" class="btn-create-tip-submit"  ng-click="create(tip)">Save</button> -->
 	
 	<button name="btn"  class="btn-create-tip-submit"  ng-disabled="createtip.$invalid" ng-click="createNew(tip)">Save and Create New</button>
 </form>

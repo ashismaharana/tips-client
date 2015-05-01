@@ -12,7 +12,7 @@ angular.module('signoutServices', ['ngResource'] )
 
     this.destroySession = function(cb){
 
-      $http.delete('/api')
+      $http.delete('/api/signout')
     		.success(function(data) {
     		    cb(null, data);
     		})

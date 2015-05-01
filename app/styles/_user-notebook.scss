@@ -88,16 +88,12 @@ margin-right:20px;
 .btn-primary{
 	background-color: transparent;
 	color: black;
-	.btn-primary:hover{
-		background-color: $gray;
+	:hover{
+		background-color: $gray !important;
 
 	}
 }
 .btn-danger{
 	background-color: transparent;
 	color: black;
-	.btn-danger:hover{
-		background-color: $gray;
-
-	}
 }

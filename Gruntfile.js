@@ -1,5 +1,6 @@
 // Generated on 2015-01-12 using generator-angular 0.10.0
 'use strict';
+// itisfor#
 var modRewrite = require('connect-modrewrite');
 
 // # Globbing
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
         // hostname: '0.0.0.0',
         livereload: 35729
       },
-      //Add server ak
+      //addByme
       server: {
        options: {
          middleware: function (connect, options) {
@@ -101,7 +102,7 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              // modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /index.html [L]']),
+              modRewrite(['!/api|\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /index.html [L]']),
               proxySnippet,
               connect.static('.tmp'),
               connect().use(

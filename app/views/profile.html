@@ -2,14 +2,16 @@
 <div ng-include="'../views/nav.html'"></div> 
 <!-- ../ and give the path of the file -->
 <div ng-include="'../views/user-nav.html'" ></div> 
+<popdown></popdown>
+<!-- <a class="btn" ng-click="success('I am a success!')">Succeed</a> -->
 
 <div class="user-profile-div">
 	<div class="user-profile-div-container">
 		<div ng-show="profile">	
 			<form class="user-profile">
 				<div class="user-img">
-					{{user.profileImg}}
-					<img class="user-profile-img" src="../images/Generic_Male_Profile.jpg">
+					<img class="user-profile-img" src="{{user.avatar}}">
+					<!-- <img class="user-profile-img" src="../images/Generic_Male_Profile.jpg"> -->
 				</div>
 				<div class="user-info">
 					<div class="user-username user-data">{{user.firstName}} {{user.lastName}} {{user.fullName}}</div>
@@ -20,20 +22,27 @@
 					<!-- <div class="user-emailid user-data-info">{{user.ok}}</div> -->
 				</div>
 				<!-- <div class="user-profile-edit" ng-click="editProfile = !editProfile">Edit</div> -->
-				<div class="user-profile-edit" ng-click="profileEdit()">Edit</div>
+				<!-- <div class="user-profile-edit btn btn-primary" ng-click="profileEdit()">Edit</div> -->
+				<div class="btn btn-primary" ng-click="profileEdit()">Edit</div>
 			</form>
 		</div>
-
+		
+<!-- profile edit -->
 		<div ng-hide="profile">
 			<form class="profile-form" name="user_profile_form">
 				<!-- user img -->
 				<div class="profile-img-div">
-					<img class="profile-img" src="../images/Generic_Male_Profile.jpg">
+					<span>
+						<!-- <img ng-model="{{user.avatar != null}}" class="profile-img" src="../images/Generic_Male_Profile.jpg"> -->
+
+						<img class="profile-img" src="{{user.avatar}}">
+					</span>
+					<!-- <img class="profile-img" src="../images/Generic_Male_Profile.jpg"> -->
+
 					<!-- <span class="uploed-text" title="uploed" ng-click="uploadimg()">Uploed</span> -->
 					<!-- <input type="file" file-model="myFile"/> -->
 					<!-- <button class="uploed-text" title="uploed" ng-click="uploadFile()">Uploed</button> -->
     				<!-- <button ng-click="uploadFile()">upload me</button> -->
-
 				</div>
 
 				<!-- user details -->
@@ -73,15 +82,26 @@
 					</div>
 					
 					<div class="">
-						<input type="file" file-model="myFile"/>
-						<button class="upload-text" title="upload" ng-click="uploadFile()">Upload</button>
+
+						<input type="file" onchange="angular.element(this).scope().uploadImage(this)" name="">
+					  <!-- Add image -->
+    				  <!-- <button class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</button>
+					  <ul>
+        				<li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+    				  </ul> -->
+						<!-- <input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadAvatar()"/> -->
+						<!-- <input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadAvatar(this)"/> -->
+						<!-- <button class="upload-text btn btn-primary" title="upload" ng-click="uploadFile()" >Upload</button> -->
+						<!-- <button class="upload-text btn btn-primary" title="upload" onchange="angular.element(this).scope().uploadAvatar(this)">Upload</button> -->
 					</div>
 
 				</div>
 			</form>
 		</div><!-- user details end-->	
 	</div>
-		<!-- tips -->
+
+
+<!-- tips -->
 	<div class="user-profile-border"  ng-controller="UserCtrl">
 		<div class="search-div">
 			<input type="text" class="search-save-tip">
@@ -110,7 +130,7 @@
 				            <div class="tip-details">
 				                <div class="thumbs_up floatl" style="  cursor: default;">
 				                  <img src="../images/thumbs_up.svg" class="thumbs-up-img" alt="">
-				                  <div class="num-thumbs-up"> {{tip.thumbs_up}} </div> 
+				                  <div class="num-thumbs-up"> {{tip.thumbs_up}} </div>
 				                </div>
 				                <div class="thumbs_down floatl" style="  cursor: default;">
 				                  <img src="../images/thumbs_down.svg" class="thumbs-down-img"  alt=""> 
@@ -118,7 +138,7 @@
 				                </div>
 				                <div class="viewer-div">
 				                  <img src="../images/view.svg" alt="" class="viewer-img" />
-				                  <div class="num-of-viewer"> {{tip.view}} </div> 
+				                  <div class="num-of-viewer"> {{tip.view}} </div>
 				                </div>
 				            </div>
 				    </div>
@@ -126,21 +146,25 @@
 				<div class="no-save-tip-div" ng-show="tipsOfUser.length == 0">
 					<img src="../images/sorry.png" class="sorry-message-img">
 					<h3 class="message">Sorry no tips to display</h3>
-					<a href="#/create" class="click-create-tip">Click here to create tips</a>
+					<a href="/create" class="click-create-tip">Click here to create tips</a>
 				</div>
 			</div> 
 		</div>	
 
+
+
 <!-- tip popup -->
-		<div class="modal fade bs-example-modal-sm-user " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal fade bs-example-modal-sm-user" id="deleted"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-sm">
 		    <div class="modal-content">
 		    	<!-- <div class="editHover" data-toggle="modal" data-dismiss="modal" data-target=".bs-example-modal-sm-user-edit" style="margin 0px;"> Edit</div> -->
 					<button class="btn-create-tip-submit " data-toggle="modal" data-dismiss="modal" data-target=".bs-example-modal-sm-user-edit" style="color: #000;  font-weight: bold;background-color: #CAC14E;padding: 0px 20px; height: 49px;  border: 0px;  margin: 0px 0px;  text-align: center;">Edit</button>
 
+ 					<button type="button" style="color: #000;font-weight: bold;background-color: #CAC14E; padding: 0px 20px;  height: 49px; border: 0px; margin: 0px 10px; text-align: center; float:right;"   ng-click="deleteTips(indexDel, myCurrentTip.id)" class="btn btn-danger">Del</button>
+
 				<div>
 					<div class="modal-header">
-		              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="left: 83px;"><span aria-hidden="true">×</span></button>
+		              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="left: 163px;"><span aria-hidden="true">×</span></button>
 		              <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
 		            </div>
 					<div class="desc-category-title "> 
@@ -173,16 +197,20 @@
 				<div>
 					<div class="">
 						<button class="btn-create-tip-submit " ng-click="saveEditTip(myCurrentTip)" data-dismiss="modal" style="color: #000;font-weight: bold;background-color: #CAC14E; padding: 0px 20px;  height: 49px; border: 0px; margin: 0px 0px; text-align: center;" >save</button>
+
 						<!-- <button data-toggle="modal" data-dismiss="modal" data-target=".bs-example-modal-sm-user" class="btn-create-tip-submit" ng-click="notSaveEditTip()" style="color: #000;font-weight: bold;background-color: #CAC14E;padding: 0px 20px;height: 49px;border: 0px;margin: 0px 0px;text-align: center; float: left" >Don't save</button> -->
 					</div>
 					<div class="modal-header">
 		              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="left: 83px;"><span aria-hidden="true">×</span></button>
 		              <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
 		            </div>
-					<div class="desc-category-title "> 
-						<label>Category Name : </label> {{myCurrentTip.categoryTitle}} 
+					<div class="desc-category-title desc-tip"> 
+						<label>Category Name : </label> {{myCurrentTip.categoryTitle}}
+						<!-- <select class="dropdown dropdown-category-list"  name='categories' id="category" ng-model="myCurrentTip.category_id" required> 
+						<option value="">{{myCurrentTip.categoryTitle}}</option>
+						<option ng-repeat="category in categories"  value="{{category.id}}-{{category.title}}">{{category.title}}</option> -->
 					</div>
-					<div class="desc-tip">
+					<div class="desc-tip" >
 						<label>Tip Title :</label>
 						<div>
 							<textarea name="" ng-model="myCurrentTip.title">{{myCurrentTip.title}}</textarea>  

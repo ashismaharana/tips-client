@@ -25,7 +25,7 @@
     <div class="col-md-10">
 
     <div class="notebook-name">
-         <ul id='selectUl' id="test">
+         <ul id='selectUl' >
               <li class="nb" e-form="notebookEditform" editable-text='notebook.notebook_name' onbeforesave="updateNotebook(notebook.id,notebook )" 
               ng-model="notebook.notebook_name">{{ notebook.notebook_name || 'empty' }}</li>
               <button class="btn btn-primary" ng-click="notebookEditform.$show()">edit</button>
@@ -112,38 +112,10 @@
                             </div>
                         </div>
 
-                        <div class="right-action"  >  
+                        <div class="right-action">  
 
                 <!-- add to notebook -->
-                            <div class="notebook-popover-content animate-show" ng-show="addToNbPopUpNb">        
-                                <div class="itom" >         
-                                    <div class="notebook-itom" >
-                                        <div ng-repeat="notebook in myNoteBookData">  
-                                            <div>
-
-                                                <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(nbTipDetails.id, notebook.id)" 
-                                               ng-changed="(notebook.tip_ids.indexOf(nbTipDetails.id) != -1)">
-
-                                            
-                                                <label for="{{notebook.id}}" class="notenook-label">{{notebook.notebook_name}}</label>
-                                            </div>
-                                        </div>
-                                        <div ng-show="myNoteBookData.length == 0" class="notebook-not-added">
-                                          <a href="#/notebook">Create Notebook</a>
-                                        </div>
-
-                                        <!-- <div ng-show="user.firstName == null" class="notebook-not-added">
-                                          <ang ng-click="signIn()" >Login to Create Notebook</a>
-                                        </div>
- -->                                    </div>
-                                    <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()">  -->
-                                    <button class="addnotebook-div"> 
-                                        <img class="addnotebtn" src="../images/ok.png" alt="">
-                                    </button>
-                                </div>
-                                <div class="popup-triangle" style=''></div>
-                            </div>
-                            
+                          <div ng-include="'../views/notebookbtn.html'"></div> 
                 <!-- share -->
                            <div class="share-popover-content animate-show left90" ng-show="share">        
                                 <div class="itom" >         
@@ -175,7 +147,8 @@
                       <div class="right-space1">
                           <div class="profile-image-about">
                             <div class="profile-image">
-                              <img src="../images/passport.jpg" alt="">
+                              <!-- <img src="../images/passport.jpg" alt=""> -->
+                              <img src="https://s3-us-west-1.amazonaws.com/tipslydev/avatar/{{userIsNb.image}}" alt="user img"  style="width: 80px; hight: 80px;">
                             </div>
                             <div class="profile-about" ng-click="userInfo(userIs)">
                                  <h4>{{userIsNb.firstName}} {{userIsNb.lastName}}</h4>
@@ -183,12 +156,11 @@
                             </div>
                           </div>
                           <div class="follow-link">
-                            <button type="button" class="btn button1" ng-click="followUserNb(userIs, nbTipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Follow the person">
-                                <!-- <span ng-hide="like">Follow</span> -->
-                                <!-- <span ng-show="like">Following</span> -->
+                         <!--    <button type="button" class="btn button1" ng-click="followUserNb(userIs, nbTipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Follow the person">
                                 <span ng-hide="isFollowing">Follow</span>
                                 <span ng-show="isFollowing">Following</span>
-                            </button>
+                            </button> -->
+
                              <!-- <button  type="button" class="btn button1" ng-click="followUser(userIs, nbTipDetails)" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Follow the person"> -->
                                 <!-- <p  style="display: none; color: #22AAF0">Following</p> -->
                             <!-- </button> -->

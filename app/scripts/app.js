@@ -15,18 +15,14 @@ var resolve = {
         var deferred = $q.defer();
         var currentUser = $cookieStore.get('current_user');
         if(currentUser){
-          console.log('Hi User',currentUser);
-          // $rootScope.isLoggedIn = true;
+          // console.log('Hi User',currentUser);
           deferred.resolve(currentUser);
         } else{
-          // $rootScope.isLoggedIn = false;
           deferred.reject();
           $location.path('/');
         }
     }
 };
-
-
 
 angular
   .module('tipsApp', [
@@ -40,7 +36,6 @@ angular
     'CategoriesServices',
     'LoginServices',
     'SignupServices',
-    'ui.bootstrap',
     'IsLoggedInServices',
     'signoutServices',
     'updateServices',
@@ -49,11 +44,14 @@ angular
     'NoteBookService',
     'FollowService',
     'searchServices',
-    'xeditable'
+    'xeditable',
+    'angularFileUpload',
+    'uploadServices',
+    'ui.bootstrap',
+    'Popdown'
   ])
 
   .config(function ($routeProvider, $locationProvider) {
-
     // use the HTML5 History API & set HTM5 mode true
     // $locationProvider.html5Mode(true);
     
@@ -91,8 +89,15 @@ angular
         controller: 'NotebookCtrl',
         activetab: 'notebook',
         resolve: resolve
-      })    
-
+      })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+      })      
+      // .when('/searchresults/:selectRange' , {
+      //     templateUrl: 'views/modify-searchresults.html'
+      //     controller: 'resultController' , 
+      // })
       // .when('/about', {
       //   templateUrl: 'views/about.html',
       //   controller: 'AboutCtrl',
@@ -104,7 +109,8 @@ angular
       //   // resolve:resolve
       // })
       .otherwise({
-        redirectTo: '/'  
+        redirectTo: '/' 
+
       });
       
       // use the HTML5 History API

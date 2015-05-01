@@ -52,6 +52,12 @@ angular.module('NoteBookService', ['ngResource'])
       this.renameNotebook = function(id,notebook, cb){
         console.log(id);
         $http.put('/api/user/notebook/' + id, notebook)
+        .success(function(data){
+          cb(null, data);
+        })
+        .error(function(data){
+          cb(data, null);
+        });
       };
 
 // delete this notebook
@@ -62,6 +68,6 @@ angular.module('NoteBookService', ['ngResource'])
         })
         .error(function(data){
           cb(data, null);
-        })
-      }
+        });
+      };
   });

@@ -17,7 +17,7 @@ angular.module('tipsApp')
     
     //user nav active path
     // function widgetsController($scope, $route) {
-        $scope.$route = $route;
+        // $scope.$route = $route;
     // }
 
     

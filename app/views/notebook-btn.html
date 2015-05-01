@@ -1,0 +1,83 @@
+<div class="notebook-popover-content animate-show" ng-show="addToNbPopUp">        
+    <div class="itom" >         
+        <div class="notebook-itom" >
+            <div ng-repeat="notebook in myNoteBookData">  
+                <div>
+
+        <!-- working -->
+        <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" \> 
+
+        <!--  <input type="checkbox" href="#" editable-checklist="user.status" e-ng-options="notebook.tip_ids.indexOf(tipDetails.id)">
+        {{notebook.notebook_name}}
+        </input> -->
+
+
+
+        <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+        ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-load="abc({{notebook.id}},{{notebook.tip_ids.indexOf(tipDetails.id) != -1}})"> -->
+
+
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  -->
+                           <!-- ng-changed="(notebook.tip_ids.indexOf(tipDetails.id) != -1)"> -->
+
+                           <!--  
+                            <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                            ng-model="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" >
+        -->
+
+
+
+
+                            <!-- <input type="checkbox" checklist-comparator="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" > -->
+
+                          <!-- {{notebook.tip_ids}}>{{tipDetails.id}}>>{{notebook.tip_ids.indexOf(tipDetails.id) != -1}} -->
+
+                            
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  ng-checked="true"> -->
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" ng-checked="{{}}"> -->
+
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)"  -->
+                                   <!-- ng-checked="notebook.isChecked"> -->
+
+
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook()"> -->
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-model="notebook.id" ng-change="addOrDeleteTipForNotebook($tipIdx, {{notebook.id}})"> -->
+
+
+
+
+
+
+
+                            <!-- <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                            ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-load="function(){
+                            if({{notebook.tip_ids.indexOf(tipDetails.id) != -1}}==true)
+                              $('#{{notebook.id}}').prop('checked',true);
+                          }"> -->
+        <!--                                               <input type="checkbox" id="{{notebook.id}}" ng-click="addOrDeleteTipForNotebook(tipDetails.id, notebook.id)" 
+                            ng-checked="{{notebook.tip_ids.indexOf(tipDetails.id) != -1}}" ng-init="console.log('{{notebook.id}}')">
+        <script>
+        function abc(a)
+        {
+        console.log(a);
+        }
+        </script>
+        -->   
+         <label for="{{notebook.id}}" class="notenook-label">{{notebook.notebook_name}}</label>
+              </div>
+          </div>
+          <div ng-show="myNoteBookData.length == 0" class="notebook-not-added">
+            <a href="#/notebook">Create Notebook</a>
+          </div>
+
+                    <!-- <div ng-show="user.firstName == null" class="notebook-not-added">
+                      <ang ng-click="signIn()" >Login to Create Notebook</a>
+                    </div>
+        -->                                    </div>
+        <!-- <button class="addnotebook-div" ng-click="addOrDeleteTipForNotebook()">  -->
+        <button class="addnotebook-div"> 
+            <img class="addnotebtn" src="/images/ok.png" alt="">
+        </button>
+    </div>
+    <div class="popup-triangle" style=''></div>
+</div>

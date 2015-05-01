@@ -9,11 +9,9 @@
  */
 angular.module('VoteService', ['ngResource'])
   .service('Vote', function ($resource, $http) {
-    this.url = 'http://localhost:1337/',
 
   	this.upVote = function(tipId, cb){
-  		// return $http.post(this.url+ 'tips/' + tipId + '/vote-up' )
-  		$http.post(this.url+ 'tips/' + tipId + '/vote-up' )
+  		$http.post('/api/tips/' + tipId + '/vote-up' )
   		.success( function(data) {
   			console.log('Success upVote',data);
   			cb(null, data[0]); // data returns an array of object
@@ -25,7 +23,7 @@ angular.module('VoteService', ['ngResource'])
   	};
 
   	this.downVote = function(tipId, cb){
-  	 $http.post(this.url+ 'tips/' + tipId + '/vote-down')
+  	 $http.post('/api/tips/' + tipId + '/vote-down')
 	  	.success( function(data) {
         console.log('Success downVote',data);
 	  			cb(null, data[0]);

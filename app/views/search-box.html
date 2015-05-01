@@ -1,0 +1,33 @@
+<!-- <div class="" ng-controller="SearchCtrl">
+    <div style="display: inline-block; vertical-align: middle; width: 90%">
+        <input type="search" id="autocomplete"  class="search-box" placeholder="search eg: unix" ng-model="data" ng-model="data.search" >
+        <div class="autocomplete-list"></div>
+    </div>
+    <div class=""  style="display: inline-block; vertical-align: middle; width: 6%; padding: 12px;margin: 0px; position: relative; left: -50px;" ng-click="search()">
+        <img src="/images/search.png">
+    </div>
+</div> -->
+<!-- <input type="search" id="autocomplete" class="search-box" placeholder="search eg: unix" ng-model="search">  -->
+<!--                 <div>
+    <input type="search" id="autocomplete"  class="search-box autocomplete-list" placeholder="search eg: unix" ng-model="data"> 
+    <button class="search-img search-img2" style="  padding: 0px;border: 0px;  background: transparent;">
+        <img src="/images/search.png" ng-click="search(data)">
+    </button>
+</div>   
+<div class="autocomplete-list" style=""></div> -->
+<!-- <div class="search-results" ng-repeat="category in categories | filter:search" ng-show="search"> {{category.title}} -->
+
+
+<div class="" ng-controller="SearchCtrl">
+    <div class="loginUser">
+        <!-- <input type="search" id="autocomplete"  class="search-box" placeholder="search eg: unix" ng-model="data" ng-model="data.search" >
+        <div class="autocomplete-list"></div> -->
+        <input type="text" ng-model="asyncSelected" placeholder="search eg: unix" typeahead="suggest for suggest in suggests($viewValue)" typeahead-loading="loadingLocations" class="form-control" style="padding: 6px 48px 5px 12px;">
+        <i ng-show="suggesting" class="glyphicon glyphicon-refresh" style="border-bottom:none !important;"></i>
+
+    </div>
+    <div class="signoutBtm"ng-click="search(asyncSelected)">
+        <img src="/images/search.png">
+    </div>
+</div>
+              

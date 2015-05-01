@@ -65,8 +65,20 @@ angular.module('TipsServices', ['ngResource'])
 	 			cb(null, tip);
 	 		})
 	 		.error(function(tip){
-	 			cb(tip, null)
+	 			cb(tip, null);
 	 		});
-	 	}
+	 	};
+
+	//Delete tip
+	 	this.deleteTip = function(tip, cb){
+	 		console.log(tip);
+	 		$http.delete('/api/tips/' + tip)
+	 		.success(function(tip){
+	 			cb(null, tip);
+	 		})
+	 		.error(function(tip){
+	 			cb(tip, null);
+	 		});
+	 	};
 
 	});

@@ -5,7 +5,6 @@
     "jquery": "*"
   },
   "devDependencies": {
-    "connect-modrewrite": "^0.7.11",
     "gravatar": "*",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
@@ -36,7 +35,8 @@
     "karma-jasmine": "^0.3.4",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
-    "time-grunt": "^0.3.1"
+    "time-grunt": "^0.3.1",
+    "connect-modrewrite": "^0.7.11"
   },
   "engines": {
     "node": ">=0.10.0"
